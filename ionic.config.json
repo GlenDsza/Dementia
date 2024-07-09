@@ -1,0 +1,7 @@
+{
+  "name": "dementia_1",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite"
+}
