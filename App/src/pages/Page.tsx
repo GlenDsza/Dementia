@@ -39,7 +39,6 @@ const Page: React.FC = () => {
         <ExploreContainer name={name} />
       </IonContent>
 
-     
       <IonTabBar slot="bottom">
         <IonTabButton tab="home" href="/folder/home">
           <IonIcon icon={home} />

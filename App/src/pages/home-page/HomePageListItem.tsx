@@ -1,8 +1,8 @@
-import React from 'react';
-import { IonItem, IonLabel, IonThumbnail } from '@ionic/react';
-import { useHistory } from 'react-router-dom';
+import React from "react";
+import { IonItem, IonLabel, IonThumbnail } from "@ionic/react";
+import { useHistory } from "react-router-dom";
 
-const HomePageListItem = ({ item }) => {
+const HomePageListItem = ({ item }: { item: any }) => {
   const history = useHistory();
 
   const handleClick = () => {
