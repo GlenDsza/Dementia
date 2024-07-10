@@ -1,0 +1,11 @@
+.title {
+  display: flex;
+  margin: 0.75rem 0 0 1rem;
+}
+
+.title h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-top: 0;
+  margin-left: 0.75rem;
+}
