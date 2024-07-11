@@ -19,13 +19,10 @@ import {
   IonToolbar,
 } from "@ionic/react";
 import React, { FC, useRef, useState } from "react";
-import "./Login.css";
 import { call } from "ionicons/icons";
 import OTPInput from "react-otp-input";
-import { useHistory } from "react-router";
 
-const Login: FC = () => {
-  const history = useHistory();
+const Signup: FC = () => {
   const otpModal = useRef<HTMLIonModalElement>(null);
   const [otp, setOtp] = useState<string>("");
   const [userType, setUserType] = useState<"patient" | "caretaker">("patient");
@@ -35,10 +32,12 @@ const Login: FC = () => {
   const handleSubmitOtp = () => {
     console.log("Submit OTP");
   };
+
   return (
     <IonPage>
       <IonContent fullscreen className="ion-padding">
-        <IonHeader>
+        "Hello World!"
+        {/* <IonHeader>
           <IonToolbar style={{ borderRadius: "1rem" }}>
             <div className="title">
               <img src="/favicon.png" alt="Logo" width={30} height={30} />
@@ -96,9 +95,7 @@ const Login: FC = () => {
               color="medium"
               slot="end"
               className="flex justify-end"
-              onClick={() => {
-                history.push("/signup");
-              }}
+              onClick={() => {}}
             >
               <h3>Don't have an account? Sign up</h3>
             </IonText>
@@ -139,10 +136,10 @@ const Login: FC = () => {
               Submit
             </IonButton>
           </div>
-        </IonModal>
+        </IonModal> */}
       </IonContent>
     </IonPage>
   );
 };
 
-export default Login;
+export default Signup;

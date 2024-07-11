@@ -45,6 +45,7 @@ import "./theme/variables.css";
 import "./theme/styles.css";
 import { call, camera, home } from "ionicons/icons";
 import Login from "./pages/Login/Login";
+import Signup from "./pages/Signup/Signup";
 
 setupIonicReact();
 
@@ -56,17 +57,19 @@ const App: React.FC = () => {
           <Menu />
           <IonRouterOutlet id="main">
             <Route path="/" exact={true}>
-              {/* <Redirect to="/folder/Inbox" /> */}
               <Redirect to="/login" />
+            </Route>
+            <Route path="/login" exact={true}>
+              <Login />
+            </Route>
+            <Route path="/signup" exact={true}>
+              <Signup />
             </Route>
             <Route path="/folder/:name" exact={true}>
               <Page />
             </Route>
             <Route path="/details/:name" exact={true}>
               <Page />
-            </Route>
-            <Route path="/login" exact={true}>
-              <Login />
             </Route>
           </IonRouterOutlet>
         </IonSplitPane>
