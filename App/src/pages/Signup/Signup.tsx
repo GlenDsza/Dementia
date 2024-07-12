@@ -19,25 +19,36 @@ import {
   IonToolbar,
 } from "@ionic/react";
 import React, { FC, useRef, useState } from "react";
-import { call } from "ionicons/icons";
+import { call, person } from "ionicons/icons";
 import OTPInput from "react-otp-input";
+import "./Signup.css";
+import { useHistory } from "react-router";
+
+export interface UserDetailsInterface {
+  name: string;
+  mobile: string;
+}
 
 const Signup: FC = () => {
+  const history = useHistory();
   const otpModal = useRef<HTMLIonModalElement>(null);
   const [otp, setOtp] = useState<string>("");
-  const [userType, setUserType] = useState<"patient" | "caretaker">("patient");
-  const handleGetOtp = () => {
-    console.log("Get OTP");
+  const [userDetails, setUserDetails] = useState<UserDetailsInterface>({
+    name: "abcd",
+    mobile: "",
+  });
+  const { name, mobile } = userDetails;
+  const handleSubmit = () => {
+    console.log({ name, mobile });
   };
   const handleSubmitOtp = () => {
-    console.log("Submit OTP");
+    console.log(otp);
   };
 
   return (
     <IonPage>
       <IonContent fullscreen className="ion-padding">
-        "Hello World!"
-        {/* <IonHeader>
+        <IonHeader>
           <IonToolbar style={{ borderRadius: "1rem" }}>
             <div className="title">
               <img src="/favicon.png" alt="Logo" width={30} height={30} />
@@ -47,63 +58,73 @@ const Signup: FC = () => {
         </IonHeader>
         <div>
           <IonText className="flex justify-center mt-8">
-            <IonCardTitle>Welcome back!</IonCardTitle>
+            <IonCardTitle>Register (Caretaker)</IonCardTitle>
           </IonText>
         </div>
-        <IonCard className="mx-8">
+        <IonCard className="mx-4">
           <IonCardHeader>
             <IonCardSubtitle className="flex justify-center">
-              Login to your account
+              Fill following details
             </IonCardSubtitle>
           </IonCardHeader>
 
           <IonCardContent className="p-3">
-            <IonSegment value={userType} className="mt-4" color={"primary"}>
-              <IonSegmentButton
-                value="patient"
-                onClick={() => setUserType("patient")}
-              >
-                <IonLabel>Patient</IonLabel>
-              </IonSegmentButton>
-              <IonSegmentButton
-                value="caretaker"
-                onClick={() => setUserType("caretaker")}
-              >
-                <IonLabel>Caretaker</IonLabel>
-              </IonSegmentButton>
-            </IonSegment>
-
+            <IonInput
+              label="Name"
+              labelPlacement="floating"
+              type="text"
+              counter={false}
+              maxlength={50}
+              value={name}
+              onIonChange={(e) =>
+                setUserDetails({
+                  ...userDetails,
+                  name: e.detail.value! as string,
+                })
+              }
+              className="mt-4 inputField"
+            >
+              <IonIcon slot="start" icon={person} aria-hidden="true"></IonIcon>
+            </IonInput>
             <IonInput
               label="Mobile No."
               labelPlacement="floating"
               type="number"
               counter={true}
               maxlength={10}
-              className="mt-8"
+              value={mobile}
+              onIonChange={(e) =>
+                setUserDetails({
+                  ...userDetails,
+                  mobile: e.detail.value! as string,
+                })
+              }
+              className="mt-4"
+              helperText="Used for OTP authentication"
             >
               <IonIcon slot="start" icon={call} aria-hidden="true"></IonIcon>
             </IonInput>
             <IonButton
-              id="getOtpBtn"
+              id="submitBtn"
               className="my-8 "
               expand="block"
-              onClick={handleGetOtp}
+              onClick={handleSubmit}
             >
-              Get OTP
+              Submit
             </IonButton>
             <IonText
               color="medium"
               slot="end"
               className="flex justify-end"
-              onClick={() => {}}
+              onClick={() => history.goBack()}
             >
-              <h3>Don't have an account? Sign up</h3>
+              <h3>Have account already? Login</h3>
             </IonText>
           </IonCardContent>
         </IonCard>
         <IonModal
           ref={otpModal}
-          trigger="getOtpBtn"
+          trigger="submitBtn"
           initialBreakpoint={0.4}
           breakpoints={[0, 0.4]}
         >
@@ -133,10 +154,10 @@ const Signup: FC = () => {
               }}
             />
             <IonButton fill="outline" expand="block" onClick={handleSubmitOtp}>
-              Submit
+              Submit OTP
             </IonButton>
           </div>
-        </IonModal> */}
+        </IonModal>
       </IonContent>
     </IonPage>
   );

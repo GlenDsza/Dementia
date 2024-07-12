@@ -27,13 +27,14 @@ import { useHistory } from "react-router";
 const Login: FC = () => {
   const history = useHistory();
   const otpModal = useRef<HTMLIonModalElement>(null);
+  const [mobile, setMobile] = useState<string>("");
   const [otp, setOtp] = useState<string>("");
   const [userType, setUserType] = useState<"patient" | "caretaker">("patient");
   const handleGetOtp = () => {
     console.log("Get OTP");
   };
   const handleSubmitOtp = () => {
-    console.log("Submit OTP");
+    history.push("/map");
   };
   return (
     <IonPage>
@@ -51,7 +52,7 @@ const Login: FC = () => {
             <IonCardTitle>Welcome back!</IonCardTitle>
           </IonText>
         </div>
-        <IonCard className="mx-8">
+        <IonCard className="mx-4">
           <IonCardHeader>
             <IonCardSubtitle className="flex justify-center">
               Login to your account
@@ -78,6 +79,8 @@ const Login: FC = () => {
               label="Mobile No."
               labelPlacement="floating"
               type="number"
+              value={mobile}
+              onIonChange={(e) => setMobile(e.detail.value! as string)}
               counter={true}
               maxlength={10}
               className="mt-8"

@@ -46,6 +46,7 @@ import "./theme/styles.css";
 import { call, camera, home } from "ionicons/icons";
 import Login from "./pages/Login/Login";
 import Signup from "./pages/Signup/Signup";
+import Map from "./pages/Map/Map";
 
 setupIonicReact();
 
@@ -64,6 +65,9 @@ const App: React.FC = () => {
             </Route>
             <Route path="/signup" exact={true}>
               <Signup />
+            </Route>
+            <Route path="/map" exact={true}>
+              <Map />
             </Route>
             <Route path="/folder/:name" exact={true}>
               <Page />
