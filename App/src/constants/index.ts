@@ -1,0 +1,68 @@
+export const markers = [
+  {
+    lat: 18.927074,
+    lng: 72.83114,
+    title: "Leopold Cafe",
+    description: "Iconic cafe and bar",
+    address: "Colaba Causeway, Colaba, Mumbai, Maharashtra 400005",
+    website: "https://en.wikipedia.org/wiki/Leopold_Cafe",
+    phone: "+91 22 2282 8185",
+  },
+  {
+    lat: 18.935627,
+    lng: 72.825908,
+    title: "The Table",
+    description: "Contemporary restaurant",
+    address:
+      "Ground Floor, Kalapesi Trust Building, Opposite Dhanraj Mahal, Below Hotel Suba Palace, Apollo Bunder Marg, Colaba, Mumbai, Maharashtra 400039",
+    website: "http://www.thetable.in",
+    phone: "+91 22 2282 5000",
+  },
+  {
+    lat: 19.075984,
+    lng: 72.877656,
+    title: "Trishna",
+    description: "Seafood specialist",
+    address: "7, Sai Baba Marg, Kala Ghoda, Fort, Mumbai, Maharashtra 400001",
+    website: "https://trishna.co.in",
+    phone: "+91 22 2270 3213",
+  },
+  {
+    lat: 18.930497,
+    lng: 72.832282,
+    title: "Cafe Mondegar",
+    description: "Popular hangout spot",
+    address:
+      "5A, Metro House, Shahid Bhagat Singh Road, Colaba Causeway, Mumbai, Maharashtra 400039",
+    website: "https://en.wikipedia.org/wiki/Cafe_Mondegar",
+    phone: "+91 22 2202 0591",
+  },
+  {
+    lat: 18.994369,
+    lng: 72.824108,
+    title: "Gaylord",
+    description: "Historic bakery and restaurant",
+    address: "Mayfair Building, VN Rd, Churchgate, Mumbai, Maharashtra 400020",
+    website: "http://www.gaylordindia.com",
+    phone: "+91 22 2282 1259",
+  },
+  {
+    lat: 18.924316,
+    lng: 72.831068,
+    title: "Bagdadi",
+    description: "Casual dining, known for biryanis",
+    address:
+      "11, Tulloch Rd, Apollo Bandar, Colaba, Mumbai, Maharashtra 400039",
+    website: "https://en.wikipedia.org/wiki/Bagdadi",
+    phone: "+91 22 2202 5913",
+  },
+  {
+    lat: 19.065363,
+    lng: 72.833169,
+    title: "Mamagoto",
+    description: "Asian fusion restaurant",
+    address: "3rd Floor, Hill Road, Bandra West, Mumbai, Maharashtra 400050",
+    website: "https://mamagoto.in",
+    phone: "+91 22 2640 8905",
+  },
+];

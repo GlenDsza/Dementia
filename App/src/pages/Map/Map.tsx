@@ -1,4 +1,4 @@
-import { GoogleMap } from "@capacitor/google-maps";
+import { GoogleMap, Polyline } from "@capacitor/google-maps";
 import {
   IonBackButton,
   IonButtons,
@@ -7,43 +7,53 @@ import {
   IonPage,
   IonProgressBar,
   IonToolbar,
+  useIonModal,
+  useIonViewWillEnter,
 } from "@ionic/react";
 import React, { FC, useEffect, useRef, useState } from "react";
 import "./Map.css";
-
-const markers = [
-  {
-    title: "Mumbai",
-    snippet: "Hello World :D",
-    // iconUrl: "assets/icon/icon1.png",
-    // iconSize: {
-    //   width: 35,
-    //   height: 35,
-    // },
-    coordinate: {
-      lat: 19.075983,
-      lng: 72.877655,
-    },
-  },
-  {
-    title: "Yakima",
-    snippet: "City",
-    // iconUrl: "assets/icon/icon2.png",
-    // iconSize: {
-    //   width: 35,
-    //   height: 35,
-    // },
-    coordinate: {
-      lat: 46.60207,
-      lng: -120.505898,
-    },
-  },
-];
+import { MarkerInfoWindow } from "./components/MarkerInfoWindow";
+import { markers } from "../../constants";
+import { decode } from "@googlemaps/polyline-codec";
 
 const Map: FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
+  const [selectedMarker, setSelectedMarker] = useState<any>(null);
   const mapRef = useRef<HTMLElement>();
   let newMap: GoogleMap;
+
+  const [present, dismiss] = useIonModal(MarkerInfoWindow, {
+    marker: selectedMarker,
+  });
+
+  const modalOptions = {
+    initialBreakpoint: 0.4,
+    breakpoints: [0, 0.4],
+    backdropBreakpoint: 0,
+    onDidDismiss: () => dismiss(),
+  };
+
+  const markerClick = (marker: any) => {
+    setSelectedMarker(
+      markers.filter(
+        (m) => m.lat === marker.latitude && m.lng === marker.longitude
+      )[0]
+    );
+    present(modalOptions);
+  };
+
+  const addMapMarker = async (marker: any) => {
+    await newMap.addMarker({
+      coordinate: {
+        lat: marker.lat,
+        lng: marker.lng,
+      },
+      title: marker.title,
+    });
+  };
+
+  const addMapMarkers = () =>
+    markers.forEach(async (marker) => await addMapMarker(marker));
 
   const createMap = async () => {
     setLoading(true);
@@ -65,16 +75,32 @@ const Map: FC = () => {
       },
     });
 
-    markers.forEach((marker) => {
-      newMap.addMarker(marker);
-    });
+    await newMap.setOnMarkerClickListener((marker) => markerClick(marker));
+    addMapMarkers();
+    const latLngs = decode(
+      "guorBwzo{LmDBeAAe@@?fGIZWZaG@gBCuAIkEa@aD_@{JaAYGu@[oAy@aAe@gGkBcE{A]Wd@aBvAkHgBe@_@QgBg@HQl@q@FOBa@CUO{@Eq@McABs@TwATyBPcA{HiAaEq@aMqBqm@mJyMuBcPcCkBUwEw@QAsAY]OyHuAg@Q[Qo@m@m@m@i@_@cA_@qD}@oHwBkDy@gGgAqBUyGQaCAuIWgCBcBHwGn@wEh@oFz@aFf@{D?eBI}AQqB[sBk@gHeCsWuJ}GcCkUsI_YgKoDsAuH}CuJsD_GiBoG_Bs@MwAOcDMoCEkHNyCA}@Em@M[G}@a@{@k@kAiAq@aAs@uA{A{DkCwIYw@uAyCs@kBsAaEqEoLkAcDScAEcAB_A\\{DDiA?eAMeBKs@[{A_@gAWg@gA_Bq@u@aAu@qAy@kAa@gB_@eD_@kEy@yBm@uDyAiFkCkIaFyCcBqI}Ei@c@o@s@qGeIm@}@_AqBuCcHmKoXi@aBiDaJs@qBy@oBeAiB}@oAmBeCeBqCSc@wOql@]sBIgA@kBt@sHD_BA_AMsAO{@a@uAmCmHcCgG}CuGc@uAs@uAm@u@u@i@a@W_AYiAYeBQm@AcA@aAVqC\\gADmC?{BIkKk@qIm@qAOgAWeA[oBa@_LoB_Dq@}AWcAGmHM{G]gCUgEk@gA[sAq@uCgBgF{CiBmAuB_AaCy@k@EqB]_BKuI[o@FSF{@`@o@tD[zAi@zA{@nAgB|BwDhDy@b@q@TqAVwGf@gALgAVqAh@mAv@i@f@o@|@a@z@i@hBHzCvEfI~@|CVd@XHtDzFdAfBLn@B`AFVxF|JtBfE~BdEN`@T~AD|@Cl@Gl@sDnTaCjNYv@e@z@sDdEuE|DsEtD_At@aKlI}A~AsC~Co@~@]x@WjAKfAG~BEp@G\\e@dBu@|AgA|Aq@pAEZsAhD{BzDa@`Ag@]Xe@"
+    );
+    const path = latLngs.map((latLng) => ({
+      lat: latLng[0],
+      lng: latLng[1],
+    }));
+    const lines: Polyline[] = [
+      {
+        path: path,
+        // geodesic: true,
+        strokeColor: "#FF0000",
+        strokeWeight: 2,
+      },
+    ];
+    await newMap.addPolylines(lines);
+    await newMap.enableCurrentLocation(true);
 
     setLoading(false);
   };
 
-  useEffect(() => {
+  useIonViewWillEnter(() => {
     createMap();
-  }, []);
+  });
 
   return (
     <IonPage>
@@ -91,7 +117,7 @@ const Map: FC = () => {
             <img src="/favicon.png" alt="Logo" width={30} height={30} />
             <h1>Dementia 101</h1>
           </div>
-          <IonProgressBar type="determinate"></IonProgressBar>
+          {loading && <IonProgressBar type="indeterminate" />}
         </IonToolbar>
 
         <capacitor-google-map
