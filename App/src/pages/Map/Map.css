@@ -1,8 +1,37 @@
-ion-back-button::part(text) {
-  position: absolute;
-  left: -9999px;
-  top: auto;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-}
+.title {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 0 1rem; /* Adjust padding if needed */
+  }
+  
+  .title img {
+    margin-right: 1rem;
+  }
+  
+  .title h1 {
+    flex-grow: 1;
+    margin: 0;
+  }
+  .fab-container {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+  }
+  .centered-card {
+    width: 100%; /* Ensure the card takes the full width of its container */
+  }
+  .card-container{
+    color: none;
+  }
+  .centered-title {
+    text-align: center; /* Center the text inside the card */
+    width: 100%; /* Ensure the title takes the full width of its container */
+    padding: 10px;
+    background-color: rgb(195, 139, 248);
+    border-color: blueviolet;
+    border-radius: 25px;
+  }
+  
+  
+  
