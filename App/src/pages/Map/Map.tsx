@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import { call } from 'ionicons/icons';
 import {
   IonLabel,
   IonTitle,
-  IonList,
+  IonItem,
   IonCardHeader,
   IonCardSubtitle,
   IonCardContent,
@@ -18,6 +19,7 @@ import {
   IonPopover,
   IonButton,
   IonIcon,
+  IonAvatar,
 } from '@ionic/react';
 import { add } from 'ionicons/icons';
 import { Task } from './Task';
@@ -157,7 +159,7 @@ class Map extends Component<{}, State> {
               <IonRow>
                 {this.state.cards.map((card) => (
                   <IonCol key={card.id}>
-                    <IonCard color="primary">
+                    <IonCard color="primary" className="custom-card">
                       <IonCardHeader>
                         <IonCardTitle>{card.title}</IonCardTitle>
                         <IonCardSubtitle>{card.subtitle}</IonCardSubtitle>
@@ -180,60 +182,114 @@ class Map extends Component<{}, State> {
             </IonButton>
           </IonPopover>
           <IonGrid>
-            <IonRow>
-              <IonCol>
-                <IonCard color="primary">
-                  <IonCardHeader>
-                    <IonCardTitle>Card Title</IonCardTitle>
-                    <IonCardSubtitle>Card Subtitle</IonCardSubtitle>
-                  </IonCardHeader>
+  <IonRow>
+    <IonCol>
+      <IonCard color="tertiary" className="custom-card">
+        <div className="image-container">
+          <img
+          style={{ height: '200px', width: '100%', objectFit: 'cover' }}
+            className="custom-image"
+            alt="Silhouette of mountains"
+            src="https://i.pinimg.com/736x/34/d9/47/34d94780b4d1b478349d9aa4cfc13342.jpg"
+          />
+        </div>
+        <IonCardContent>
+          <IonItem lines="none">
+            <IonCardSubtitle>Daughter</IonCardSubtitle>
+            <IonButton slot="end" color="primary" href="tel:9321131937">
+              <IonIcon icon={call} />
+            </IonButton>
+          </IonItem>
+        </IonCardContent>
+      </IonCard>
+    </IonCol>
 
-                  <IonCardContent>Card Content</IonCardContent>
-                </IonCard>
-                </IonCol>
+    <IonCol>
+      <IonCard color="primary" className="custom-card">
+        <div className="image-container">
+          <img
+          style={{ height: '200px', width: '100%', objectFit: 'cover' }}
+            className="custom-image"
+            alt="Silhouette of mountains"
+            src="https://i.pinimg.com/564x/8a/48/f5/8a48f5981a3ce5351d33ace13d58b08e.jpg"
+          />
+        </div>
+        <IonCardContent>
+          <IonItem lines="none">
+            <IonCardSubtitle>Wife</IonCardSubtitle>
+            <IonButton slot="end" color="primary" href="tel:1234567890">
+              <IonIcon icon={call} />
+            </IonButton>
+          </IonItem>
+        </IonCardContent>
+      </IonCard>
+    </IonCol>
 
-                <IonCol>
-                <IonCard color="secondary">
-                  <IonCardHeader>
-                    <IonCardTitle>Card Title</IonCardTitle>
-                    <IonCardSubtitle>Card Subtitle</IonCardSubtitle>
-                  </IonCardHeader>
-                  <IonCardContent>Card Content</IonCardContent>
-                </IonCard>
-                </IonCol>
+    <IonCol>
+      <IonCard color="secondary" className="custom-card">
+        <div className="image-container">
+          <img
+          style={{ height: '200px', width: '100%', objectFit: 'cover' }}
+            className="custom-image"
+            alt="Silhouette of mountains"
+            src="https://i.pinimg.com/564x/b2/56/42/b256422ed45df565a723960119729969.jpg"
+          />
+        </div>
+        <IonCardContent>
+          <IonItem lines="none">
+            <IonCardSubtitle>Son</IonCardSubtitle>
+            <IonButton slot="end" color="primary" href="tel:1234567890">
+              <IonIcon icon={call} />
+            </IonButton>
+          </IonItem>
+        </IonCardContent>
+      </IonCard>
+    </IonCol>
 
-                <IonCol>
-                <IonCard color="tertiary">
-                  <IonCardHeader>
-                    <IonCardTitle>Card Title</IonCardTitle>
-                    <IonCardSubtitle>Card Subtitle</IonCardSubtitle>
-                  </IonCardHeader>
-                  <IonCardContent>Card Content</IonCardContent>
-                  </IonCard>
-                </IonCol>
+    <IonCol>
+      <IonCard color="tertiary" className="custom-card">
+        <div className="image-container">
+          <img
+          style={{ height: '200px', width: '100%', objectFit: 'cover' }}
+            className="custom-image"
+            alt="Silhouette of mountains"
+            src="https://i.pinimg.com/564x/3a/8c/a1/3a8ca11cb18aefeb69a0a61b25b94e8e.jpg"
+          />
+        </div>
+        <IonCardContent>
+          <IonItem lines="none">
+            <IonCardSubtitle>Sister</IonCardSubtitle>
+            <IonButton slot="end" color="primary" href="tel:9321131937">
+              <IonIcon icon={call} />
+            </IonButton>
+          </IonItem>
+        </IonCardContent>
+      </IonCard>
+    </IonCol>
 
-                <IonCol>
-                <IonCard color="secondary">
-                  <IonCardHeader>
-                    <IonCardTitle>Card Title</IonCardTitle>
-                    <IonCardSubtitle>Card Subtitle</IonCardSubtitle>
-                  </IonCardHeader>
-                  <IonCardContent>Card Content</IonCardContent>
-                  </IonCard>
-                </IonCol>
+    <IonCol>
+      <IonCard color="primary" className="custom-card">
+        <div className="image-container">
+          <img
+          style={{ height: '200px', width: '100%', objectFit: 'cover' }}
+            className="custom-image"
+            alt="Silhouette of mountains"
+            src="https://i.pinimg.com/564x/9c/f1/2f/9cf12f1a98ac1e6ad7bf35488c904cdd.jpg"
+            />
+        </div>
+        <IonCardContent>
+          <IonItem lines="none">
+            <IonCardSubtitle>Caretaker</IonCardSubtitle>
+            <IonButton slot="end" color="primary" href="tel:1234567890">
+              <IonIcon icon={call} />
+            </IonButton>
+          </IonItem>
+        </IonCardContent>
+      </IonCard>
+    </IonCol>
+  </IonRow>
+</IonGrid>
 
-                <IonCol>
-                <IonCard color="primary">
-                  <IonCardHeader>
-                    <IonCardTitle>Card Title</IonCardTitle>
-                    <IonCardSubtitle>Card Subtitle</IonCardSubtitle>
-                  </IonCardHeader>
-                  <IonCardContent>Card Content</IonCardContent>
-                  </IonCard>
-                </IonCol>
-
-            </IonRow>
-          </IonGrid>
           {/* <IonPopover isOpen={this.state.showCardPopover} onDidDismiss={this.hideCardPopover}>
             <IonToolbar>
               <IonTitle> New Card: </IonTitle>

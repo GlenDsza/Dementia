@@ -33,5 +33,33 @@
     border-radius: 25px;
   }
   
+  .scrollable-cards {
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  
+  .scrollable-cards .card-container {
+    display: inline-block;
+    margin-right: 10px; /* Adjust as needed */
+  }
+  .custom-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .image-container {
+    height: 200px; /* Set the desired height */
+    width: 100%; /* Ensure the container takes the full width of the card */
+    overflow: hidden; /* Hide any overflow */
+  }
+  
+  .custom-image {
+    height: 100%; /* Make the image take the full height of the container */
+    width: 100%; /* Ensure the image takes the full width of the container */
+    object-fit: cover; /* Maintain aspect ratio and cover the area */
+  }
+  
+  
   
   

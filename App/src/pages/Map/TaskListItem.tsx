@@ -1,7 +1,7 @@
 // TaskListItem.tsx
 import React, { FunctionComponent } from 'react';
 import { IonItem, IonLabel, IonButton, IonIcon, IonGrid, IonRow, IonCol } from '@ionic/react';
-import { Task } from './Task.tsx';
+import { Task } from './Task';
 
 interface Props {
   task: Task;
