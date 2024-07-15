@@ -1,63 +1,63 @@
 {
-  "name": "ionic-react-conference-app",
+  "name": "dementia_1",
   "version": "0.0.1",
   "private": true,
-  "dependencies": {
-    "@capacitor/core": "^4.6.1",
-    "@capacitor/preferences": "^4.0.2",
-    "@ionic/react": "^8.0.0",
-    "@ionic/react-router": "^8.0.0",
-    "@capacitor/google-maps": "^6.0.0-rc.0",
-    "date-fns": "^2.25.0",
-    "ionicons": "^7.1.2",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-otp-input": "^3.1.1",
-    "react-router": "^5.3.4",
-    "react-router-dom": "^5.3.4",
-    "reselect": "^4.0.0",
-    "sass": "^1.59.3",
-    "swiper": "^9.1.1"
-  },
+  "type": "module",
   "scripts": {
-    "start": "npm run dev",
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,md}\"",
-    "precommit": "npm run format && lint-staged",
-    "prepare": "husky install"
+    "test.e2e": "cypress run",
+    "test.unit": "vitest",
+    "lint": "eslint",
+    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,md,scss}\""
   },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ],
-  "description": "An Ionic project",
-  "devDependencies": {
-    "@capacitor/cli": "^4.6.1",
-    "@testing-library/react": "^9.3.1",
-    "@types/googlemaps": "^3.38.0",
-    "@types/jest": "24.0.18",
-    "@types/react": "^18.0.28",
-    "@types/react-dom": "^18.0.11",
+  "dependencies": {
+    "@capacitor/android": "6.1.0",
+    "@capacitor/app": "6.0.0",
+    "@capacitor/core": "6.1.0",
+    "@capacitor/google-maps": "^6.0.0-rc.0",
+    "@capacitor/haptics": "6.0.0",
+    "@capacitor/ios": "^6.1.0",
+    "@capacitor/keyboard": "6.0.1",
+    "@capacitor/preferences": "^6.0.1",
+    "@capacitor/status-bar": "6.0.0",
+    "@googlemaps/polyline-codec": "^1.0.28",
+    "@ionic/react": "^8.0.0",
+    "@ionic/react-router": "^8.2.5",
     "@types/react-router": "^5.1.20",
     "@types/react-router-dom": "^5.3.3",
-    "@vitejs/plugin-react": "^3.1.0",
-    "husky": "^8.0.3",
-    "lint-staged": "^13.2.0",
-    "prettier": "^2.8.6",
-    "typescript": "^4.9.3",
-    "vite": "^4.2.0"
+    "date-fns": "^3.6.0",
+    "ionicons": "^7.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-icons": "^5.2.1",
+    "react-otp-input": "^3.1.1",
+    "react-router": "^5.3.4",
+    "react-router-dom": "^5.3.4",
+    "reselect": "^5.1.1",
+    "sass": "^1.59.3",
+    "swapper": "^1.1.6",
+    "swiper": "^11.1.4"
   },
-  "lint-staged": {
-    "src/**/*.{js,jsx,ts,tsx,json,md}": [
-      "prettier --write",
-      "git add"
-    ]
-  }
+  "devDependencies": {
+    "@capacitor/cli": "^6.1.0",
+    "@testing-library/dom": ">=7.21.4",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^14.0.0",
+    "@testing-library/user-event": "^14.4.3",
+    "@types/react": "^18.0.27",
+    "@types/react-dom": "^18.0.10",
+    "@vitejs/plugin-legacy": "^5.4.1",
+    "@vitejs/plugin-react": "^4.0.1",
+    "cypress": "^13.5.0",
+    "eslint": "^8.35.0",
+    "eslint-plugin-react": "^7.32.2",
+    "jsdom": "^22.1.0",
+    "terser": "^5.4.0",
+    "typescript": "^5.1.6",
+    "vite": "~5.2.0",
+    "vitest": "^0.34.6"
+  },
+  "description": "Dementia Hackathon Project"
 }

@@ -14,7 +14,10 @@ export function connect<
   TStateProps = any,
   TDispatchProps = any
 >({
-  mapStateToProps = () => ({} as TStateProps),
+  // eslint-disable-next-line
+  mapStateToProps = () => {
+    return {} as TStateProps;
+  },
   mapDispatchToProps = {} as TDispatchProps,
   component,
 }: ConnectParams<

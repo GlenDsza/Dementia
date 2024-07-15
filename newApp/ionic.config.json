@@ -1,7 +1,7 @@
 {
-  "name": "ionic-react-conference-app",
+  "name": "dementia_1",
   "integrations": {
     "capacitor": {}
   },
-  "type": "react"
+  "type": "react-vite"
 }
