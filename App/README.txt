@@ -2,11 +2,13 @@ npm install -g @capacitor/cli (for cap commands)
 
 - To run on android (requires android studio setup)
     - npm run build
+    - npx cap add android
     - npx cap sync android
     - npx cap open android
 
 - To run on ios (requires xcode setup)
     - npm run build
+    - npx cap add ios
     - npx cap sync ios
     - npx cap open ios
 
