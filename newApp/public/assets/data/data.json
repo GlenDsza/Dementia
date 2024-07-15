@@ -246,7 +246,7 @@
 
   "speakers": [
     {
-      "name": "Burt Bear",
+      "name": "Burt",
       "profilePic": "/assets/img/speakers/bear.jpg",
       "instagram": "ionicframework",
       "twitter": "ionicframework",
@@ -258,7 +258,7 @@
       "id": "1"
     },
     {
-      "name": "Charlie Cheetah",
+      "name": "Charlie",
       "profilePic": "/assets/img/speakers/cheetah.jpg",
       "instagram": "ionicframework",
       "twitter": "ionicframework",
@@ -270,7 +270,7 @@
       "id": "2"
     },
     {
-      "name": "Donald Duck",
+      "name": "Donald",
       "profilePic": "/assets/img/speakers/duck.jpg",
       "instagram": "ionicframework",
       "twitter": "ionicframework",
@@ -282,7 +282,7 @@
       "id": "3"
     },
     {
-      "name": "Eva Eagle",
+      "name": "Eva",
       "profilePic": "/assets/img/speakers/eagle.jpg",
       "instagram": "ionicframework",
       "twitter": "ionicframework",
@@ -294,7 +294,7 @@
       "id": "4"
     },
     {
-      "name": "Ellie Elephant",
+      "name": "Ellie",
       "profilePic": "/assets/img/speakers/elephant.jpg",
       "instagram": "ionicframework",
       "twitter": "ionicframework",
@@ -306,7 +306,7 @@
       "id": "5"
     },
     {
-      "name": "Gino Giraffe",
+      "name": "Gino",
       "profilePic": "/assets/img/speakers/giraffe.jpg",
       "instagram": "ionicframework",
       "twitter": "ionicframework",
@@ -318,7 +318,7 @@
       "id": "6"
     },
     {
-      "name": "Isabella Iguana",
+      "name": "Isabella",
       "profilePic": "/assets/img/speakers/iguana.jpg",
       "instagram": "ionicframework",
       "twitter": "ionicframework",
@@ -330,7 +330,7 @@
       "id": "7"
     },
     {
-      "name": "Karl Kitten",
+      "name": "Karl",
       "profilePic": "/assets/img/speakers/kitten.jpg",
       "instagram": "ionicframework",
       "twitter": "ionicframework",
@@ -342,7 +342,7 @@
       "id": "8"
     },
     {
-      "name": "Lionel Lion",
+      "name": "Lionel",
       "profilePic": "/assets/img/speakers/lion.jpg",
       "instagram": "ionicframework",
       "twitter": "ionicframework",
@@ -354,7 +354,7 @@
       "id": "9"
     },
     {
-      "name": "Molly Mouse",
+      "name": "Molly",
       "profilePic": "/assets/img/speakers/mouse.jpg",
       "instagram": "ionicframework",
       "twitter": "ionicframework",
@@ -366,7 +366,7 @@
       "id": "10"
     },
     {
-      "name": "Paul Puppy",
+      "name": "Paul",
       "profilePic": "/assets/img/speakers/puppy.jpg",
       "instagram": "ionicframework",
       "twitter": "ionicframework",
@@ -378,7 +378,7 @@
       "id": "11"
     },
     {
-      "name": "Rachel Rabbit",
+      "name": "Rachel",
       "profilePic": "/assets/img/speakers/rabbit.jpg",
       "instagram": "ionicframework",
       "twitter": "ionicframework",
@@ -390,7 +390,7 @@
       "id": "12"
     },
     {
-      "name": "Ted Turtle",
+      "name": "Ted",
       "profilePic": "/assets/img/speakers/turtle.jpg",
       "instagram": "ionicframework",
       "twitter": "ionicframework",
