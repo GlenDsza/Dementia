@@ -14,7 +14,7 @@ import SchedulePage from './SchedulePage';
 import SpeakerList from './SpeakerList';
 import SpeakerDetail from './SpeakerDetail';
 import SessionDetail from './SessionDetail';
-import MapView from './MapView';
+import MapView from './Map/Map';
 import About from './About';
 import Home from './Home';
 
@@ -25,11 +25,7 @@ const CTabs: React.FC<CTabsProps> = () => {
     <IonTabs>
       <IonRouterOutlet>
         <Redirect exact path="/ctabs" to="/ctabs/home" />
-        <Route
-          path="/ctabs/home"
-          render={() => <Home />}
-          exact={true}
-        />
+        <Route path="/ctabs/home" render={() => <Home />} exact={true} />
         <Route
           path="/ctabs/schedule"
           render={() => <SchedulePage />}
@@ -51,7 +47,7 @@ const CTabs: React.FC<CTabsProps> = () => {
         <Route path="/ctabs/about" render={() => <About />} exact={true} />
       </IonRouterOutlet>
       <IonTabBar slot="bottom">
-      <IonTabButton tab="home" href="/ctabs/home">
+        <IonTabButton tab="home" href="/ctabs/home">
           <IonIcon icon={calendar} />
           <IonLabel>Home</IonLabel>
         </IonTabButton>
