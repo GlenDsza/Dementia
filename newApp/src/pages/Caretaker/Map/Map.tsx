@@ -3,7 +3,6 @@ import {
   IonBackButton,
   IonButtons,
   IonContent,
-  IonHeader,
   IonPage,
   IonProgressBar,
   IonToolbar,
@@ -15,11 +14,22 @@ import './Map.scss';
 import { MarkerInfoWindow } from './components/MarkerInfoWindow';
 import { markers } from '../../../constants';
 import { decode } from '@googlemaps/polyline-codec';
+import { Geolocation } from '@capacitor/geolocation';
+import axios from 'axios';
+
+interface InterfaceCoordinates {
+  lat: number;
+  lng: number;
+}
 
 const Map: FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [selectedMarker, setSelectedMarker] = useState<any>(null);
   const mapRef = useRef<HTMLElement>();
+  const locationRef = useRef<InterfaceCoordinates>({
+    lat: 19.075983,
+    lng: 72.877655,
+  });
   let newMap: GoogleMap;
 
   const [present, dismiss] = useIonModal(MarkerInfoWindow, {
@@ -49,11 +59,96 @@ const Map: FC = () => {
         lng: marker.lng,
       },
       title: marker.title,
+      snippet: marker.description,
+      iconUrl: '/assets/svgs/family.svg',
+      iconSize: {
+        width: 30,
+        height: 30,
+      },
     });
   };
 
   const addMapMarkers = () =>
     markers.forEach(async (marker) => await addMapMarker(marker));
+
+  const addSelfMarker = async (): Promise<void> => {
+    await newMap.addMarker({
+      coordinate: {
+        lat: locationRef.current.lat,
+        lng: locationRef.current.lng,
+      },
+      title: 'Current Location',
+      iconUrl: '/assets/svgs/caretaker.svg',
+      iconSize: {
+        width: 30,
+        height: 30,
+      },
+    });
+  };
+
+  const addPatientMarker = async (): Promise<void> => {
+    await newMap.addMarker({
+      coordinate: {
+        lat: 18.701212,
+        lng: 73.644495,
+      },
+      title: 'Patient',
+      iconUrl: '/assets/svgs/patient.svg',
+      iconSize: {
+        width: 30,
+        height: 30,
+      },
+    });
+  };
+
+  const getRoute = async (): Promise<string> => {
+    try {
+      const res = await axios.post(
+        'https://routes.googleapis.com/directions/v2:computeRoutes',
+        {
+          origin: {
+            location: {
+              latLng: {
+                latitude: locationRef.current.lat,
+                longitude: locationRef.current.lng,
+              },
+            },
+          },
+          destination: {
+            location: {
+              latLng: {
+                latitude: 18.701212,
+                longitude: 73.644495,
+              },
+            },
+          },
+          travelMode: 'DRIVE',
+          routingPreference: 'TRAFFIC_AWARE',
+          departureTime: '2024-10-15T15:01:23.045123456Z',
+          computeAlternativeRoutes: false,
+          routeModifiers: {
+            avoidTolls: false,
+            avoidHighways: false,
+            avoidFerries: false,
+          },
+          languageCode: 'en-US',
+          units: 'IMPERIAL',
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            'X-Goog-Api-Key': import.meta.env.VITE_GMAPS_KEY,
+            'X-Goog-FieldMask':
+              'routes.duration,routes.distanceMeters,routes.polyline.encodedPolyline',
+          },
+        }
+      );
+      return res.data.routes[0].polyline.encodedPolyline;
+    } catch (error) {
+      console.error('Error getting route:', (error as Error).message);
+      return (error as Error).message;
+    }
+  };
 
   const createMap = async () => {
     setLoading(true);
@@ -62,24 +157,27 @@ const Map: FC = () => {
       return;
     }
 
+    await getCurrentPosition();
+
     newMap = await GoogleMap.create({
       id: 'my-map',
       element: mapRef.current,
       apiKey: import.meta.env.VITE_GMAPS_KEY,
       config: {
         center: {
-          lat: 19.075983,
-          lng: 72.877655,
+          lat: locationRef.current.lat,
+          lng: locationRef.current.lng,
         },
         zoom: 10,
       },
     });
 
     await newMap.setOnMarkerClickListener((marker) => markerClick(marker));
+    await addSelfMarker();
+    await addPatientMarker();
     addMapMarkers();
-    const latLngs = decode(
-      'guorBwzo{LmDBeAAe@@?fGIZWZaG@gBCuAIkEa@aD_@{JaAYGu@[oAy@aAe@gGkBcE{A]Wd@aBvAkHgBe@_@QgBg@HQl@q@FOBa@CUO{@Eq@McABs@TwATyBPcA{HiAaEq@aMqBqm@mJyMuBcPcCkBUwEw@QAsAY]OyHuAg@Q[Qo@m@m@m@i@_@cA_@qD}@oHwBkDy@gGgAqBUyGQaCAuIWgCBcBHwGn@wEh@oFz@aFf@{D?eBI}AQqB[sBk@gHeCsWuJ}GcCkUsI_YgKoDsAuH}CuJsD_GiBoG_Bs@MwAOcDMoCEkHNyCA}@Em@M[G}@a@{@k@kAiAq@aAs@uA{A{DkCwIYw@uAyCs@kBsAaEqEoLkAcDScAEcAB_A\\{DDiA?eAMeBKs@[{A_@gAWg@gA_Bq@u@aAu@qAy@kAa@gB_@eD_@kEy@yBm@uDyAiFkCkIaFyCcBqI}Ei@c@o@s@qGeIm@}@_AqBuCcHmKoXi@aBiDaJs@qBy@oBeAiB}@oAmBeCeBqCSc@wOql@]sBIgA@kBt@sHD_BA_AMsAO{@a@uAmCmHcCgG}CuGc@uAs@uAm@u@u@i@a@W_AYiAYeBQm@AcA@aAVqC\\gADmC?{BIkKk@qIm@qAOgAWeA[oBa@_LoB_Dq@}AWcAGmHM{G]gCUgEk@gA[sAq@uCgBgF{CiBmAuB_AaCy@k@EqB]_BKuI[o@FSF{@`@o@tD[zAi@zA{@nAgB|BwDhDy@b@q@TqAVwGf@gALgAVqAh@mAv@i@f@o@|@a@z@i@hBHzCvEfI~@|CVd@XHtDzFdAfBLn@B`AFVxF|JtBfE~BdEN`@T~AD|@Cl@Gl@sDnTaCjNYv@e@z@sDdEuE|DsEtD_At@aKlI}A~AsC~Co@~@]x@WjAKfAG~BEp@G\\e@dBu@|AgA|Aq@pAEZsAhD{BzDa@`Ag@]Xe@'
-    );
+    const encodedPolyline = await getRoute();
+    const latLngs = decode(encodedPolyline);
     const path = latLngs.map((latLng) => ({
       lat: latLng[0],
       lng: latLng[1],
@@ -101,6 +199,18 @@ const Map: FC = () => {
   useIonViewWillEnter(() => {
     createMap();
   });
+
+  const getCurrentPosition = async () => {
+    try {
+      const coordinates = await Geolocation.getCurrentPosition();
+      locationRef.current = {
+        lat: coordinates.coords.latitude,
+        lng: coordinates.coords.longitude,
+      };
+    } catch (error) {
+      console.error('Error getting current position:', error);
+    }
+  };
 
   return (
     <IonPage>

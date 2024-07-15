@@ -7,14 +7,14 @@ import {
   IonLabel,
   IonNote,
   IonRow,
-} from "@ionic/react";
+} from '@ionic/react';
 import {
   globeOutline,
   heartOutline,
   locationOutline,
   navigateOutline,
   phonePortraitOutline,
-} from "ionicons/icons";
+} from 'ionicons/icons';
 
 export const MarkerInfoWindow = ({ marker, dismiss }) => {
   return (
@@ -23,8 +23,8 @@ export const MarkerInfoWindow = ({ marker, dismiss }) => {
         <IonRow className="ion-margin-bottom">
           <IonCol size="12">
             <IonLabel>
-              <h1>{marker.title}</h1>
-              <IonNote>{marker.description}</IonNote>
+              <h1>{marker?.title ?? 'God'}</h1>
+              <IonNote>{marker?.description ?? 'Caretaker'}</IonNote>
             </IonLabel>
           </IonCol>
         </IonRow>
@@ -34,11 +34,11 @@ export const MarkerInfoWindow = ({ marker, dismiss }) => {
             <IonIcon
               icon={locationOutline}
               color="primary"
-              style={{ fontSize: "1.5rem" }}
+              style={{ fontSize: '1.5rem' }}
             />
           </IonCol>
 
-          <IonCol size="10">{marker.address}</IonCol>
+          <IonCol size="10">{marker?.address ?? 'Everywhere'}</IonCol>
         </IonRow>
 
         <IonRow className="ion-justify-content-start ion-align-items-center">
@@ -46,11 +46,11 @@ export const MarkerInfoWindow = ({ marker, dismiss }) => {
             <IonIcon
               icon={globeOutline}
               color="primary"
-              style={{ fontSize: "1.5rem" }}
+              style={{ fontSize: '1.5rem' }}
             />
           </IonCol>
 
-          <IonCol size="10">{marker.website}</IonCol>
+          <IonCol size="10">{marker?.email ?? 'god@godmail.com'}</IonCol>
         </IonRow>
 
         <IonRow className="ion-justify-content-start ion-align-items-center">
@@ -58,20 +58,20 @@ export const MarkerInfoWindow = ({ marker, dismiss }) => {
             <IonIcon
               icon={phonePortraitOutline}
               color="primary"
-              style={{ fontSize: "1.5rem" }}
+              style={{ fontSize: '1.5rem' }}
             />
           </IonCol>
 
-          <IonCol size="10">{marker.phone}</IonCol>
+          <IonCol size="10">{marker?.phone ?? '+00 0000000000'}</IonCol>
         </IonRow>
 
         <IonRow>
           <IonButton
             onClick={() => {
               window.open(
-                "https://www.google.com/maps/dir/" +
+                'https://www.google.com/maps/dir/' +
                   marker.lat +
-                  "," +
+                  ',' +
                   marker.lng
               );
             }}
