@@ -35,7 +35,7 @@ import '@ionic/react/css/display.css';
 
 // import "@ionic/react/css/palettes/dark.always.css";
 // import "@ionic/react/css/palettes/dark.system.css";
-import "@ionic/react/css/palettes/dark.class.css";
+import '@ionic/react/css/palettes/dark.class.css';
 
 /* Theme variables */
 import './theme/variables.css';
@@ -58,9 +58,9 @@ import Tutorial from './pages/Patient/Tutorial';
 import HomeOrTutorial from './components/HomeOrTutorial';
 import { Schedule } from './models/Schedule';
 import RedirectToLogin from './components/RedirectToLogin';
-import Map from './pages/Map/Map';
 import PTabs from './pages/Patient/PTabs';
 import CTabs from './pages/Caretaker/CTabs';
+import Notifications from './pages/Caretaker/Notifications/Notifications';
 
 setupIonicReact();
 
@@ -115,7 +115,7 @@ const IonicApp: React.FC<IonicAppProps> = ({
             <Route path="/signup" component={Signup} />
             <Route path="/support" component={Support} />
             <Route path="/tutorial" component={Tutorial} />
-            <Route path="/map" component={Map} />
+            <Route path="/notifications" component={Notifications} />
             <Route
               path="/logout"
               render={() => {
