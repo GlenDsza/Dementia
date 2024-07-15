@@ -1,136 +1,796 @@
-import { GoogleMap, Polyline } from "@capacitor/google-maps";
+// import React, { Component } from 'react';
+// import { call } from 'ionicons/icons';
+// import {
+//   IonLabel,
+//   IonTitle,
+//   IonItem,
+//   IonCardHeader,
+//   IonCardSubtitle,
+//   IonCardContent,
+//   IonCard,
+//   IonCardTitle,
+//   IonContent,
+//   IonHeader,
+//   IonPage,
+//   IonToolbar,
+//   IonGrid,
+//   IonRow,
+//   IonCol,
+//   IonPopover,
+//   IonButton,
+//   IonIcon,
+//   IonAvatar,
+//   IonNote,
+// } from '@ionic/react';
+
+// import { Swiper, SwiperSlide } from 'swiper/react';
+// import 'swiper/css';
+// import { add } from 'ionicons/icons';
+// import { Task } from './Task';
+// import { Card } from './Card';
+// import { NewTaskForm } from './NewTaskForm';
+// import { NewCardForm } from './NewCardForm'; // Ensure this import is correct
+// import { TasksList } from './TasksList';
+
+// import './Map.css';
+
+// interface State {
+//   newTask: Task;
+//   tasks: Task[];
+//   showInputPopover: boolean;
+//   newCard: Card;
+//   cards: Card[];
+//   showCardPopover: boolean;
+// }
+// const data = [
+//   {
+//     title: "Road",
+//     subtitle: "Long road",
+//     image: "https://i.pinimg.com/736x/34/d9/47/34d94780b4d1b478349d9aa4cfc13342.jpg"
+//   },
+//   {
+//     title: "Road",
+//     subtitle: "Long road",
+//     image: "https://i.pinimg.com/736x/34/d9/47/34d94780b4d1b478349d9aa4cfc13342.jpg"
+//   },
+//   {
+//     title: "Road",
+//     subtitle: "Long road",
+//     image: "https://i.pinimg.com/736x/34/d9/47/34d94780b4d1b478349d9aa4cfc13342.jpg"
+//   },
+//   {
+//     title: "Road",
+//     subtitle: "Long road",
+//     image: "https://i.pinimg.com/736x/34/d9/47/34d94780b4d1b478349d9aa4cfc13342.jpg"
+//   },
+//   {
+//     title: "Road",
+//     subtitle: "Long road",
+//     image: "https://i.pinimg.com/736x/34/d9/47/34d94780b4d1b478349d9aa4cfc13342.jpg"
+//   }
+// ];
+// class Map extends Component<{}, State> {
+//   state: State = {
+//     newTask: {
+//       id: 1,
+//       name: '',
+//     },
+//     tasks: [],
+//     showInputPopover: false,
+//     newCard: {
+//       id: 1,
+//       title: '',
+//       subtitle: '',
+//       content: '',
+//     },
+//     cards: [],
+//     showCardPopover: false,
+//   };
+
+//   showPopover = () => {
+//     this.setState({
+//       showInputPopover: true,
+//     });
+//   };
+
+//   hidePopover = () => {
+//     this.setState({
+//       showInputPopover: false,
+//     });
+//   };
+
+//   showCardPopover = () => {
+//     this.setState({
+//       showCardPopover: true,
+//     });
+//   };
+
+//   hideCardPopover = () => {
+//     this.setState({
+//       showCardPopover: false,
+//     });
+//   };
+
+//   addTask = () => {
+//     this.setState((previousState) => ({
+//       newTask: {
+//         id: previousState.newTask.id + 1,
+//         name: '',
+//       },
+//       tasks: [...previousState.tasks, previousState.newTask],
+//     }));
+//   };
+
+//   handleTaskChange = (value: string) => {
+//     this.setState({
+//       newTask: {
+//         ...this.state.newTask,
+//         name: value,
+//       },
+//     });
+//   };
+
+//   handleCardChange = (field: string, value: string) => {
+//     this.setState({
+//       newCard: {
+//         ...this.state.newCard,
+//         [field]: value,
+//       },
+//     });
+//   };
+
+//   addCard = () => {
+//     this.setState((previousState) => ({
+//       newCard: {
+//         id: previousState.newCard.id + 1,
+//         title: '',
+//         subtitle: '',
+//         content: '',
+//       },
+//       cards: [...previousState.cards, previousState.newCard],
+//     }));
+//   };
+
+//   render() {
+//     return (
+//       <IonPage>
+//         <IonHeader collapse='condense'>
+//           <IonToolbar style={{ borderRadius: '1rem' }}>
+//             <div className="title">
+//               <img src="/favicon.png" alt="Logo" width={30} height={30} />
+//               <h1>Dementia 102</h1>
+//               <IonButton onClick={this.showPopover}>
+//                 <IonIcon icon={add} />
+//                 Task
+//               </IonButton>
+//               <IonButton onClick={this.showCardPopover}>
+//                 <IonIcon icon={add} />
+//                 Member
+//               </IonButton>
+//             </div>
+//           </IonToolbar>
+//         </IonHeader>
+
+//         <IonContent fullscreen className="ion-padding">
+//           <div className="card-container">
+//             <IonCard>
+//               <IonCardTitle className="centered-title">Patient's Detail</IonCardTitle>
+//             </IonCard>
+//           </div>
+
+//           {/* <Swiper spaceBetween={40} slidesPerView={2}>
+//             { data.map((card, index) =>{
+//               return(
+//                 <SwiperSlide key={`slide_${index}`}>
+//                   <IonCard>
+//                     <img src={card.image} alt='card' className='img'/>
+//                     <IonCardContent>
+//                       <IonCardTitle className='title'>{card.title}</IonCardTitle>
+//                     </IonCardContent>
+//                   </IonCard>
+//                 </SwiperSlide>
+//               )
+//             }) }
+
+//           </Swiper> */}
+          
+
+//           <div className="horizontal-scroll-container">
+//             <div className="scrollable-cards">
+//               <IonGrid className="grid-container">
+//                 <IonRow>
+//                   {this.state.cards.map((card) => (
+//                     <IonCol key={card.id} className="grid-item">
+//                       <IonCard color="primary" className="custom-card">
+//                         <IonCardHeader>
+//                           <IonCardTitle>{card.title}</IonCardTitle>
+//                           <IonCardSubtitle>{card.subtitle}</IonCardSubtitle>
+//                         </IonCardHeader>
+//                         <IonCardContent>{card.content}</IonCardContent>
+//                       </IonCard>
+//                     </IonCol>
+//                   ))}
+//                 </IonRow>
+//               </IonGrid>
+//             </div>
+//           </div>
+
+//           <IonPopover isOpen={this.state.showInputPopover} onDidDismiss={this.hidePopover}>
+//             <IonToolbar>
+//               <IonTitle> New To-Do: </IonTitle>
+//             </IonToolbar>
+//             <NewTaskForm onChange={this.handleTaskChange} onAdd={this.addTask} task={this.state.newTask} />
+//             <IonButton expand="block" onClick={this.hidePopover}>
+//               Close
+//             </IonButton>
+//           </IonPopover>
+
+//           <IonGrid className="scroll-container">
+//             <IonRow>
+//               <IonCol className="grid-item">
+//                 <IonCard color="tertiary" className="custom-card">
+//                   <div className="image-container">
+//                     <img
+//                       className="custom-image"
+//                       alt="Silhouette of mountains"
+//                       src="https://i.pinimg.com/736x/34/d9/47/34d94780b4d1b478349d9aa4cfc13342.jpg"
+//                     />
+//                   </div>
+//                   <IonCardContent>
+//                     <IonItem lines="none">
+//                       <IonCardSubtitle>Daughter</IonCardSubtitle>
+//                       <IonButton slot="end" color="primary" href="tel:9321131937">
+//                         <IonIcon icon={call} />
+//                       </IonButton>
+//                     </IonItem>
+//                   </IonCardContent>
+//                 </IonCard>
+//               </IonCol>
+
+//               <IonCol className="grid-item">
+//                 <IonCard color="primary" className="custom-card">
+//                   <div className="image-container">
+//                     <img
+//                       className="custom-image"
+//                       alt="Silhouette of mountains"
+//                       src="https://i.pinimg.com/564x/8a/48/f5/8a48f5981a3ce5351d33ace13d58b08e.jpg"
+//                     />
+//                   </div>
+//                   <IonCardContent>
+//                     <IonItem lines="none">
+//                       <IonCardSubtitle>Wife</IonCardSubtitle>
+//                       <IonButton slot="end" color="primary" href="tel:1234567890">
+//                         <IonIcon icon={call} />
+//                       </IonButton>
+//                     </IonItem>
+//                   </IonCardContent>
+//                 </IonCard>
+//               </IonCol>
+
+//               <IonCol className="grid-item">
+//                 <IonCard color="secondary" className="custom-card">
+//                   <div className="image-container">
+//                     <img
+//                       className="custom-image"
+//                       alt="Silhouette of mountains"
+//                       src="https://i.pinimg.com/564x/b2/56/42/b256422ed45df565a723960119729969.jpg"
+//                     />
+//                   </div>
+//                   <IonCardContent>
+//                     <IonItem lines="none">
+//                       <IonCardSubtitle>Son</IonCardSubtitle>
+//                       <IonButton slot="end" color="primary" href="tel:1234567890">
+//                         <IonIcon icon={call} />
+//                       </IonButton>
+//                     </IonItem>
+//                   </IonCardContent>
+//                 </IonCard>
+//               </IonCol>
+
+//               <IonCol className="grid-item">
+//                 <IonCard color="tertiary" className="custom-card">
+//                   <div className="image-container">
+//                     <img
+//                       className="custom-image"
+//                       alt="Silhouette of mountains"
+//                       src="https://i.pinimg.com/564x/3a/8c/a1/3a8ca11cb18aefeb69a0a61b25b94e8e.jpg"
+//                     />
+//                   </div>
+//                   <IonCardContent>
+//                     <IonItem lines="none">
+//                       <IonCardSubtitle>Sister</IonCardSubtitle>
+//                       <IonButton slot="end" color="primary" href="tel:9321131937">
+//                         <IonIcon icon={call} />
+//                       </IonButton>
+//                     </IonItem>
+//                   </IonCardContent>
+//                 </IonCard>
+//               </IonCol>
+
+//               <IonCol className="grid-item">
+//                 <IonCard color="primary" className="custom-card">
+//                   <div className="image-container">
+//                     <img
+//                       className="custom-image"
+//                       alt="Silhouette of mountains"
+//                       src="https://i.pinimg.com/564x/9c/f1/2f/9cf12f1a98ac1e6ad7bf35488c904cdd.jpg"
+//                     />
+//                   </div>
+//                   <IonCardContent>
+//                     <IonItem lines="none">
+//                       <IonCardSubtitle>Caretaker</IonCardSubtitle>
+//                       <IonButton slot="end" color="primary" href="tel:1234567890">
+//                         <IonIcon icon={call} />
+//                       </IonButton>
+//                     </IonItem>
+//                   </IonCardContent>
+//                 </IonCard>
+//               </IonCol>
+//             </IonRow>
+//           </IonGrid>
+
+//           {/* <IonPopover isOpen={this.state.showCardPopover} onDidDismiss={this.hideCardPopover}>
+//             <IonToolbar>
+//               <IonTitle> New Card: </IonTitle>
+//             </IonToolbar>
+//             <NewCardForm onChange={this.handleCardChange} onAdd={this.addCard} card={this.state.newCard} />
+//             <IonButton expand="block" onClick={this.hideCardPopover}>
+//               Close
+//             </IonButton>
+//           </IonPopover> */}
+
+//           <IonGrid className="scroll-container">
+//             <IonRow>
+//               <IonCol className="grid-item">
+//                 <IonCard className="custom-loc">
+//                   <img alt="Silhouette of mountains" src="https://i.pinimg.com/564x/2b/aa/a0/2baaa0afb408a3c1cd341946f2effbab.jpg" />
+//                   <IonCardHeader>
+//                     <IonCardTitle>Grocery Store</IonCardTitle>
+//                   </IonCardHeader>
+//                   <IonCardContent className="card-content">
+//                     <IonButton
+//                       expand="block"
+//                       color="primary"
+//                       href="https://www.google.com/maps/search/?api=1&query=Grocery+Store"
+//                       target="_blank"
+//                     >
+//                       Go
+//                     </IonButton>
+//                   </IonCardContent>
+//                 </IonCard>
+//               </IonCol>
+              
+//               <IonCol className="grid-item">
+//                 <IonCard className="custom-loc">
+//                   <img alt="Silhouette of mountains" src="https://i.pinimg.com/736x/7e/ff/9c/7eff9c74b2680d797a3a53fb8e460811.jpg" />
+//                   <IonCardHeader>
+//                     <IonCardTitle>Grocery Store</IonCardTitle>
+//                   </IonCardHeader>
+//                   <IonCardContent className="card-content">
+//                     <IonButton
+//                       expand="block"
+//                       color="primary"
+//                       href="https://www.google.com/maps/search/?api=1&query=Grocery+Store"
+//                       target="_blank"
+//                     >
+//                       Go
+//                     </IonButton>
+//                   </IonCardContent>
+//                 </IonCard>
+//               </IonCol>
+
+//               <IonCol className="grid-item">
+//                 <IonCard className="custom-loc">
+//                   <img alt="Silhouette of mountains" src="https://i.pinimg.com/564x/2b/aa/a0/2baaa0afb408a3c1cd341946f2effbab.jpg" />
+//                   <IonCardHeader>
+//                     <IonCardTitle>Grocery Store</IonCardTitle>
+//                   </IonCardHeader>
+//                   <IonCardContent className="card-content">
+//                     <IonButton
+//                       expand="block"
+//                       color="primary"
+//                       href="https://www.google.com/maps/search/?api=1&query=Grocery+Store"
+//                       target="_blank"
+//                     >
+//                       Go
+//                     </IonButton>
+//                   </IonCardContent>
+//                 </IonCard>
+//               </IonCol>
+              
+//               <IonCol className="grid-item">
+//                 <IonCard className="custom-loc">
+//                   <img alt="Silhouette of mountains" src="https://i.pinimg.com/736x/7e/ff/9c/7eff9c74b2680d797a3a53fb8e460811.jpg" />
+//                   <IonCardHeader>
+//                     <IonCardTitle>Grocery Store</IonCardTitle>
+//                   </IonCardHeader>
+//                   <IonCardContent className="card-content">
+//                     <IonButton
+//                       expand="block"
+//                       color="primary"
+//                       href="https://www.google.com/maps/search/?api=1&query=Grocery+Store"
+//                       target="_blank"
+//                     >
+//                       Go
+//                     </IonButton>
+//                   </IonCardContent>
+//                 </IonCard>
+//               </IonCol>
+//             </IonRow>
+//           </IonGrid>
+//         </IonContent>
+//       </IonPage>
+//     );
+//   }
+// }
+
+// export default Map;
+
+import React, { Component } from 'react';
+import { call } from 'ionicons/icons';
 import {
-  IonBackButton,
-  IonButtons,
+  IonLabel,
+  IonTitle,
+  IonItem,
+  IonCardHeader,
+  IonCardSubtitle,
+  IonCardContent,
+  IonCard,
+  IonCardTitle,
   IonContent,
   IonHeader,
   IonPage,
-  IonProgressBar,
   IonToolbar,
-  useIonModal,
-  useIonViewWillEnter,
-} from "@ionic/react";
-import React, { FC, useEffect, useRef, useState } from "react";
-import "./Map.css";
-import { MarkerInfoWindow } from "./components/MarkerInfoWindow";
-import { markers } from "../../constants";
-import { decode } from "@googlemaps/polyline-codec";
+  IonGrid,
+  IonRow,
+  IonCol,
+  IonPopover,
+  IonButton,
+  IonIcon,
+  IonList,
+} from '@ionic/react';
+import { add } from 'ionicons/icons';
+import { Task } from './Task';
+import { Card } from './Card';
+import { NewTaskForm } from './NewTaskForm';
+import { NewCardForm } from './NewCardForm'; // Ensure this import is correct
+import { TasksList } from './TasksList';
 
-const Map: FC = () => {
-  const [loading, setLoading] = useState<boolean>(true);
-  const [selectedMarker, setSelectedMarker] = useState<any>(null);
-  const mapRef = useRef<HTMLElement>();
-  let newMap: GoogleMap;
+import './Map.css';
 
-  const [present, dismiss] = useIonModal(MarkerInfoWindow, {
-    marker: selectedMarker,
-  });
+interface State {
+  newTask: Task;
+  tasks: Task[];
+  showInputPopover: boolean;
+  newCard: Card;
+  cards: Card[];
+  showCardPopover: boolean;
+}
 
-  const modalOptions = {
-    initialBreakpoint: 0.4,
-    breakpoints: [0, 0.4],
-    backdropBreakpoint: 0,
-    onDidDismiss: () => dismiss(),
+class Map extends Component<{}, State> {
+  state: State = {
+    newTask: {
+      id: 1,
+      name: '',
+    },
+    tasks: [],
+    showInputPopover: false,
+    newCard: {
+      id: 1,
+      title: '',
+      subtitle: '',
+      content: '',
+    },
+    cards: [],
+    showCardPopover: false,
   };
 
-  const markerClick = (marker: any) => {
-    setSelectedMarker(
-      markers.filter(
-        (m) => m.lat === marker.latitude && m.lng === marker.longitude
-      )[0]
-    );
-    present(modalOptions);
-  };
-
-  const addMapMarker = async (marker: any) => {
-    await newMap.addMarker({
-      coordinate: {
-        lat: marker.lat,
-        lng: marker.lng,
-      },
-      title: marker.title,
+  showPopover = () => {
+    this.setState({
+      showInputPopover: true,
     });
   };
 
-  const addMapMarkers = () =>
-    markers.forEach(async (marker) => await addMapMarker(marker));
-
-  const createMap = async () => {
-    setLoading(true);
-    if (!mapRef.current) {
-      setLoading(false);
-      return;
-    }
-
-    newMap = await GoogleMap.create({
-      id: "my-map",
-      element: mapRef.current,
-      apiKey: import.meta.env.VITE_GMAPS_KEY,
-      config: {
-        center: {
-          lat: 19.075983,
-          lng: 72.877655,
-        },
-        zoom: 10,
-      },
+  hidePopover = () => {
+    this.setState({
+      showInputPopover: false,
     });
+  };
 
-    await newMap.setOnMarkerClickListener((marker) => markerClick(marker));
-    addMapMarkers();
-    const latLngs = decode(
-      "guorBwzo{LmDBeAAe@@?fGIZWZaG@gBCuAIkEa@aD_@{JaAYGu@[oAy@aAe@gGkBcE{A]Wd@aBvAkHgBe@_@QgBg@HQl@q@FOBa@CUO{@Eq@McABs@TwATyBPcA{HiAaEq@aMqBqm@mJyMuBcPcCkBUwEw@QAsAY]OyHuAg@Q[Qo@m@m@m@i@_@cA_@qD}@oHwBkDy@gGgAqBUyGQaCAuIWgCBcBHwGn@wEh@oFz@aFf@{D?eBI}AQqB[sBk@gHeCsWuJ}GcCkUsI_YgKoDsAuH}CuJsD_GiBoG_Bs@MwAOcDMoCEkHNyCA}@Em@M[G}@a@{@k@kAiAq@aAs@uA{A{DkCwIYw@uAyCs@kBsAaEqEoLkAcDScAEcAB_A\\{DDiA?eAMeBKs@[{A_@gAWg@gA_Bq@u@aAu@qAy@kAa@gB_@eD_@kEy@yBm@uDyAiFkCkIaFyCcBqI}Ei@c@o@s@qGeIm@}@_AqBuCcHmKoXi@aBiDaJs@qBy@oBeAiB}@oAmBeCeBqCSc@wOql@]sBIgA@kBt@sHD_BA_AMsAO{@a@uAmCmHcCgG}CuGc@uAs@uAm@u@u@i@a@W_AYiAYeBQm@AcA@aAVqC\\gADmC?{BIkKk@qIm@qAOgAWeA[oBa@_LoB_Dq@}AWcAGmHM{G]gCUgEk@gA[sAq@uCgBgF{CiBmAuB_AaCy@k@EqB]_BKuI[o@FSF{@`@o@tD[zAi@zA{@nAgB|BwDhDy@b@q@TqAVwGf@gALgAVqAh@mAv@i@f@o@|@a@z@i@hBHzCvEfI~@|CVd@XHtDzFdAfBLn@B`AFVxF|JtBfE~BdEN`@T~AD|@Cl@Gl@sDnTaCjNYv@e@z@sDdEuE|DsEtD_At@aKlI}A~AsC~Co@~@]x@WjAKfAG~BEp@G\\e@dBu@|AgA|Aq@pAEZsAhD{BzDa@`Ag@]Xe@"
-    );
-    const path = latLngs.map((latLng) => ({
-      lat: latLng[0],
-      lng: latLng[1],
+  showCardPopover = () => {
+    this.setState({
+      showCardPopover: true,
+    });
+  };
+
+  hideCardPopover = () => {
+    this.setState({
+      showCardPopover: false,
+    });
+  };
+
+  addTask = () => {
+    this.setState((previousState) => ({
+      newTask: {
+        id: previousState.newTask.id + 1,
+        name: '',
+      },
+      tasks: [...previousState.tasks, previousState.newTask],
     }));
-    const lines: Polyline[] = [
-      {
-        path: path,
-        // geodesic: true,
-        strokeColor: "#FF0000",
-        strokeWeight: 2,
-      },
-    ];
-    await newMap.addPolylines(lines);
-    await newMap.enableCurrentLocation(true);
-
-    setLoading(false);
   };
 
-  useIonViewWillEnter(() => {
-    createMap();
-  });
+  handleTaskChange = (value: string) => {
+    this.setState({
+      newTask: {
+        ...this.state.newTask,
+        name: value,
+      },
+    });
+  };
 
-  return (
-    <IonPage>
-      <IonContent fullscreen>
-        <IonToolbar>
-          <IonButtons slot="start">
-            <IonBackButton
-              type="button"
-              className="backbutton"
-              defaultHref="/home"
-            ></IonBackButton>
-          </IonButtons>
-          <div className="title">
-            <img src="/favicon.png" alt="Logo" width={30} height={30} />
-            <h1>Dementia 101</h1>
+  handleCardChange = (field: string, value: string) => {
+    this.setState({
+      newCard: {
+        ...this.state.newCard,
+        [field]: value,
+      },
+    });
+  };
+
+  addCard = () => {
+    this.setState((previousState) => ({
+      newCard: {
+        id: previousState.newCard.id + 1,
+        title: '',
+        subtitle: '',
+        content: '',
+      },
+      cards: [...previousState.cards, previousState.newCard],
+    }));
+  };
+
+  deleteTask = (taskToDelete: Task) => {
+    this.setState(previousState => ({
+      tasks: previousState.tasks.filter(task => task.id !== taskToDelete.id),
+    }));
+  };
+
+  render() {
+    return (
+      <IonPage>
+        <IonHeader>
+          <IonToolbar style={{ borderRadius: '1rem' }}>
+            <div className="title">
+              <img src="/favicon.png" alt="Logo" width={30} height={30} />
+              <h1>Dementia 102</h1>
+              <IonButton onClick={this.showPopover}>
+                <IonIcon icon={add} />
+                Task
+              </IonButton>
+              <IonButton onClick={this.showCardPopover}>
+                <IonIcon icon={add} />
+                Member
+              </IonButton>
+            </div>
+          </IonToolbar>
+        </IonHeader>
+
+        <IonContent fullscreen className="ion-padding">
+          <div className="card-container">
+            <IonCard>
+              <IonCardTitle className="centered-title">Patient's Detail</IonCardTitle>
+            </IonCard>
           </div>
-          {loading && <IonProgressBar type="indeterminate" />}
-        </IonToolbar>
 
-        <capacitor-google-map
-          ref={mapRef}
-          style={{
-            display: "inline-block",
-            width: "100%",
-            height: "100%",
-          }}
-        ></capacitor-google-map>
-      </IonContent>
-    </IonPage>
-  );
-};
+          <div className="horizontal-scroll-container">
+            <div className="scrollable-cards">
+              <IonRow>
+                {this.state.cards.map((card) => (
+                  <IonCol key={card.id}>
+                    <IonCard color="primary" className="custom-card">
+                      <IonCardHeader>
+                        <IonCardTitle>{card.title}</IonCardTitle>
+                        <IonCardSubtitle>{card.subtitle}</IonCardSubtitle>
+                      </IonCardHeader>
+                      <IonCardContent>{card.content}</IonCardContent>
+                    </IonCard>
+                  </IonCol>
+                ))}
+              </IonRow>
+            </div>
+          </div>
+
+          <IonPopover isOpen={this.state.showInputPopover} onDidDismiss={this.hidePopover}>
+            <IonToolbar>
+              <IonTitle> New To-Do: </IonTitle>
+            </IonToolbar>
+            <NewTaskForm onChange={this.handleTaskChange} onAdd={this.addTask} task={this.state.newTask} />
+            <IonButton expand="block" onClick={this.hidePopover}>
+              Close
+            </IonButton>
+          </IonPopover>
+          <IonGrid>
+  <IonRow>
+    <IonCol>
+      <IonCard color="tertiary" className="custom-card">
+        <div className="image-container">
+          <img
+          style={{ height: '200px', width: '100%', objectFit: 'cover' }}
+            className="custom-image"
+            alt="Silhouette of mountains"
+            src="https://i.pinimg.com/736x/34/d9/47/34d94780b4d1b478349d9aa4cfc13342.jpg"
+          />
+        </div>
+        <IonCardContent>
+          <IonItem lines="none">
+            <IonCardSubtitle>Daughter</IonCardSubtitle>
+            <IonButton slot="end" color="primary" href="tel:9321131937">
+              <IonIcon icon={call} />
+            </IonButton>
+          </IonItem>
+        </IonCardContent>
+      </IonCard>
+    </IonCol>
+
+    {/* <IonCol>
+      <IonCard color="primary" className="custom-card">
+        <div className="image-container">
+          <img
+          style={{ height: '200px', width: '100%', objectFit: 'cover' }}
+            className="custom-image"
+            alt="Silhouette of mountains"
+            src="https://i.pinimg.com/564x/8a/48/f5/8a48f5981a3ce5351d33ace13d58b08e.jpg"
+          />
+        </div>
+        <IonCardContent>
+          <IonItem lines="none">
+            <IonCardSubtitle>Wife</IonCardSubtitle>
+            <IonButton slot="end" color="primary" href="tel:1234567890">
+              <IonIcon icon={call} />
+            </IonButton>
+          </IonItem>
+        </IonCardContent>
+      </IonCard>
+    </IonCol> */}
+
+    <IonCol>
+      <IonCard color="secondary" className="custom-card">
+        <div className="image-container">
+          <img
+          style={{ height: '200px', width: '100%', objectFit: 'cover' }}
+            className="custom-image"
+            alt="Silhouette of mountains"
+            src="https://i.pinimg.com/564x/b2/56/42/b256422ed45df565a723960119729969.jpg"
+          />
+        </div>
+        <IonCardContent>
+          <IonItem lines="none">
+            <IonCardSubtitle>Son</IonCardSubtitle>
+            <IonButton slot="end" color="primary" href="tel:1234567890">
+              <IonIcon icon={call} />
+            </IonButton>
+          </IonItem>
+        </IonCardContent>
+      </IonCard>
+    </IonCol>
+
+    <IonCol>
+      <IonCard color="tertiary" className="custom-card">
+        <div className="image-container">
+          <img
+          style={{ height: '200px', width: '100%', objectFit: 'cover' }}
+            className="custom-image"
+            alt="Silhouette of mountains"
+            src="https://i.pinimg.com/564x/3a/8c/a1/3a8ca11cb18aefeb69a0a61b25b94e8e.jpg"
+          />
+        </div>
+        <IonCardContent>
+          <IonItem lines="none">
+            <IonCardSubtitle>Sister</IonCardSubtitle>
+            <IonButton slot="end" color="primary" href="tel:9321131937">
+              <IonIcon icon={call} />
+            </IonButton>
+          </IonItem>
+        </IonCardContent>
+      </IonCard>
+    </IonCol>
+
+    <IonCol>
+      <IonCard color="primary" className="custom-card">
+        <div className="image-container">
+          <img
+          style={{ height: '200px', width: '100%', objectFit: 'cover' }}
+            className="custom-image"
+            alt="Silhouette of mountains"
+            src="https://i.pinimg.com/564x/9c/f1/2f/9cf12f1a98ac1e6ad7bf35488c904cdd.jpg"
+            />
+        </div>
+        <IonCardContent>
+          <IonItem lines="none">
+            <IonCardSubtitle>Caretaker</IonCardSubtitle>
+            <IonButton slot="end" color="primary" href="tel:1234567890">
+              <IonIcon icon={call} />
+            </IonButton>
+          </IonItem>
+        </IonCardContent>
+      </IonCard>
+    </IonCol>
+  </IonRow>
+</IonGrid>
+
+          {/* <IonPopover isOpen={this.state.showCardPopover} onDidDismiss={this.hideCardPopover}>
+            <IonToolbar>
+              <IonTitle> New Card: </IonTitle>
+            </IonToolbar>
+
+            <NewCardForm onChange={this.handleCardChange} onAdd={this.addCard} card={this.state.newCard} />
+            <IonButton expand="block" onClick={this.hideCardPopover}>
+              Close
+            </IonButton>
+          </IonPopover> */}
+          <IonContent color="light">
+      <IonList inset={true}>
+        <IonItem>
+          <IonLabel>Pokémon Yellow</IonLabel>
+        </IonItem>
+        <IonItem>
+          <IonLabel>Mega Man X</IonLabel>
+        </IonItem>
+        <IonItem>
+          <IonLabel>The Legend of Zelda</IonLabel>
+        </IonItem>
+        <IonItem>
+          <IonLabel>Pac-Man</IonLabel>
+        </IonItem>
+        <IonItem>
+          <IonLabel>Super Mario World</IonLabel>
+        </IonItem>
+      </IonList>
+    </IonContent>
+
+          <IonGrid>
+            <IonRow>
+              <IonCol size="12" size-md="4">
+                <IonCard>
+                  <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
+                  <IonCardHeader>
+                    <IonCardTitle>Card Title</IonCardTitle>
+                    <IonCardSubtitle>Card Subtitle</IonCardSubtitle>
+                  </IonCardHeader>
+                  <IonCardContent>Here's a small text description for the card content. Nothing more, nothing less.</IonCardContent>
+                </IonCard>
+              </IonCol>
+              <IonCol size="12" size-md="4">
+                <IonCard>
+                  <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
+                  <IonCardHeader>
+                    <IonCardTitle>Card Title</IonCardTitle>
+                    <IonCardSubtitle>Card Subtitle</IonCardSubtitle>
+                  </IonCardHeader>
+                  <IonCardContent>Here's a small text description for the card content. Nothing more, nothing less.</IonCardContent>
+                </IonCard>
+              </IonCol>
+              <IonCol size="12" size-md="4">
+                <IonCard>
+                  <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
+                  <IonCardHeader>
+                    <IonCardTitle>Card Title</IonCardTitle>
+                    <IonCardSubtitle>Card Subtitle</IonCardSubtitle>
+                  </IonCardHeader>
+                  <IonCardContent>Here's a small text description for the card content. Nothing more, nothing less.</IonCardContent>
+                </IonCard>
+              </IonCol>
+            </IonRow>
+          </IonGrid>
+
+          {/* <IonList inset={true}>
+            <IonLabel>ToDo List</IonLabel>
+            <TasksList tasks={this.state.tasks} onDelete={this.deleteTask} />
+          </IonList> */}
+        </IonContent>
+      </IonPage>
+    );
+  }
+}
 
 export default Map;
