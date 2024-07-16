@@ -147,3 +147,7 @@ export const mapCenter = (state: AppState) => {
   }
   return item;
 };
+export function getLocations(state: { [x: string]: any;[x: number]: any; }): Location[] {
+  throw new Error('Function not implemented.');
+}
+

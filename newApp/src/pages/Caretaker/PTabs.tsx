@@ -9,12 +9,12 @@ import {
 } from '@ionic/react';
 import { Route, Redirect } from 'react-router';
 import { calendar, location, informationCircle, people } from 'ionicons/icons';
-import SchedulePage from './SchedulePage';
-import SpeakerList from './SpeakerList';
-import SpeakerDetail from './SpeakerDetail';
-import SessionDetail from './SessionDetail';
-import MapView from './MapView';
-import About from './About';
+import SchedulePage from '../Patient/SchedulePage';
+import SpeakerList from '../Patient/SpeakerList';
+import SpeakerDetail from '../Patient/SpeakerDetail';
+import SessionDetail from '../Patient/SessionDetail';
+import MapView from '../Patient/MapView';
+import About from '../Patient/About';
 
 interface PTabsProps {}
 
@@ -50,7 +50,7 @@ const PTabs: React.FC<PTabsProps> = () => {
         </IonTabButton>
         <IonTabButton tab="speakers" href="/ptabs/speakers">
           <IonIcon icon={people} />
-          <IonLabel>Speakers</IonLabel>
+          <IonLabel>Members</IonLabel>
         </IonTabButton>
         <IonTabButton tab="map" href="/ptabs/map">
           <IonIcon icon={location} />

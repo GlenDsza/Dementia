@@ -57,7 +57,7 @@ import Support from './pages/Patient/Support';
 import Tutorial from './pages/Patient/Tutorial';
 import { Schedule } from './models/Schedule';
 import RedirectToLogin from './components/RedirectToLogin';
-import PTabs from './pages/Patient/PTabs';
+import PTabs from './pages/Caretaker/PTabs';
 import CTabs from './pages/Caretaker/CTabs';
 import Notifications from './pages/Caretaker/Notifications/Notifications';
 

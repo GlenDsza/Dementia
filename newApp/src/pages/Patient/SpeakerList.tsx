@@ -40,16 +40,16 @@ const SpeakerList: React.FC<SpeakerListProps> = ({
           <IonButtons slot="start">
             <IonMenuButton />
           </IonButtons>
-          <IonTitle>Speakers</IonTitle>
+          <IonTitle>Members</IonTitle>
         </IonToolbar>
       </IonHeader>
 
       <IonContent fullscreen={true}>
-        <IonHeader collapse="condense">
+        {/* <IonHeader collapse="condense">
           <IonToolbar>
             <IonTitle size="large">Speakers</IonTitle>
           </IonToolbar>
-        </IonHeader>
+        </IonHeader> */}
 
         <IonGrid fixed>
           <IonRow>

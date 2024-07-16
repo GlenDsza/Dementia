@@ -135,39 +135,9 @@ const SpeakerDetail: React.FC<SpeakerDetailProps> = ({ speaker }) => {
         </div>
 
         <div className="ion-padding speaker-detail">
-          <p>{speaker.about} Say hello on social media!</p>
+          <p>{speaker.about}</p>
 
           <hr />
-
-          <IonChip
-            color="twitter"
-            onClick={() =>
-              openExternalUrl(`https://twitter.com/${speaker.twitter}`)
-            }
-          >
-            <IonIcon icon={logoTwitter}></IonIcon>
-            <IonLabel>Twitter</IonLabel>
-          </IonChip>
-
-          <IonChip
-            color="dark"
-            onClick={() =>
-              openExternalUrl('https://github.com/ionic-team/ionic-framework')
-            }
-          >
-            <IonIcon icon={logoGithub}></IonIcon>
-            <IonLabel>GitHub</IonLabel>
-          </IonChip>
-
-          <IonChip
-            color="instagram"
-            onClick={() =>
-              openExternalUrl('https://instagram.com/ionicframework')
-            }
-          >
-            <IonIcon icon={logoInstagram}></IonIcon>
-            <IonLabel>Instagram</IonLabel>
-          </IonChip>
         </div>
       </IonContent>
       <IonActionSheet
