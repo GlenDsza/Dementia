@@ -26,7 +26,7 @@ const SpeakerItem: React.FC<SpeakerItemProps> = ({ speaker, sessions }) => {
             detail={false}
             lines="none"
             className="speaker-item"
-            routerLink={`/tabs/speakers/${speaker.id}`}
+            routerLink={`/ptabs/speakers/${speaker.id}`}
           >
             <IonAvatar slot="start">
               <img src={speaker.profilePic} alt="Speaker profile pic" />
@@ -43,7 +43,7 @@ const SpeakerItem: React.FC<SpeakerItemProps> = ({ speaker, sessions }) => {
             {sessions.map((session) => (
               <IonItem
                 detail={false}
-                routerLink={`/tabs/speakers/sessions/${session.id}`}
+                routerLink={`/ptabs/speakers/sessions/${session.id}`}
                 key={session.name}
               >
                 <IonLabel>
@@ -51,7 +51,7 @@ const SpeakerItem: React.FC<SpeakerItemProps> = ({ speaker, sessions }) => {
                 </IonLabel>
               </IonItem>
             ))}
-            <IonItem detail={false} routerLink={`/tabs/speakers/${speaker.id}`}>
+            <IonItem detail={false} routerLink={`/ptabs/speakers/${speaker.id}`}>
               <IonLabel>
                 <h3>About {speaker.name}</h3>
               </IonLabel>
