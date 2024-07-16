@@ -50,7 +50,7 @@ const PTabs: React.FC<PTabsProps> = () => {
         </IonTabButton>
         <IonTabButton tab="speakers" href="/ptabs/speakers">
           <IonIcon icon={people} />
-          <IonLabel>Speakers</IonLabel>
+          <IonLabel>Members</IonLabel>
         </IonTabButton>
         <IonTabButton tab="map" href="/ptabs/map">
           <IonIcon icon={location} />

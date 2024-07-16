@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Session } from '../models/Schedule';
 import { Speaker } from '../models/Speaker';
 import {
@@ -9,7 +9,16 @@ import {
   IonAvatar,
   IonCardContent,
   IonList,
+  IonCardTitle,
+  IonCardSubtitle,
+  IonButton,
+  IonIcon,
+  ActionSheetButton,
+  IonActionSheet,
 } from '@ionic/react';
+import { callOutline, callSharp } from 'ionicons/icons';
+import { useHistory } from 'react-router-dom';
+import './SpeakerItem.css';
 
 interface SpeakerItemProps {
   speaker: Speaker;
@@ -17,48 +26,66 @@ interface SpeakerItemProps {
 }
 
 const SpeakerItem: React.FC<SpeakerItemProps> = ({ speaker, sessions }) => {
+  const history = useHistory();
+
+  const [showActionSheet, setShowActionSheet] = useState(false);
+  const [actionSheetButtons, setActionSheetButtons] = useState<
+    ActionSheetButton[]
+  >([]);
+  const [actionSheetHeader, setActionSheetHeader] = useState('');
+
+  function openContact(speaker: Speaker, event: any) {
+    event.stopPropagation(); // Prevents the card click event
+    setActionSheetButtons([
+      {
+        text: `Call ( ${speaker.phone} )`,
+        handler: () => {
+          window.open('tel:' + speaker.phone);
+        },
+      },
+    ]);
+    setActionSheetHeader(`Share ${speaker.name}`);
+    setShowActionSheet(true);
+  }
+
+  const navigateToPage = () => {
+    history.push(`/ptabs/speakers/${speaker.id}`);
+  };
+
   return (
     <>
-      <IonCard className="speaker-card">
+      <IonCard onClick={navigateToPage}>
+        <img
+          src={speaker.profilePic}
+          alt="Speaker profile pic"
+          className="speaker-custom-image"
+        />
         <IonCardHeader>
-          <IonItem
-            button
-            detail={false}
-            lines="none"
-            className="speaker-item"
-            routerLink={`/ptabs/speakers/${speaker.id}`}
+          <IonCardTitle>{speaker.name}</IonCardTitle>
+          <IonCardSubtitle>{speaker.title}</IonCardSubtitle>
+          <IonButton
+            onClick={(e) => openContact(speaker, e)}
+            className="speaker-call-button"
           >
-            <IonAvatar slot="start">
-              <img src={speaker.profilePic} alt="Speaker profile pic" />
-            </IonAvatar>
-            <IonLabel>
-              <h2>{speaker.name}</h2>
-              <p>{speaker.title}</p>
-            </IonLabel>
-          </IonItem>
+            <IonIcon
+              slot="icon-only"
+              ios={callOutline}
+              md={callSharp}
+            ></IonIcon>
+          </IonButton>
         </IonCardHeader>
 
-        <IonCardContent>
-          <IonList lines="none">
-            {sessions.map((session) => (
-              <IonItem
-                detail={false}
-                routerLink={`/ptabs/speakers/sessions/${session.id}`}
-                key={session.name}
-              >
-                <IonLabel>
-                  <h3>{session.name}</h3>
-                </IonLabel>
-              </IonItem>
-            ))}
-            <IonItem detail={false} routerLink={`/ptabs/speakers/${speaker.id}`}>
-              <IonLabel>
-                <h3>About {speaker.name}</h3>
-              </IonLabel>
-            </IonItem>
-          </IonList>
-        </IonCardContent>
+        {/* <IonCardContent>
+          Here's a small text description for the card content. Nothing more,
+          nothing less.
+        </IonCardContent> */}
       </IonCard>
+      <IonActionSheet
+        isOpen={showActionSheet}
+        header={actionSheetHeader}
+        onDidDismiss={() => setShowActionSheet(false)}
+        buttons={actionSheetButtons}
+      />
     </>
   );
 };

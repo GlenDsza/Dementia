@@ -40,7 +40,7 @@ const SpeakerList: React.FC<SpeakerListProps> = ({
           <IonButtons slot="start">
             <IonMenuButton />
           </IonButtons>
-          <IonTitle>Speakers</IonTitle>
+          <IonTitle>Members</IonTitle>
         </IonToolbar>
       </IonHeader>
 
