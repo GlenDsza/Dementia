@@ -1,0 +1,107 @@
+.mirror {
+  transform: scaleX(-1);
+}
+
+.notification-card {
+  height: 3rem;
+  background-color: #10101011;
+}
+
+.primary {
+  border-left: 0.3rem solid #483cfb;
+}
+
+.secondary {
+  border-left: 0.3rem solid #fbcf3c;
+}
+
+#speaker-list {
+  .scrollable-container {
+    height: 100vh;
+    overflow-y: auto;
+  }
+
+  .todo-list {
+    height: 50vh;
+    overflow-y: auto;
+    background-color: #fdab96;
+    border-radius: 25px;
+    padding: 10px;
+  }
+
+  .speaker-list-add {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    border-radius: 15px;
+    height: 17vh;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+  }
+  .location-list-add {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    border-radius: 15px;
+    height: 17vh;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+  }
+
+  .speaker-card {
+    min-width: 100px;
+    flex: 0 0 auto;
+    border-radius: 15px;
+    padding-bottom: 0px;
+  }
+
+  .speaker-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .speaker-item img {
+    width: 100px;
+    height: 50px;
+    object-fit: cover;
+  }
+
+  .speaker-item h2 {
+    font-size: 16px;
+    margin: 5px 0;
+  }
+
+  .speaker-item ion-button {
+    margin-top: 5px;
+  }
+  .scrollable-container {
+    overflow-x: auto;
+  }
+
+  .speaker-list-add {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+  }
+
+  .speaker-list-add ion-col {
+    min-width: 200px; /* adjust this value as needed */
+  }
+
+  .add-speaker-col {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 200px; /* adjust this value as needed */
+  }
+  .todo-list-card {
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+  todo-list-card-item {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    background-color: transparent;
+  }
+}

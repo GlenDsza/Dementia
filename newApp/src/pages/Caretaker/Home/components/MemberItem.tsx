@@ -1,6 +1,6 @@
 import React from 'react';
-import { Session } from '../models/Schedule';
-import { Speaker } from '../models/Speaker';
+import { Session } from '../../../../models/Schedule';
+import { Speaker } from '../../../../models/Speaker';
 import {
   IonCard,
   IonCardHeader,
@@ -13,20 +13,24 @@ import {
 } from '@ionic/react';
 import { callOutline, trashOutline } from 'ionicons/icons';
 
-interface SpeakerItemProps {
+interface MemberItemProps {
   speaker: Speaker;
   sessions: Session[];
   onDelete: () => void;
 }
 
-const SpeakerItem: React.FC<SpeakerItemProps> = ({ speaker, sessions, onDelete }) => {
+const MemberItem: React.FC<MemberItemProps> = ({
+  speaker,
+  sessions,
+  onDelete,
+}) => {
   const handleCallSpeaker = (phoneNumber: string) => {
     window.open(`tel:${phoneNumber}`, '_system');
   };
 
   return (
     <>
-      <IonCard color = "primary" className="speaker-card">
+      <IonCard color="primary" className="speaker-card">
         <IonCardHeader>
           <IonItem
             button
@@ -41,7 +45,11 @@ const SpeakerItem: React.FC<SpeakerItemProps> = ({ speaker, sessions, onDelete }
             <IonLabel>
               <h2>{speaker.name}</h2>
             </IonLabel>
-            <IonButton fill="clear" slot="end" onClick={() => handleCallSpeaker(speaker.phone)}>
+            <IonButton
+              fill="clear"
+              slot="end"
+              onClick={() => handleCallSpeaker(speaker.phone)}
+            >
               <IonIcon icon={callOutline} />
             </IonButton>
             <IonButton fill="clear" slot="end" onClick={onDelete}>
@@ -54,4 +62,4 @@ const SpeakerItem: React.FC<SpeakerItemProps> = ({ speaker, sessions, onDelete }
   );
 };
 
-export default SpeakerItem;
+export default MemberItem;

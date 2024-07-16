@@ -7,7 +7,7 @@ input::-webkit-inner-spin-button {
 }
 
 /* Firefox */
-input[type="number"] {
+input[type='number'] {
   -moz-appearance: textfield;
 }
 
@@ -369,6 +369,21 @@ input[type="number"] {
 .justify-around {
   justify-content: space-around;
 }
+.gap-0 {
+  gap: 0;
+}
+.gap-1 {
+  gap: 0.25rem;
+}
+.gap-2 {
+  gap: 0.5rem;
+}
+.gap-4 {
+  gap: 1rem;
+}
+.gap-8 {
+  gap: 2rem;
+}
 
 /* Background Color */
 .bg-white {
@@ -666,6 +681,9 @@ input[type="number"] {
   border-bottom-left-radius: 1.5rem;
 }
 
+.card-shadow {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
 .bg-blue-100 {
   background-color: #ebf8ff;
 }
@@ -821,4 +839,8 @@ input[type="number"] {
 }
 .text-justify {
   text-align: justify;
+}
+
+.flex-grow {
+  flex-grow: 1;
 }

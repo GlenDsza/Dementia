@@ -55,7 +55,6 @@ import Login from './pages/Login/Login';
 import Signup from './pages/Signup/Signup';
 import Support from './pages/Patient/Support';
 import Tutorial from './pages/Patient/Tutorial';
-import HomeOrTutorial from './components/HomeOrTutorial';
 import { Schedule } from './models/Schedule';
 import RedirectToLogin from './components/RedirectToLogin';
 import PTabs from './pages/Patient/PTabs';

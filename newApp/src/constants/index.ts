@@ -1,3 +1,5 @@
+import { RoutineType } from '../pages/Caretaker/Home/components/RoutineItem';
+
 export const markers = [
   {
     lat: 18.124564,
@@ -97,5 +99,77 @@ export const markers = [
       'Shop No. 2, Lake Plaza, Opposite Kalyani Nagar, Jogging Park, Kalyani Nagar, Pune, Maharashtra 411006',
     email: 'ayesha@gmail.com',
     phone: '+91 20 2661 5098',
+  },
+];
+
+export const members = [
+  {
+    image: '/assets/speakers/bear.jpg',
+    name: 'Member 1',
+    relation: 'Father',
+    mobile: '1234567890',
+  },
+  {
+    image: '/assets/speakers/bear.jpg',
+    name: 'Member 2',
+    relation: 'Mother',
+    mobile: '1234567890',
+  },
+  {
+    image: '/assets/speakers/bear.jpg',
+    name: 'Member 3',
+    relation: 'Brother',
+    mobile: '1234567890',
+  },
+  {
+    image: '/assets/speakers/bear.jpg',
+    name: 'Member 4',
+    relation: 'Sister',
+    mobile: '1234567890',
+  },
+];
+
+export const routines = [
+  {
+    title: 'Morning Walk',
+    startTime: '6:00 AM',
+    endTime: '7:00 AM',
+    location: 'Koregaon Park',
+    type: RoutineType.primary,
+  },
+  {
+    title: 'Breakfast',
+    startTime: '8:00 AM',
+    endTime: '9:00 AM',
+    location: 'Home',
+    type: RoutineType.secondary,
+  },
+  {
+    title: 'Work',
+    startTime: '9:00 AM',
+    endTime: '5:00 PM',
+    location: 'Office',
+    type: RoutineType.primary,
+  },
+  {
+    title: 'Dinner',
+    startTime: '8:00 PM',
+    endTime: '9:00 PM',
+    location: 'Home',
+    type: RoutineType.secondary,
+  },
+  {
+    title: 'Medicines',
+    startTime: '9:00 PM',
+    endTime: '9:30 PM',
+    location: 'Home',
+    type: RoutineType.primary,
+  },
+  {
+    title: 'Night Walk',
+    startTime: '10:00 PM',
+    endTime: '11:00 PM',
+    location: 'Garden',
+    type: RoutineType.secondary,
   },
 ];

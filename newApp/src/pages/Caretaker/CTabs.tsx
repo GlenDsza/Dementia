@@ -8,7 +8,13 @@ import {
   IonLabel,
 } from '@ionic/react';
 import { Route, Redirect } from 'react-router';
-import { calendar, location, informationCircle, people } from 'ionicons/icons';
+import {
+  calendar,
+  location,
+  informationCircle,
+  people,
+  home,
+} from 'ionicons/icons';
 
 import SchedulePage from './SchedulePage';
 import SpeakerList from './SpeakerList';
@@ -16,7 +22,7 @@ import SpeakerDetail from './SpeakerDetail';
 import SessionDetail from './SessionDetail';
 import MapView from './Map/Map';
 import About from './About';
-import Home from './Home';
+import Home from './Home/Home';
 
 interface CTabsProps {}
 
@@ -48,7 +54,7 @@ const CTabs: React.FC<CTabsProps> = () => {
       </IonRouterOutlet>
       <IonTabBar slot="bottom">
         <IonTabButton tab="home" href="/ctabs/home">
-          <IonIcon icon={calendar} />
+          <IonIcon icon={home} />
           <IonLabel>Home</IonLabel>
         </IonTabButton>
         <IonTabButton tab="schedule" href="/ctabs/schedule">
