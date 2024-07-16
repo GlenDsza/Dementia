@@ -9,12 +9,12 @@ import {
 } from '@ionic/react';
 import { Route, Redirect } from 'react-router';
 import { calendar, location, informationCircle, people } from 'ionicons/icons';
-import SchedulePage from './SchedulePage';
-import SpeakerList from './SpeakerList';
-import SpeakerDetail from './SpeakerDetail';
-import SessionDetail from './SessionDetail';
-import MapView from './MapView';
-import About from './About';
+import SchedulePage from '../Patient/SchedulePage';
+import SpeakerList from '../Patient/SpeakerList';
+import SpeakerDetail from '../Patient/SpeakerDetail';
+import SessionDetail from '../Patient/SessionDetail';
+import MapView from '../Patient/MapView';
+import About from '../Patient/About';
 
 interface PTabsProps {}
 
