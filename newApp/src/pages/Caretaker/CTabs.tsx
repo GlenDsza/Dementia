@@ -43,6 +43,11 @@ const CTabs: React.FC<CTabsProps> = () => {
           component={SpeakerDetail}
           exact={true}
         />
+          <Route
+          path="/ctabs/community"
+          component={Community}
+          exact={true}
+        />
         <Route path="/ctabs/schedule/:id" component={SessionDetail} />
         <Route path="/ctabs/speakers/sessions/:id" component={SessionDetail} />
         <Route path="/ctabs/map" render={() => <MapView />} exact={true} />
@@ -57,7 +62,7 @@ const CTabs: React.FC<CTabsProps> = () => {
           <IonIcon icon={calendar} />
           <IonLabel>Schedule</IonLabel>
         </IonTabButton>
-        <IonTabButton tab="Community" href="/ctabs/Community">
+        <IonTabButton tab="community" href="/ctabs/community">
           <IonIcon icon={people} />
           <IonLabel>Community</IonLabel>
         </IonTabButton>
