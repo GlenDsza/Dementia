@@ -14,6 +14,7 @@ import {
   informationCircle,
   people,
   home,
+  chatboxEllipses,
 } from 'ionicons/icons';
 
 import SchedulePage from './SchedulePage';
@@ -21,10 +22,10 @@ import SpeakerList from './SpeakerList';
 import SpeakerDetail from './SpeakerDetail';
 import SessionDetail from './SessionDetail';
 import MapView from './Map/Map';
-import About from './About';
 import Home from './Home/Home';
 import Community from './Community';
 import Chat from './Chat';
+import ChatBot from './ChatBot';
 
 interface CTabsProps {}
 
@@ -52,10 +53,10 @@ const CTabs: React.FC<CTabsProps> = () => {
         <Route path="/ctabs/community" component={Community} exact={true} />
         <Route path='/ctabs/community/chat' component={Chat} exact={true}/>
         <Redirect from="/" to="/community/chat" exact />
+        <Route path="/ctabs/chatbot" component={ChatBot} exact={true}/>
         <Route path="/ctabs/schedule/:id" component={SessionDetail} />
         <Route path="/ctabs/speakers/sessions/:id" component={SessionDetail} />
         <Route path="/ctabs/map" render={() => <MapView />} exact={true} />
-        <Route path="/ctabs/about" render={() => <About />} exact={true} />
       </IonRouterOutlet>
       <IonTabBar slot="bottom">
         <IonTabButton tab="home" href="/ctabs/home">
@@ -74,9 +75,9 @@ const CTabs: React.FC<CTabsProps> = () => {
           <IonIcon icon={location} />
           <IonLabel>Map</IonLabel>
         </IonTabButton>
-        <IonTabButton tab="about" href="/ctabs/about">
-          <IonIcon icon={informationCircle} />
-          <IonLabel>About</IonLabel>
+        <IonTabButton tab="chatbot" href="/ctabs/chatbot">
+          <IonIcon icon={chatboxEllipses} />
+          <IonLabel>Chat Bot</IonLabel>
         </IonTabButton>
       </IonTabBar>
     </IonTabs>

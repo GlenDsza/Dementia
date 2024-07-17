@@ -136,19 +136,6 @@ const Chat: React.FC = () => {
               <IonCol size="1">
                 <input
                   type="file"
-                  accept="video/*"
-                  style={{ display: 'none' }}
-                  id="video-upload"
-                  ref={videoUploadRef}
-                  onChange={(e) => handleFileUpload(e, 'video')}
-                />
-                <IonFabButton size="small" onClick={() => triggerFileInput(videoUploadRef)}>
-                  <IonIcon icon={videocam} />
-                </IonFabButton>
-              </IonCol>
-              <IonCol size="1">
-                <input
-                  type="file"
                   accept="audio/*"
                   style={{ display: 'none' }}
                   id="audio-upload"

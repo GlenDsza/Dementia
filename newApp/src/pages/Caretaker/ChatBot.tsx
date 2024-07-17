@@ -7,19 +7,46 @@ import {
   IonTitle,
   IonFooter,
   IonInput,
-  IonButton,
   IonIcon,
   IonFabButton,
   IonGrid,
   IonRow,
   IonCol,
 } from '@ionic/react';
-import { ChatList, MessageList } from 'react-chat-elements';
-import { image, videocam, mic, location as locIcon, send } from 'ionicons/icons';
+import { MessageList } from 'react-chat-elements';
+import { image, videocam, mic, send } from 'ionicons/icons';
 import 'react-chat-elements/dist/main.css';
 
-const Chat: React.FC = () => {
-  const [messages, setMessages] = useState<any[]>([]);
+const ChatBot: React.FC = () => {
+  const [messages, setMessages] = useState<any[]>([
+    {
+      position: 'left',
+      type: 'text',
+      text: 'Hello!',
+      date: new Date(),
+      id: '1',
+      avatar: 'https://helpx.adobe.com/content/dam/help/en/photoshop/how-to/vector-objects/jcr_content/main-pars/image_738713385/vector-objects-Step1_900x506.jpg',
+      title: 'John',
+    },
+    {
+      position: 'left',
+      type: 'text',
+      text: 'How are you?',
+      date: new Date(),
+      id: '2',
+      avatar: 'https://cdn.pixabay.com/photo/2020/08/19/09/52/vector-art-5500539_640.jpg',
+      title: 'Mary',
+    },
+    {
+      position: 'left',
+      type: 'text',
+      text: 'Good morning!',
+      date: new Date(),
+      id: '3',
+      avatar: 'https://static.vecteezy.com/vite/assets/vector-qneIUV6W.webp',
+      title: 'Cris',
+    },
+  ]);
   const [text, setText] = useState<string>('');
   const textRef = useRef<string>('');
 
@@ -32,8 +59,6 @@ const Chat: React.FC = () => {
     const newMessage = {
       position: 'right',
       type: messageType,
-      title: 'Hello',
-      subtitle: 'World',
       text: messageType === 'text' ? content : undefined,
       data: {
         uri: messageType === 'photo' || messageType === 'video' || messageType === 'audio' ? content : undefined,
@@ -42,12 +67,11 @@ const Chat: React.FC = () => {
           loading: 0,
         },
       },
-      date: new Date(), // example date
-      id: Math.random().toString(), // example id (converted to string)
-      avatar: 'https://placeimg.com/50/50/any', // example avatar
+      date: new Date(),
+      id: Math.random().toString(),
+      avatar: 'https://static.vecteezy.com/system/resources/thumbnails/026/829/465/small/beautiful-girl-with-autumn-leaves-photo.jpg',
     };
     setMessages([...messages, newMessage]);
-    console.log(newMessage)
     setText('');
     textRef.current = '';
   };
@@ -69,57 +93,34 @@ const Chat: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Chat</IonTitle>
+          <IonTitle>ChatBot</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent>
-        <ChatList
+        <MessageList
           className="chat-list"
+          lockable={true}
+          toBottomHeight={'100%'}
           dataSource={messages.map((msg, index) => ({
             position: msg.position,
             type: msg.type,
             text: msg.text,
-            title:msg.text,
+            title: msg.title,
             data: msg.data,
             date: msg.date,
             id: msg.id,
             avatar: msg.avatar,
             key: index.toString(), // Ensure each item has a unique key
           }))}
-          id="chat-list-id"
-          lazyLoadingImage="lazy-loading-image-url"
+          id = "chat-list-id"
+          lazyLoadingImage = "lazy-loading-image-url"
         />
       </IonContent>
       <IonFooter>
         <IonToolbar>
           <IonGrid>
             <IonRow>
-              <IonCol size="1">
-                <input
-                  type="file"
-                  accept="image/*"
-                  style={{ display: 'none' }}
-                  id="image-upload"
-                  ref={imageUploadRef}
-                  onChange={(e) => handleFileUpload(e, 'photo')}
-                />
-                <IonFabButton size="small" onClick={() => triggerFileInput(imageUploadRef)}>
-                  <IonIcon icon={image} />
-                </IonFabButton>
-              </IonCol>
-              <IonCol size="1">
-                <input
-                  type="file"
-                  accept="video/*"
-                  style={{ display: 'none' }}
-                  id="video-upload"
-                  ref={videoUploadRef}
-                  onChange={(e) => handleFileUpload(e, 'video')}
-                />
-                <IonFabButton size="small" onClick={() => triggerFileInput(videoUploadRef)}>
-                  <IonIcon icon={videocam} />
-                </IonFabButton>
-              </IonCol>
+
               <IonCol size="1">
                 <input
                   type="file"
@@ -133,37 +134,19 @@ const Chat: React.FC = () => {
                   <IonIcon icon={mic} />
                 </IonFabButton>
               </IonCol>
-              <IonCol size="1">
-                <IonFabButton size="small">
-                  <IonIcon icon={locIcon} />
-                </IonFabButton>
-              </IonCol>
-              <IonCol size="1">
-                <input
-                  type="file"
-                  style={{ display: 'none' }}
-                  id="file-upload"
-                  ref={fileUploadRef}
-                  onChange={(e) => handleFileUpload(e, 'file')}
-                />
-                {/* <IonFabButton size="small" onClick={() => triggerFileInput(fileUploadRef)}>
-                  <IonIcon icon={document} />
-                </IonFabButton> */}
-              </IonCol>
-              <IonCol size="6">
+
+              <IonCol size="8">
                 <IonInput
                   value={text}
                   placeholder="Type a message"
                   onIonChange={(e) => {
-                    setText(e.detail.value!)
+                    setText(e.detail.value!);
                     textRef.current = e.detail.value!;
                   }}
                 />
               </IonCol>
               <IonCol size="1">
-                <IonFabButton size="small" onClick={() => {
-                  handleSend('text', textRef.current)
-                  }}>
+                <IonFabButton size="small" onClick={() => handleSend('text', textRef.current)}>
                   <IonIcon icon={send} />
                 </IonFabButton>
               </IonCol>
@@ -175,4 +158,4 @@ const Chat: React.FC = () => {
   );
 };
 
-export default Chat;
+export default ChatBot;
