@@ -1,5 +1,20 @@
 import { RoutineType } from '../pages/Caretaker/Home/components/RoutineItem';
 
+export interface RoutineInterface {
+  name: string;
+  description: string;
+  startDate: Date;
+  endDate: Date;
+  startTime: string | null;
+  endTime: string | null;
+  location: LocationInterface | null;
+}
+
+export interface LocationInterface {
+  lat: number;
+  lng: number;
+}
+
 export const markers = [
   {
     lat: 18.124564,
@@ -129,7 +144,7 @@ export const members = [
   },
 ];
 
-export const routines = [
+export const routines2 = [
   {
     title: 'Morning Walk',
     startTime: '6:00 AM',
@@ -171,5 +186,80 @@ export const routines = [
     endTime: '11:00 PM',
     location: 'Garden',
     type: RoutineType.secondary,
+  },
+];
+
+export const routines: RoutineInterface[] = [
+  {
+    name: 'Morning Walk',
+    description: 'Morning Walk',
+    startDate: new Date('2024-07-01'),
+    endDate: new Date('2024-07-31'),
+    startTime: '6:00 AM',
+    endTime: '7:00 AM',
+    location: {
+      lat: 18.520306,
+      lng: 73.256733,
+    },
+  },
+  {
+    name: 'Breakfast',
+    description: 'Breakfast',
+    startDate: new Date('2024-07-01'),
+    endDate: new Date('2024-07-31'),
+    startTime: '8:00 AM',
+    endTime: '9:00 AM',
+    location: {
+      lat: 18.520306,
+      lng: 73.256733,
+    },
+  },
+  {
+    name: 'Work',
+    description: 'Work',
+    startDate: new Date('2024-07-01'),
+    endDate: new Date('2024-07-31'),
+    startTime: '9:00 AM',
+    endTime: '5:00 PM',
+    location: {
+      lat: 18.520306,
+      lng: 73.256733,
+    },
+  },
+  {
+    name: 'Dinner',
+    description: 'Dinner',
+    startDate: new Date('2024-07-01'),
+    endDate: new Date('2024-07-31'),
+    startTime: '8:00 PM',
+    endTime: '9:00 PM',
+    location: {
+      lat: 18.520306,
+      lng: 73.256733,
+    },
+  },
+  {
+    name: 'Medicines',
+    description: 'Medicines',
+    startDate: new Date('2024-07-01'),
+    endDate: new Date('2024-07-31'),
+    startTime: '9:00 PM',
+    endTime: '9:30 PM',
+    location: {
+      lat: 18.520306,
+      lng: 73.256733,
+    },
+  },
+  {
+    name: 'Night Walk',
+    description: 'Night Walk',
+    startDate: new Date('2024-07-01'),
+    endDate: new Date('2024-07-31'),
+    startTime: '10:00 PM',
+    endTime: '11:00 PM',
+    location: {
+      lat: 18.520306,
+      lng: 73.256733,
+    },
   },
 ];

@@ -42,7 +42,7 @@ import { BsFillInfoCircleFill } from 'react-icons/bs';
 import { TbClockHour4Filled } from 'react-icons/tb';
 import { IoNotifications } from 'react-icons/io5';
 import RoutineItem from './components/RoutineItem';
-import { routines } from '../../../constants';
+import { routines2 } from '../../../constants';
 import { useHistory } from 'react-router';
 
 interface OwnProps {}
@@ -211,14 +211,14 @@ const Home: React.FC<HomeProps> = ({
               height={80}
               className="rounded-lg"
             />
-            <div className="flex flex-col ml-2">
+            <div className="flex flex-col ml-2 flex-grow">
               <h3 className="mb-0 mt-2">John Doe</h3>
               <span className="mt-1 text-xs">70 years</span>
               <span className="mt-1 text-xs">
                 1234 Main St, City, State, Zip
               </span>
             </div>
-            <IonButton fill="clear" className="ml-4">
+            <IonButton fill="clear">
               <IonIcon slot="end" icon={call} aria-hidden="true" className="" />
             </IonButton>
           </IonCard>
@@ -229,7 +229,7 @@ const Home: React.FC<HomeProps> = ({
               <h4 className="mb-1 mt-2 ml-2">Routine</h4>
             </div>
             <div className="flex flex-col gap-4">
-              {routines.slice(0, 4).map((routine, index) => (
+              {routines2.slice(0, 4).map((routine, index) => (
                 <RoutineItem
                   key={index}
                   type={routine.type}

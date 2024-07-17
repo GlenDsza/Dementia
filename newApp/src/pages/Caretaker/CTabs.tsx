@@ -16,7 +16,7 @@ import {
   home,
 } from 'ionicons/icons';
 
-import SchedulePage from './SchedulePage';
+import SchedulePage from './Schedule/Schedule';
 import SpeakerList from './SpeakerList';
 import SpeakerDetail from './SpeakerDetail';
 import SessionDetail from './SessionDetail';

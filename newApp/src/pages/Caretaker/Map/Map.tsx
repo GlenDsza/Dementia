@@ -220,7 +220,7 @@ const Map: FC = () => {
             <IonBackButton
               type="button"
               className="backbutton"
-              defaultHref="/home"
+              defaultHref="/ctabs/home"
             ></IonBackButton>
           </IonButtons>
           <div className="title">

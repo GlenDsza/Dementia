@@ -1,3 +1,22 @@
+.react-datepicker__input-container {
+  display: flex;
+  gap: 1rem;
+  border: 1px solid gray;
+  align-items: center;
+  border-radius: 0.4rem;
+  padding-left: 0.8rem;
+  padding-right: 0.8rem;
+}
+
+.react-datepicker__input-container input {
+  border: none;
+  height: 100%;
+  font-size: 1.15rem;
+  height: 3rem;
+  border-left: 1px solid gray;
+  padding-left: 1rem;
+}
+
 #schedule-page {
   ion-fab-button {
     --background: var(--ion-color-step-150, #fff);

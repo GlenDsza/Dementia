@@ -8,13 +8,13 @@ import {
   AlertButton,
 } from '@ionic/react';
 import React, { useState, useCallback, useRef, useEffect } from 'react';
-import { Schedule, Session } from '../models/Schedule';
+import { ScheduleModel, Session } from '../models/Schedule';
 import SessionListItem from './SessionListItem';
 import { connect } from '../data/connect';
 import { addFavorite, removeFavorite } from '../data/sessions/sessions.actions';
 
 interface OwnProps {
-  schedule: Schedule;
+  schedule: ScheduleModel;
   listType: 'all' | 'favorites';
   hide: boolean;
 }
