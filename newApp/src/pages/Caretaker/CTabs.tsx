@@ -24,6 +24,7 @@ import MapView from './Map/Map';
 import About from './About';
 import Home from './Home/Home';
 import Community from './Community';
+import Chat from './Chat';
 
 interface CTabsProps {}
 
@@ -49,6 +50,8 @@ const CTabs: React.FC<CTabsProps> = () => {
           exact={true}
         />
         <Route path="/ctabs/community" component={Community} exact={true} />
+        <Route path='/ctabs/community/chat' component={Chat} exact={true}/>
+        <Redirect from="/" to="/community/chat" exact />
         <Route path="/ctabs/schedule/:id" component={SessionDetail} />
         <Route path="/ctabs/speakers/sessions/:id" component={SessionDetail} />
         <Route path="/ctabs/map" render={() => <MapView />} exact={true} />
@@ -67,10 +70,6 @@ const CTabs: React.FC<CTabsProps> = () => {
           <IonIcon icon={people} />
           <IonLabel>Community</IonLabel>
         </IonTabButton>
-        {/* <IonTabButton tab="speakers" href="/ctabs/speakers">
-          <IonIcon icon={people} />
-          <IonLabel>Speakers</IonLabel>
-        </IonTabButton> */}
         <IonTabButton tab="map" href="/ctabs/map">
           <IonIcon icon={location} />
           <IonLabel>Map</IonLabel>
