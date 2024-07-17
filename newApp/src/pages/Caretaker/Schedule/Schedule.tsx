@@ -75,6 +75,9 @@ const Schedule: React.FC<ScheduleProps> = ({
   const startTimeModalRef = useRef<HTMLIonModalElement>(null);
   const endTimeModalRef = useRef<HTMLIonModalElement>(null);
   const locationModalRef = useRef<HTMLIonModalElement>(null);
+  const [imageFile, setImageFile] = useState<File | null>(null);
+  const [imageFileName, setImageFileName] = useState<string>('');
+  const hiddenInput = useRef<HTMLInputElement>(null);
   const [formState, setFormState] = useState<RoutineInterface>({
     name: '',
     description: '',
@@ -95,10 +98,10 @@ const Schedule: React.FC<ScheduleProps> = ({
     location,
   } = formState;
 
-  const options = {
-    hour: 'numeric' as 'numeric',
-    minute: 'numeric' as 'numeric',
-    hour12: true,
+  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0] || null;
+    setImageFile(file);
+    setImageFileName(file?.name || '');
   };
 
   const pageRef = useRef<HTMLElement>(null);
@@ -312,25 +315,36 @@ const Schedule: React.FC<ScheduleProps> = ({
             />
           </IonItem>
 
-          <IonItem>
-            <IonLabel position="stacked">Image URL</IonLabel>
-            <IonInput name="image" value={'image'} onIonChange={() => {}} />
-            <input type="file" accept="image/*" onChange={() => {}} />
-          </IonItem>
-          <IonItem>
-            <IonLabel position="stacked">Image Preview</IonLabel>
-            {'image' && (
-              <img
-                src={'/assets/img/patient.png'}
-                alt="Uploaded"
-                style={{ maxWidth: '100%', height: 'auto' }}
-              />
-            )}
+          <IonItem className="mt-4">
+            <IonInput
+              id="imageInput"
+              fill="solid"
+              label="Add Image"
+              labelPlacement="floating"
+              className="rounded-lg"
+              readonly
+              value={imageFileName}
+              onClick={() => hiddenInput.current?.click()}
+            />
+            <input
+              type="file"
+              accept="image/*"
+              ref={hiddenInput}
+              onChange={handleImageChange}
+              style={{ display: 'none' }}
+            />
           </IonItem>
 
           <IonItem>
-            <IonLabel position="stacked">Map URL</IonLabel>
-            <IonInput name="mapUrl" value={'mapUrl'} onIonChange={() => {}} />
+            <IonLabel position="floating">Image Preview</IonLabel>
+            {imageFile && (
+              <img
+                src={'/assets/img/patient.png'}
+                alt="Uploaded"
+                className="w-full rounded-lg"
+                style={{ maxWidth: '100%', height: 'auto' }}
+              />
+            )}
           </IonItem>
           <IonButton expand="block" onClick={() => {}}>
             Add Item

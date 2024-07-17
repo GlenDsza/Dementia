@@ -4,7 +4,14 @@ import {
   IonModal,
   useIonViewWillEnter,
 } from '@ionic/react';
-import React, { Dispatch, FC, RefObject, SetStateAction, useRef } from 'react';
+import React, {
+  Dispatch,
+  FC,
+  RefObject,
+  SetStateAction,
+  useEffect,
+  useRef,
+} from 'react';
 import '../Schedule.scss';
 import { RoutineInterface } from '../../../../constants';
 import { GoogleMap } from '@capacitor/google-maps';
@@ -44,9 +51,10 @@ const SelectLocationModal: FC<LocationModalProps> = ({
     await newMap.enableCurrentLocation(true);
   };
 
-  useIonViewWillEnter(() => {
+  useEffect(() => {
     createMap();
-  });
+  }, []);
+
   return (
     <IonModal
       ref={locationModalRef}
@@ -66,7 +74,7 @@ const SelectLocationModal: FC<LocationModalProps> = ({
             width: '300px',
             height: '300px',
           }}
-        />
+        ></capacitor-google-map>
       </div>
     </IonModal>
   );
