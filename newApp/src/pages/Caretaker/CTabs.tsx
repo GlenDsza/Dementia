@@ -18,9 +18,9 @@ import {
 } from 'ionicons/icons';
 
 import SchedulePage from './Schedule/Schedule';
-import SpeakerList from './SpeakerList';
-import SpeakerDetail from './SpeakerDetail';
-import SessionDetail from './SessionDetail/SessionDetail';
+import SpeakerList from './Speaker/SpeakerList';
+import SpeakerDetail from './Speaker/SpeakerDetail';
+import SessionDetail from './Schedule/components/SessionDetail';
 import MapView from './Map/Map';
 import Home from './Home/Home';
 import Community from './Community';
@@ -57,9 +57,9 @@ const CTabs: React.FC<CTabsProps> = () => {
           exact={true}
         />
         <Route path="/ctabs/community" component={Community} exact={true} />
-        <Route path='/ctabs/community/chat' component={Chat} exact={true}/>
+        <Route path="/ctabs/community/chat" component={Chat} exact={true} />
         <Redirect from="/" to="/community/chat" exact />
-        <Route path="/ctabs/chatbot" component={ChatBot} exact={true}/>
+        <Route path="/ctabs/chatbot" component={ChatBot} exact={true} />
         <Route path="/ctabs/schedule/:id" component={SessionDetail} />
         <Route path="/ctabs/speakers/sessions/:id" component={SessionDetail} />
         <Route path="/ctabs/map" render={() => <MapView />} exact={true} />

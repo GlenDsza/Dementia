@@ -32,16 +32,11 @@ import { setDarkMode } from '../data/user/user.actions';
 import './Menu.css';
 
 const routes = {
-  patientPages: [
-    { title: 'Schedule', path: '/ptabs/schedule', icon: calendarOutline },
-    { title: 'Support', path: '/support', icon: help },
-    { title: 'Account', path: '/account', icon: person },
-  ],
-  caretakerPages: [
-    { title: 'Schedule', path: '/ctabs/schedule', icon: informationCircleOutline },
-    { title: 'Uploads', path: '/ctabs/upload', icon: cloudUpload },
-    { title: 'Support', path: '/support', icon: help },
-    { title: 'Account', path: '/account', icon: person },
+  appPages: [
+    { title: 'Schedule', path: '/ctabs/schedule', icon: calendarOutline },
+    { title: 'Members', path: '/ctabs/speakers', icon: peopleOutline },
+    { title: 'Map', path: '/tabs/map', icon: mapOutline },
+    { title: 'About', path: '/tabs/about', icon: informationCircleOutline },
   ],
   loggedInPages: [
     { title: 'Logout', path: '/logout', icon: logOut },
@@ -63,7 +58,7 @@ interface StateProps {
   darkMode: boolean;
   isAuthenticated: boolean;
   menuEnabled: boolean;
-  userType: 'patient' | 'caretaker' | null;
+  userType: string;
 }
 
 interface DispatchProps {
@@ -81,6 +76,32 @@ const Menu: React.FC<MenuProps> = ({
   userType,
 }) => {
   const location = useLocation();
+
+  const renderSideNav = () => {
+    const cData = [
+      { title: 'Schedule', path: '/ctabs/schedule', icon: calendarOutline },
+      { title: 'Members', path: '/ctabs/speakers', icon: peopleOutline },
+      { title: 'Notification', path: '/ctabs/map', icon: mapOutline },
+      {
+        title: 'Upload Data',
+        path: '/ctabs/about',
+        icon: informationCircleOutline,
+      },
+    ];
+
+    const pData = [
+      { title: 'Schedule', path: '/ctabs/schedule', icon: calendarOutline },
+      { title: 'Members', path: '/ctabs/speakers', icon: peopleOutline },
+      {
+        title: 'Notification',
+        path: '/tabs/map',
+        icon: informationCircleOutline,
+      },
+    ];
+
+    const nav = userType === 'patient' ? pData : cData;
+    return renderlistItems(nav);
+  };
 
   function renderlistItems(list: Pages[]) {
     return list
@@ -102,15 +123,12 @@ const Menu: React.FC<MenuProps> = ({
       ));
   }
 
-  const appPages = userType === 'patient' ? routes.patientPages : routes.caretakerPages;
-  console.log(appPages, 'Hello')
-
   return (
     <IonMenu type="overlay" disabled={!menuEnabled} contentId="main">
       <IonContent forceOverscroll={false}>
         <IonList lines="none">
-          <IonListHeader>Dementia 101</IonListHeader>
-          {renderlistItems(appPages)}
+          <IonListHeader>Conference</IonListHeader>
+          {renderSideNav()}
         </IonList>
         <IonList lines="none">
           <IonListHeader>Account</IonListHeader>
@@ -153,7 +171,7 @@ export default connect<{}, StateProps, {}>({
     darkMode: state.user.darkMode,
     isAuthenticated: state.user.isLoggedin,
     menuEnabled: state.data.menuEnabled,
-    userType: state.user.userType,
+    userType: state.user.usertype,
   }),
   mapDispatchToProps: {
     setDarkMode,

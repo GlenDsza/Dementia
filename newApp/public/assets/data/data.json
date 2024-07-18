@@ -248,11 +248,9 @@
     {
       "name": "Scarlett Bear",
       "profilePic": "/assets/img/member/wife.jpg",
-      "instagram": "ionicframework",
-      "twitter": "ionicframework",
       "about": "Scarlett Bear. Is my wife we got married 20  years ago. We love each other a lot. Contact no is 9967878741",
       "title": "Wife",
-      "location": "Everywhere",
+      "type": "person",
       "email": "burt@example.com",
       "phone": "+1-541-754-3010",
       "id": "1"
@@ -260,50 +258,62 @@
     {
       "name": "Jason Cheetah",
       "profilePic": "/assets/img/member/brother.jpg",
-      "instagram": "ionicframework",
-      "twitter": "ionicframework",
       "about": "Charlie is a Cheetah. Charlie's interests include country music, plush animals, pyrotechnics, and skeletons.",
       "title": "Brother",
-      "location": "Everywhere",
+      "type": "person",
       "email": "charlie@example.com",
       "phone": "+1-541-754-3010",
       "id": "2"
     },
     {
+      "name": "My House - Radhe Heights, Ravet",
+      "profilePic": "/assets/img/member/building.jpg",
+      "about": "29, Ravet Village Rd, Shinde Vasti, Ravet, Pimpri-Chinchwad, Maharashtra 411044",
+      "title": "My House",
+      "type": "location",
+      "location":"",
+      "email": "donald@example.com",
+      "id": "3"
+    },
+    {
+      "name": "My Office - Bajaj Allianz , Pune",
+      "profilePic": "/assets/img/member/office.jpg",
+      "about": "3rd Floor, Millenium Plaza, Fergusson College Rd, Shivajinagar, Pune, Maharashtra 411005",
+      "title": "My Current Office",
+      "type": "location",
+      "location":"",
+      "email": "donald@example.com",
+      "id": "4"
+    },
+    {
       "name": "Sheila Duck",
       "profilePic": "/assets/img/member/maid.jpg",
-      "instagram": "ionicframework",
-      "twitter": "ionicframework",
       "about": "Donald is a Duck. Donald's interests include carpentry, superheroes, merpeople, and glam rock.",
       "title": "Maid",
-      "location": "Everywhere",
+      "type": "person",
       "email": "donald@example.com",
       "phone": "+1-541-754-3010",
-      "id": "3"
+      "id": "5"
     },
     {
       "name": "Parent",
       "profilePic": "/assets/img/member/parent.jpg",
-      "instagram": "ionicframework",
-      "twitter": "ionicframework",
       "about": "Eva is an Eagle. Eva's interests include ants, seashells, and cupcakes.",
       "title": "Parent",
-      "location": "Everywhere",
+      "type": "person",
       "email": "eva@example.com",
       "phone": "+1-541-754-3010",
-      "id": "4"
+      "id": "6"
     },
     {
       "name": "Ellie Elephant",
       "profilePic": "/assets/img/member/father.jpg",
-      "instagram": "ionicframework",
-      "twitter": "ionicframework",
       "about": "Ellie is an Elephant. Ellie's interests include pocket watches, pool, hand fans, and ninjas.",
-      "title": "Father",
-      "location": "Everywhere",
+      "title": "My Doctor",
+      "type": "person",
       "email": "ellie@example.com",
       "phone": "+1-541-754-3010",
-      "id": "5"
+      "id": "7"
     }
   ],
 

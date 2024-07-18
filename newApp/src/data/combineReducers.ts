@@ -12,6 +12,8 @@ export function combineReducers(reducers: R) {
       const result = reducers[key](state[key], action);
       newState[key as keys] = result || state[key];
     });
+    console.log('*** NEW STATE ***');
+    console.log(newState);
     return newState;
   };
   return combinedReducer;
