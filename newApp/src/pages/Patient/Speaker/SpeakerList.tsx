@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   IonHeader,
   IonToolbar,
@@ -10,8 +10,12 @@ import {
   IonGrid,
   IonRow,
   IonCol,
+  IonButton,
+  IonIcon,
+  IonActionSheet,
+  ActionSheetButton,
 } from '@ionic/react';
-import SpeakerItem from '../../../components/SpeakerItem';
+import SpeakerItem from './SpeakerItem';
 import { Speaker } from '../../../models/Speaker';
 import { Session } from '../../../models/Schedule';
 import { connect } from '../../../data/connect';
@@ -33,6 +37,35 @@ const SpeakerList: React.FC<SpeakerListProps> = ({
   speakers,
   speakerSessions,
 }) => {
+  const [showActionSheet, setShowActionSheet] = useState(false);
+  const [actionSheetButtons, setActionSheetButtons] = useState<
+    ActionSheetButton[]
+  >([]);
+  const [actionSheetHeader, setActionSheetHeader] = useState('');
+
+  const handleSOSClick = () => {
+    openContact();
+  };
+
+  function openContact() {
+    setActionSheetButtons([
+      {
+        text: `Call - +91 9967878741`,
+        handler: () => {
+          window.open('tel: +91 9967878741');
+        },
+      },
+      {
+        text: `Call - +91 9000078741`,
+        handler: () => {
+          window.open('tel: +91 9000078741');
+        },
+      },
+    ]);
+    setActionSheetHeader(`Call All for SOS Situation`);
+    setShowActionSheet(true);
+  }
+
   return (
     <IonPage id="speaker-list">
       <IonHeader translucent={true}>
@@ -41,6 +74,11 @@ const SpeakerList: React.FC<SpeakerListProps> = ({
             <IonMenuButton />
           </IonButtons>
           <IonTitle>Members</IonTitle>
+          <IonButtons slot="end">
+            <IonButton color="danger" onClick={handleSOSClick}>
+              SOS
+            </IonButton>
+          </IonButtons>
         </IonToolbar>
       </IonHeader>
 
@@ -58,6 +96,12 @@ const SpeakerList: React.FC<SpeakerListProps> = ({
             ))}
           </IonRow>
         </IonGrid>
+        <IonActionSheet
+          isOpen={showActionSheet}
+          header={actionSheetHeader}
+          onDidDismiss={() => setShowActionSheet(false)}
+          buttons={actionSheetButtons}
+        />
       </IonContent>
     </IonPage>
   );
