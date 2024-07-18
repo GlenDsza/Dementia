@@ -80,7 +80,11 @@ const Menu: React.FC<MenuProps> = ({
     const cData = [
       { title: 'Schedule', path: '/ctabs/schedule', icon: calendarOutline },
       { title: 'Members', path: '/ctabs/speakers', icon: peopleOutline },
-      { title: 'Notification', path: '/ctabs/map', icon: notifications },
+      {
+        title: 'Notification',
+        path: '/ctabs/notifications',
+        icon: notifications,
+      },
       {
         title: 'Anything for REVA',
         path: '/ctabs/uploads',
