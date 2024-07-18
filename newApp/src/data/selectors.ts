@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect';
-import { Schedule, Session, ScheduleGroup } from '../models/Schedule';
+import { ScheduleModel, Session, ScheduleGroup } from '../models/Schedule';
 import { Speaker } from '../models/Speaker';
 import { Location } from '../models/Location';
 import { AppState } from './state';
@@ -39,7 +39,7 @@ export const getFilteredSchedule = createSelector(
     return {
       date: schedule.date,
       groups,
-    } as Schedule;
+    } as ScheduleModel;
   }
 );
 
@@ -66,7 +66,7 @@ export const getSearchedSchedule = createSelector(
     return {
       date: schedule.date,
       groups,
-    } as Schedule;
+    } as ScheduleModel;
   }
 );
 
@@ -95,7 +95,7 @@ export const getGroupedFavorites = createSelector(
     return {
       date: schedule.date,
       groups,
-    } as Schedule;
+    } as ScheduleModel;
   }
 );
 
@@ -147,7 +147,9 @@ export const mapCenter = (state: AppState) => {
   }
   return item;
 };
-export function getLocations(state: { [x: string]: any;[x: number]: any; }): Location[] {
+export function getLocations(state: {
+  [x: string]: any;
+  [x: number]: any;
+}): Location[] {
   throw new Error('Function not implemented.');
 }
-

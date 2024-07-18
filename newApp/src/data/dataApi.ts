@@ -1,5 +1,5 @@
 import { Preferences as Storage } from '@capacitor/preferences';
-import { Schedule, Session } from '../models/Schedule';
+import { ScheduleModel, Session } from '../models/Schedule';
 import { Speaker } from '../models/Speaker';
 import { Location } from '../models/Location';
 
@@ -13,7 +13,7 @@ const USERNAME = 'username';
 export const getConfData = async () => {
   const response = await Promise.all([fetch(dataUrl), fetch(locationsUrl)]);
   const responseData = await response[0].json();
-  const schedule = responseData.schedule[0] as Schedule;
+  const schedule = responseData.schedule[0] as ScheduleModel;
   const sessions = parseSessions(schedule);
   const speakers = responseData.speakers as Speaker[];
   const locations = (await response[1].json()) as Location[];
@@ -69,7 +69,7 @@ export const setUsernameData = async (username?: string) => {
   }
 };
 
-function parseSessions(schedule: Schedule) {
+function parseSessions(schedule: ScheduleModel) {
   const sessions: Session[] = [];
   schedule.groups.forEach((g) => {
     g.sessions.forEach((s) => sessions.push(s));
