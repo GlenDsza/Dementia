@@ -33,7 +33,7 @@ import './Menu.css';
 
 const routes = {
   appPages: [
-    { title: 'Schedule', path: '/tabs/schedule', icon: calendarOutline },
+    { title: 'Schedule', path: '/ctabs/schedule', icon: calendarOutline },
     { title: 'Members', path: '/ctabs/speakers', icon: peopleOutline },
     { title: 'Map', path: '/tabs/map', icon: mapOutline },
     { title: 'About', path: '/tabs/about', icon: informationCircleOutline },
@@ -60,6 +60,7 @@ interface StateProps {
   darkMode: boolean;
   isAuthenticated: boolean;
   menuEnabled: boolean;
+  userType: string;
 }
 
 interface DispatchProps {
@@ -74,8 +75,35 @@ const Menu: React.FC<MenuProps> = ({
   isAuthenticated,
   setDarkMode,
   menuEnabled,
+  userType,
 }) => {
   const location = useLocation();
+
+  const renderSideNav = () => {
+    const cData = [
+      { title: 'Schedule', path: '/ctabs/schedule', icon: calendarOutline },
+      { title: 'Members', path: '/ctabs/speakers', icon: peopleOutline },
+      { title: 'Notification', path: '/ctabs/map', icon: mapOutline },
+      {
+        title: 'Upload Data',
+        path: '/ctabs/about',
+        icon: informationCircleOutline,
+      },
+    ];
+
+    const pData = [
+      { title: 'Schedule', path: '/ctabs/schedule', icon: calendarOutline },
+      { title: 'Members', path: '/ctabs/speakers', icon: peopleOutline },
+      {
+        title: 'Notification',
+        path: '/tabs/map',
+        icon: informationCircleOutline,
+      },
+    ];
+
+    const nav = userType === 'patient' ? pData : cData;
+    return renderlistItems(nav);
+  };
 
   function renderlistItems(list: Pages[]) {
     return list
@@ -102,7 +130,7 @@ const Menu: React.FC<MenuProps> = ({
       <IonContent forceOverscroll={false}>
         <IonList lines="none">
           <IonListHeader>Conference</IonListHeader>
-          {renderlistItems(routes.appPages)}
+          {renderSideNav()}
         </IonList>
         <IonList lines="none">
           <IonListHeader>Account</IonListHeader>
@@ -145,6 +173,7 @@ export default connect<{}, StateProps, {}>({
     darkMode: state.user.darkMode,
     isAuthenticated: state.user.isLoggedin,
     menuEnabled: state.data.menuEnabled,
+    userType: state.user.usertype,
   }),
   mapDispatchToProps: {
     setDarkMode,
