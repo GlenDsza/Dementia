@@ -26,6 +26,7 @@ import Home from './Home/Home';
 import Community from './Community';
 import Chat from './Chat';
 import ChatBot from './ChatBot';
+import { TbMessageChatbot } from 'react-icons/tb';
 
 interface CTabsProps {}
 
@@ -76,8 +77,8 @@ const CTabs: React.FC<CTabsProps> = () => {
           <IonLabel>Map</IonLabel>
         </IonTabButton>
         <IonTabButton tab="chatbot" href="/ctabs/chatbot">
-          <IonIcon icon={chatboxEllipses} />
-          <IonLabel>Chat Bot</IonLabel>
+          <TbMessageChatbot size={25} />
+          <IonLabel>Reva</IonLabel>
         </IonTabButton>
       </IonTabBar>
     </IonTabs>
