@@ -44,6 +44,7 @@ import RoutineItem from './components/RoutineItem';
 import { routines2 } from '../../../constants';
 import { useHistory } from 'react-router';
 
+
 interface OwnProps {}
 
 interface StateProps {
@@ -177,7 +178,6 @@ const Home: React.FC<HomeProps> = ({
   const handleDeleteLocation = (id: number) => {
     setLocations(locations.filter((location) => location.id !== id));
   };
-
   return (
     <IonPage id="speaker-list">
       <IonHeader translucent={true}>
@@ -262,6 +262,7 @@ const Home: React.FC<HomeProps> = ({
               </div>
             </div>
           </IonCard>
+
 
           <IonGrid fixed>
             {/* <div className="flex overflow-x-scroll">
