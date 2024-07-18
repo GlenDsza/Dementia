@@ -21,11 +21,6 @@ import {
   IonList,
   IonCard,
   IonCardContent,
-  IonCheckbox,
-  IonCardHeader,
-  IonCardTitle,
-  IonCardSubtitle,
-  IonItemSliding,
 } from '@ionic/react';
 import { add, trash } from 'ionicons/icons';
 import MemberItem from './components/MemberItem';
@@ -37,13 +32,12 @@ import { Todo } from '../../../models/Todo';
 import { call } from 'ionicons/icons';
 import '../../../theme/styles.css';
 import './Home.scss';
-import { BsFillInfoCircleFill } from 'react-icons/bs';
 import { TbClockHour4Filled } from 'react-icons/tb';
 import { IoNotifications } from 'react-icons/io5';
 import RoutineItem from './components/RoutineItem';
 import { routines2 } from '../../../constants';
 import { useHistory } from 'react-router';
-
+import Notification from '../Notifications/Notifications';
 
 interface OwnProps {}
 
@@ -237,27 +231,16 @@ const Home: React.FC<HomeProps> = ({
           </IonCard>
 
           {/* Latest Notifications */}
-          <IonCard className="rounded-xl card-shadow flex flex-col mt-4 p-4">
+
+          <IonCard className="rounded-xl card-shadow flex flex-col mt-4 p-4 mb-4">
             <div className="flex items-center mb-2">
-              <IoNotifications size={25} color="#737373" />
-              <h4 className="mb-1 mt-2 ml-2">Updates</h4>
+              <TbClockHour4Filled size={25} color="#737373" />
+              <h4 className="mb-1 mt-2 ml-2">Notification</h4>
             </div>
-            <div className="flex flex-col items-center w-full">
-              <div className="flex items-center w-full">
-                <BsFillInfoCircleFill size={20} color="#20a732" />
-                <p className="text-xs ml-2">
-                  John reached his daily step goal of 10,000 steps.
-                </p>
-              </div>
-              <div className="flex items-center w-full">
-                <BsFillInfoCircleFill size={20} color="#20a732" />
-                <p className="text-xs ml-2">
-                  John took his medication at 10:00 AM.
-                </p>
-              </div>
+            <div className="flex flex-col gap-4">
+              <Notification />
             </div>
           </IonCard>
-
 
           <IonGrid fixed>
             {/* <div className="flex overflow-x-scroll">

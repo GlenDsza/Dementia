@@ -1,78 +1,98 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './Notifications.scss';
 import {
-  IonButtons, IonCard, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, IonToolbar
+  IonButtons,
+  IonCard,
+  IonContent,
+  IonHeader,
+  IonMenuButton,
+  IonPage,
+  IonTitle,
+  IonToolbar,
 } from '@ionic/react';
-import { BsFillInfoCircleFill } from 'react-icons/bs';
-import { IoIosWarning } from "react-icons/io";
-import { FaClock } from "react-icons/fa";
-import { IoNotifications } from 'react-icons/io5';
-import { IoAlertCircleOutline } from "react-icons/io5";
+import { IoAlertCircleOutline, IoAlertCircle } from 'react-icons/io5';
+import { AiFillCheckCircle, AiFillWarning } from 'react-icons/ai';
+import { BiSolidErrorAlt } from 'react-icons/bi';
 
 const initialNotificationsData = [
   {
+    id: 1,
     type: 'reminder',
     icon: 'FaClock',
     header: 'Reminder',
     message: 'John reached his daily step goal of 10,000 steps.',
-    completed: false
+    completed: false,
+    time: '12:20 pm',
+    for: 'patient',
   },
   {
     type: 'warning',
     icon: 'BsFillInfoCircleFill',
     header: 'Warning',
     message: 'John has been stationary for over an hour.',
-    completed: false
+    completed: false,
+    time: '12:20 pm',
+    for: 'caretaker',
+  },
+  {
+    type: 'success',
+    icon: 'BsFillInfoCircleFill',
+    header: 'Reminder',
+    message: "123 John's medication needs to be taken at 10 AM.",
+    completed: false,
+    time: '12:20 pm',
+    for: 'both',
+  },
+  {
+    type: 'reminder',
+    icon: 'FaClock',
+    header: 'Reminder',
+    message: '232323  John reached his daily step goal of 10,000 steps.',
+    completed: false,
+    time: '12:20 pm',
+    for: 'patient',
+  },
+  {
+    type: 'alert',
+    icon: 'BsFillInfoCircleFill',
+    header: 'Warning',
+    message: '1111John has been stationary for over an hour.',
+    completed: false,
+    time: '12:20 pm',
+    for: 'caretaker',
   },
   {
     type: 'reminder',
     icon: 'BsFillInfoCircleFill',
     header: 'Reminder',
     message: "John's medication needs to be taken at 10 AM.",
-    completed: false
+    completed: false,
+    for: 'caretaker',
   },
   {
     type: 'reminder',
     icon: 'FaClock',
     header: 'Reminder',
     message: 'John reached his daily step goal of 10,000 steps.',
-    completed: false
+    completed: false,
+    for: 'caretaker',
   },
   {
     type: 'warning',
     icon: 'BsFillInfoCircleFill',
     header: 'Warning',
     message: 'John has been stationary for over an hour.',
-    completed: false
+    completed: false,
+    for: 'caretaker',
   },
   {
     type: 'reminder',
     icon: 'BsFillInfoCircleFill',
     header: 'Reminder',
     message: "John's medication needs to be taken at 10 AM.",
-    completed: false
-  },  {
-    type: 'reminder',
-    icon: 'FaClock',
-    header: 'Reminder',
-    message: 'John reached his daily step goal of 10,000 steps.',
-    completed: false
+    completed: false,
+    for: 'caretaker',
   },
-  {
-    type: 'warning',
-    icon: 'BsFillInfoCircleFill',
-    header: 'Warning',
-    message: 'John has been stationary for over an hour.',
-    completed: false
-  },
-  {
-    type: 'reminder',
-    icon: 'BsFillInfoCircleFill',
-    header: 'Reminder',
-    message: "John's medication needs to be taken at 10 AM.",
-    completed: false
-  },
-  // Add more notifications as needed
 ];
 
 const Notification = () => {
@@ -82,7 +102,9 @@ const Notification = () => {
   useEffect(() => {
     const scrollToLastNotification = () => {
       if (cardRef.current) {
-        const lastNotification = cardRef.current.querySelector('.notification:last-child') as HTMLElement | null;
+        const lastNotification = cardRef.current.querySelector(
+          '.notification:last-child'
+        ) as HTMLElement | null;
         if (lastNotification) {
           lastNotification.scrollIntoView({ behavior: 'smooth' });
         }
@@ -96,46 +118,45 @@ const Notification = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const getIcon = (iconName) => {
-    switch (iconName) {
-      case 'FaClock':
-        return <FaClock className="notification-icon" />;
-      case 'BsFillInfoCircleFill':
-        return <BsFillInfoCircleFill className="notification-icon" />;
-      case 'IoIosWarning':
-        return <IoIosWarning className="notification-icon" />;
-      default:
-        return <IoNotifications className="notification-icon" />;
+  const getIcon = (type) => {
+    switch (type) {
+      case 'warning': //red
+        return <AiFillWarning />;
+      case 'alert': //yellow
+        return <BiSolidErrorAlt />;
+      case 'reminder': //blue
+        return <IoAlertCircle />;
+      case 'success': //green
+        return <AiFillCheckCircle />;
     }
   };
 
   const handleCheckboxChange = (index) => {
-    setNotifications(notifications.map((notification, i) => 
-      i === index ? { ...notification, completed: !notification.completed } : notification
-    ));
+    setNotifications(
+      notifications.map((notification, i) =>
+        i === index
+          ? { ...notification, completed: !notification.completed }
+          : notification
+      )
+    );
   };
 
   return (
-    <IonPage className="">
-      <IonHeader translucent={true}>
-        <IonToolbar>
-          <IonButtons slot="start">
-            <IonMenuButton />
-          </IonButtons>
-          <IonTitle>Updates</IonTitle>
-        </IonToolbar>
-      </IonHeader>
-      <IonContent fullscreen className="ion-padding">
-        <IonCard ref={cardRef} className="rounded-xl card-shadow flex flex-col mt-4 p-4">
-          <div className="flex flex-col">
-          {notifications.map((notification, index) => (
-            !notification.completed && (
+    <IonContent id="care-notification-container" className="ion-padding">
+      <div className="flex flex-col">
+        {notifications.map(
+          (notification, index) =>
+            !notification.completed &&
+            notification.for != 'patient' && (
               <div key={index} className={`notification ${notification.type}`}>
-                <div className="notification-header">{notification.header}</div>
                 <div className="notification-content">
                   <div className="notification-details">
-                    <div className="notification-icon">{getIcon(notification.icon)}</div>
-                    <p className="notification-message">{notification.message}</p>
+                    <div className="notification-icon">
+                      {getIcon(notification.type)}
+                    </div>
+                    <p className="notification-message">
+                      {notification.message}
+                    </p>
                   </div>
                   <label className="custom-checkbox">
                     <input
@@ -147,27 +168,12 @@ const Notification = () => {
                     <span className="checkmark"></span>
                   </label>
                 </div>
+                <div className="notification-time">{notification.time}</div>
               </div>
-              
             )
-          ))}
-
-            <div className='flex items-center gap-2'>
-              <IoAlertCircleOutline size={20} />
-              <div className='flex flex-col gap-1'>
-                <h5 className='my-0 py-0'>
-                  title
-                </h5>
-                <span style={{fontSize: '0.6rem'}}>
-                  description.................
-                </span>
-              </div>
-            </div>
-
-          </div>
-        </IonCard>
-      </IonContent>
-    </IonPage>
+        )}
+      </div>
+    </IonContent>
   );
 };
 

@@ -27,7 +27,7 @@ import Community from './Community';
 import Chat from './Chat';
 import ChatBot from './ChatBot';
 import Uploads from './Uploads/Uploads';
-import Notification from './Notifications/Notifications';
+import NotificationContainer from './Notifications/NotificationContainer';
 import { TbMessageChatbot } from 'react-icons/tb';
 import QuestionsReva from './Uploads/QuestionsReva';
 
@@ -44,11 +44,7 @@ const CTabs: React.FC<CTabsProps> = () => {
           render={() => <SchedulePage />}
           exact={true}
         />
-        <Route
-          path="/ctabs/uploads"
-          render={() => <Uploads />}
-          exact={true}
-        />
+        <Route path="/ctabs/uploads" render={() => <Uploads />} exact={true} />
         <Route
           path="/ctabs/questions"
           render={() => <QuestionsReva />}
@@ -67,8 +63,12 @@ const CTabs: React.FC<CTabsProps> = () => {
         <Route path="/ctabs/community" component={Community} exact={true} />
         <Route path="/ctabs/community/chat" component={Chat} exact={true} />
         <Redirect from="/" to="/community/chat" exact />
-        <Route path="/ctabs/notifications" render={() => <Notification />} exact={true}/>
-        <Route path="/ctabs/chatbot" component={ChatBot} exact={true}/>
+        <Route
+          path="/ctabs/notifications"
+          render={() => <NotificationContainer />}
+          exact={true}
+        />
+        <Route path="/ctabs/chatbot" component={ChatBot} exact={true} />
         <Route path="/ctabs/schedule/:id" component={SessionDetail} />
         <Route path="/ctabs/speakers/sessions/:id" component={SessionDetail} />
         <Route path="/ctabs/map" render={() => <MapView />} exact={true} />

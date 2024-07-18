@@ -1,4 +1,8 @@
-.notification {
+
+#care-notification-container{
+
+  min-height: 200px;
+  .notification {
     display: flex;
     align-items: center;
     width: 100%;
@@ -9,23 +13,29 @@
   }
   
   .alert {
-    background-color: #000000; /* Light Red */
+    background-color: #ffe7d6; /* Light Red */
+    color: #ec593e;
+    border-left: 0.3rem solid #ec593e !important;
   }
   
   .warning {
-    background-color: #FFFFCC; /* Light Yellow */
+    background-color: #fef5cc; /* Light Yellow */
+    color:#fea709;
+    border-left: 0.3rem solid #fea709 !important;
   }
   
   .reminder {
-    background-color: #b0cff1; /* Light Blue */
+    background-color: #cafdf6; /* Light Blue */
+    color:#03b6dd;
+    border-left: 0.3rem solid #03b6dd !important;
   }
   
-  .caution {
-    background-color: #FFE5CC; /* Light Orange */
+  .success {
+    background-color: #d3fcd4; /* Light Orange */
+    color: #1bc55b;
   }
   
   .notification-icon {
-    color: #20a732;
     font-size: 1.25rem;
     margin-left: 0.5rem;
   }
@@ -56,7 +66,7 @@
     justify-content: space-between;
     padding: 12px;
     margin-bottom: 8px;
-    border-radius: 8px;
+    border-radius: 5px;
   }
   
   .custom-checkbox {
@@ -128,7 +138,6 @@
     align-items: flex-start; /* Align items to the start */
     padding: 12px;
     margin-bottom: 8px;
-    border: 1px solid #ccc;
     border-radius: 8px;
   }
   
@@ -157,7 +166,6 @@
   .notification-message {
     flex-grow: 1;
     margin: 0; /* Remove default margin */
-    color: #333; /* Adjust text color for better visibility */
   }
   
   .custom-checkbox {
@@ -202,4 +210,11 @@
   .custom-checkbox input:checked + .checkmark:after {
     display: block;
   }
+
+  .notification-time{
+    margin-left: auto;
+    margin-right: 0;
+    color: grey;
+  }
   
+}
