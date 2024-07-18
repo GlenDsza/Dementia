@@ -19,7 +19,7 @@ import {
 import SchedulePage from './Schedule/Schedule';
 import SpeakerList from './SpeakerList';
 import SpeakerDetail from './SpeakerDetail';
-import SessionDetail from './SessionDetail';
+import SessionDetail from './SessionDetail/SessionDetail';
 import MapView from './Map/Map';
 import About from './About';
 import Home from './Home/Home';

@@ -1,4 +1,4 @@
-import React, { useState, useRef, forwardRef, Ref } from 'react';
+import React, { useState, useRef, forwardRef, Ref, useMemo } from 'react';
 
 import {
   IonToolbar,
@@ -25,6 +25,11 @@ import {
   IonFabButton,
   IonItem,
   IonLabel,
+  IonItemGroup,
+  IonItemDivider,
+  IonItemSliding,
+  IonItemOption,
+  IonItemOptions,
 } from '@ionic/react';
 import { options, search, calendar, add, star } from 'ionicons/icons';
 
@@ -36,19 +41,20 @@ import { connect } from '../../../data/connect';
 import { setSearchText } from '../../../data/sessions/sessions.actions';
 import { ScheduleModel } from '../../../models/Schedule';
 import { close } from 'ionicons/icons';
-import { RoutineInterface } from '../../../constants';
+import { RoutineInterface, routines } from '../../../constants';
 import StartTimeModal from './components/StartTimeModal';
 import EndTimeModal from './components/EndTimeModal';
 import StartDateModal from './components/StartDateModal';
 import EndDateModal from './components/EndDateModal';
 import SelectedDateModal from './components/SelectedDateModal';
 import SelectLocationModal from './components/SelectLocationModal';
+import SessionItem from './components/SessionItem';
+import SessionModal from './components/SessionModal';
 
 interface OwnProps {}
 
 interface StateProps {
   schedule: ScheduleModel;
-  favoritesSchedule: ScheduleModel;
   mode: 'ios' | 'md';
 }
 
@@ -59,7 +65,6 @@ interface DispatchProps {
 type ScheduleProps = OwnProps & StateProps & DispatchProps;
 
 const Schedule: React.FC<ScheduleProps> = ({
-  favoritesSchedule,
   schedule,
   setSearchText,
   mode,
@@ -75,9 +80,11 @@ const Schedule: React.FC<ScheduleProps> = ({
   const startTimeModalRef = useRef<HTMLIonModalElement>(null);
   const endTimeModalRef = useRef<HTMLIonModalElement>(null);
   const locationModalRef = useRef<HTMLIonModalElement>(null);
+  const sessionModalRef = useRef<HTMLIonModalElement>(null);
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imageFileName, setImageFileName] = useState<string>('');
   const hiddenInput = useRef<HTMLInputElement>(null);
+  const [session, useSession] = useState<RoutineInterface | null>(null);
   const [formState, setFormState] = useState<RoutineInterface>({
     name: '',
     description: '',
@@ -86,6 +93,7 @@ const Schedule: React.FC<ScheduleProps> = ({
     startTime: '',
     endTime: '',
     location: null,
+    status: 'pending',
   });
 
   const {
@@ -104,8 +112,58 @@ const Schedule: React.FC<ScheduleProps> = ({
     setImageFileName(file?.name || '');
   };
 
-  const pageRef = useRef<HTMLElement>(null);
+  interface GroupedRoutine {
+    [key: string]: RoutineInterface[];
+  }
 
+  const groupRoutinesByTime = (
+    routines: RoutineInterface[]
+  ): GroupedRoutine => {
+    const groups: GroupedRoutine = {
+      '12am': [],
+      '3am': [],
+      '6am': [],
+      '9am': [],
+      '12pm': [],
+      '3pm': [],
+      '6pm': [],
+      '9pm': [],
+    };
+
+    const parseTime = (time: string): Date => {
+      const date = new Date();
+      const [timeString, period] = time.split(' ');
+      const [hours, minutes] = timeString.split(':').map(Number);
+      date.setHours(period === 'PM' ? (hours % 12) + 12 : hours % 12, minutes);
+      return date;
+    };
+
+    const getGroupKey = (time: Date): string => {
+      const hour = time.getHours();
+      if (hour >= 0 && hour < 3) return '12am';
+      if (hour >= 3 && hour < 6) return '3am';
+      if (hour >= 6 && hour < 9) return '6am';
+      if (hour >= 9 && hour < 12) return '9am';
+      if (hour >= 12 && hour < 15) return '12pm';
+      if (hour >= 15 && hour < 18) return '3pm';
+      if (hour >= 18 && hour < 21) return '6pm';
+      return '9pm';
+    };
+
+    routines.forEach((routine) => {
+      const time = parseTime(routine.startTime);
+      const groupKey = getGroupKey(time);
+      groups[groupKey].push(routine);
+    });
+
+    return groups;
+  };
+
+  const groupedRoutines = useMemo(() => {
+    return groupRoutinesByTime(routines);
+  }, [routines]);
+
+  const pageRef = useRef<HTMLElement>(null);
   const ios = mode === 'ios';
 
   const doRefresh = () => {
@@ -113,15 +171,6 @@ const Schedule: React.FC<ScheduleProps> = ({
       ionRefresherRef.current!.complete();
       setShowCompleteToast(true);
     }, 2500);
-  };
-
-  const handleDateChange = (e: CustomEvent) => {
-    const value = e.detail.value as string | string[];
-    if (typeof value === 'string') {
-      setSelectedDate(new Date(value));
-    } else if (Array.isArray(value) && value.length > 0) {
-      setSelectedDate(new Date(value[0]));
-    }
   };
 
   return (
@@ -193,7 +242,106 @@ const Schedule: React.FC<ScheduleProps> = ({
           onDidDismiss={() => setShowCompleteToast(false)}
         />
 
-        <SessionList schedule={schedule} listType={'all'} hide={false} />
+        <div className="flex flex-col p-2">
+          <IonItemGroup key="12am">
+            {groupedRoutines['12am'].length > 0 && (
+              <>
+                <IonItemDivider sticky>
+                  <IonLabel>12:00 am</IonLabel>
+                </IonItemDivider>
+                <div className="py-1">
+                  {groupedRoutines['12am'].map((routine) => (
+                    <SessionItem routine={routine} key={routine.id} />
+                  ))}
+                </div>
+              </>
+            )}
+            {groupedRoutines['3am'].length > 0 && (
+              <>
+                <IonItemDivider sticky>
+                  <IonLabel>12:00 am</IonLabel>
+                </IonItemDivider>
+                <div className="py-1">
+                  {groupedRoutines['3am'].map((routine) => (
+                    <SessionItem routine={routine} key={routine.id} />
+                  ))}
+                </div>
+              </>
+            )}
+            {groupedRoutines['6am'].length > 0 && (
+              <>
+                <IonItemDivider sticky>
+                  <IonLabel>12:00 am</IonLabel>
+                </IonItemDivider>
+                <div className="py-1">
+                  {groupedRoutines['6am'].map((routine) => (
+                    <SessionItem routine={routine} key={routine.id} />
+                  ))}
+                </div>
+              </>
+            )}
+            {groupedRoutines['9am'].length > 0 && (
+              <>
+                <IonItemDivider sticky>
+                  <IonLabel>12:00 am</IonLabel>
+                </IonItemDivider>
+                <div className="py-1">
+                  {groupedRoutines['9am'].map((routine) => (
+                    <SessionItem routine={routine} key={routine.id} />
+                  ))}
+                </div>
+              </>
+            )}
+            {groupedRoutines['12pm'].length > 0 && (
+              <>
+                <IonItemDivider sticky>
+                  <IonLabel>12:00 am</IonLabel>
+                </IonItemDivider>
+                <div className="py-1">
+                  {groupedRoutines['12pm'].map((routine) => (
+                    <SessionItem routine={routine} key={routine.id} />
+                  ))}
+                </div>
+              </>
+            )}
+            {groupedRoutines['3pm'].length > 0 && (
+              <>
+                <IonItemDivider sticky>
+                  <IonLabel>12:00 am</IonLabel>
+                </IonItemDivider>
+                <div className="py-1">
+                  {groupedRoutines['3pm'].map((routine) => (
+                    <SessionItem routine={routine} key={routine.id} />
+                  ))}
+                </div>
+              </>
+            )}
+            {groupedRoutines['6pm'].length > 0 && (
+              <>
+                <IonItemDivider sticky>
+                  <IonLabel>12:00 am</IonLabel>
+                </IonItemDivider>
+                <div className="py-1">
+                  {groupedRoutines['6pm'].map((routine) => (
+                    <SessionItem routine={routine} key={routine.id} />
+                  ))}
+                </div>
+              </>
+            )}
+            {groupedRoutines['9pm'].length > 0 && (
+              <>
+                <IonItemDivider sticky>
+                  <IonLabel>12:00 am</IonLabel>
+                </IonItemDivider>
+                <div className="py-1">
+                  {groupedRoutines['9pm'].map((routine) => (
+                    <SessionItem routine={routine} key={routine.id} />
+                  ))}
+                </div>
+              </>
+            )}
+          </IonItemGroup>
+        </div>
       </IonContent>
 
       {/* Selected Date Modal */}
@@ -387,6 +535,9 @@ const Schedule: React.FC<ScheduleProps> = ({
         />
       </IonModal>
 
+      {/* SessionModal */}
+      <SessionModal sessionModalRef={sessionModalRef} session={session} />
+
       <IonFab vertical="bottom" horizontal="end">
         <IonFabButton onClick={() => setShowAddModal(true)}>
           <IonIcon icon={add} />
@@ -399,7 +550,6 @@ const Schedule: React.FC<ScheduleProps> = ({
 export default connect<OwnProps, StateProps, DispatchProps>({
   mapStateToProps: (state) => ({
     schedule: selectors.getSearchedSchedule(state),
-    favoritesSchedule: selectors.getGroupedFavorites(state),
     mode: getConfig()!.get('mode'),
   }),
   mapDispatchToProps: {

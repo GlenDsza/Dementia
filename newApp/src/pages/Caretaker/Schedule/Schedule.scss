@@ -17,6 +17,14 @@
   padding-left: 1rem;
 }
 
+.secondary {
+  border-left: 0.3rem solid #fbcf3c !important;
+}
+
+.primary {
+  border-left: 0.3rem solid #2dd55b !important;
+}
+
 #schedule-page {
   ion-fab-button {
     --background: var(--ion-color-step-150, #fff);

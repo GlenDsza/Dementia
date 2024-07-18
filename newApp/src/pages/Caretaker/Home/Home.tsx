@@ -34,7 +34,6 @@ import { Session } from '../../../models/Schedule';
 import { connect } from '../../../data/connect';
 import * as selectors from '../../../data/selectors';
 import { Todo } from '../../../models/Todo';
-import { members } from '../../../constants';
 import { call } from 'ionicons/icons';
 import '../../../theme/styles.css';
 import './Home.scss';
