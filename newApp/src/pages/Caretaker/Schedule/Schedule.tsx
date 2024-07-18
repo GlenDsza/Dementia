@@ -96,6 +96,7 @@ const Schedule: React.FC<ScheduleProps> = ({
     startLocation: null,
     endLocation: null,
     status: 'pending',
+    id: '',
   });
 
   const {

@@ -13,19 +13,27 @@ import {
   IonItem,
   IonLabel,
   useIonViewWillEnter,
+  IonFab,
+  IonFabButton,
 } from '@ionic/react';
-import { connect } from '../../../data/connect';
+import { connect } from '../../../../data/connect';
 import { withRouter, RouteComponentProps, useParams } from 'react-router';
-import * as selectors from '../../../data/selectors';
-import { starOutline, star, share, cloudDownload } from 'ionicons/icons';
+import * as selectors from '../../../../data/selectors';
+import {
+  starOutline,
+  star,
+  share,
+  cloudDownload,
+  createOutline,
+} from 'ionicons/icons';
 import { GoogleMap, Polyline } from '@capacitor/google-maps';
 import './SessionDetail.scss';
 import {
   addFavorite,
   removeFavorite,
-} from '../../../data/sessions/sessions.actions';
-import { Session } from '../../../models/Schedule';
-import { RoutineInterface, routines } from '../../../constants';
+} from '../../../../data/sessions/sessions.actions';
+import { Session } from '../../../../models/Schedule';
+import { RoutineInterface, routines } from '../../../../constants';
 import { decode } from '@googlemaps/polyline-codec';
 
 interface OwnProps extends RouteComponentProps {}
@@ -80,7 +88,7 @@ const SessionDetail: React.FC<SessionDetailProps> = ({ session }) => {
     console.log(routineRef.current);
     if (routineRef.current?.location) {
       console.log('noroute');
-      const res = await newMap.addMarker({
+      await newMap.addMarker({
         coordinate: {
           lat: routineRef.current?.location.lat,
           lng: routineRef.current?.location.lng,
@@ -88,7 +96,6 @@ const SessionDetail: React.FC<SessionDetailProps> = ({ session }) => {
         title: routineRef.current?.location.name,
         snippet: routineRef.current?.description,
       });
-      console.log(res);
     } else if (
       routineRef.current?.startLocation &&
       routineRef.current?.endLocation
@@ -205,6 +212,11 @@ const SessionDetail: React.FC<SessionDetailProps> = ({ session }) => {
           <p>{routine?.description}</p>
         </div>
       </IonContent>
+      <IonFab vertical="bottom" horizontal="end">
+        <IonFabButton onClick={() => {}}>
+          <IonIcon icon={createOutline} />
+        </IonFabButton>
+      </IonFab>
     </IonPage>
   );
 };

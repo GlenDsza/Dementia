@@ -20,7 +20,7 @@ import {
 import SchedulePage from './Schedule/Schedule';
 import SpeakerList from './Speaker/SpeakerList';
 import SpeakerDetail from './Speaker/SpeakerDetail';
-import SessionDetail from './SessionDetail/SessionDetail';
+import SessionDetail from './Schedule/components/SessionDetail';
 import MapView from './Map/Map';
 import Home from './Home/Home';
 import Community from './Community';

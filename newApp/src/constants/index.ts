@@ -7,7 +7,7 @@ export interface RoutineInterface {
   startDate: Date;
   endDate: Date;
   startTime: string;
-  endTime: string | null;
+  endTime: string;
   status: string;
   startLocation: LocationInterface | null;
   endLocation: LocationInterface | null;
