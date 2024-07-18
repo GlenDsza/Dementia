@@ -90,7 +90,7 @@ const SessionItem: FC<SessionItemProps> = ({ routine }) => {
             slot="end"
             icon={trashOutline}
             aria-hidden="true"
-            style={{ width: '1.5rem', height: '1.5rem' }}
+            style={{ width: '1.1rem', height: '1.1rem' }}
           />
         </IonButton>
       </div>
