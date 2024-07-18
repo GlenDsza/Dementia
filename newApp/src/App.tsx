@@ -126,7 +126,6 @@ const IonicApp: React.FC<IonicAppProps> = ({
                 );
               }}
             />
-            {/* <Route path="/" component={HomeOrTutorial} exact /> */}
             <Route path="/" exact={true}>
               <Redirect to="/login" />
             </Route>

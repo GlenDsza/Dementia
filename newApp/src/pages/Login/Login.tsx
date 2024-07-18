@@ -75,13 +75,13 @@ const Login: React.FC<any> = ({
                 width={30}
                 height={30}
               />
-              <h1>Dementia 101</h1>
+              <h1>Reva</h1>
             </div>
           </IonToolbar>
         </IonHeader>
         <div>
           <IonText className="flex justify-center mt-8">
-            <IonCardTitle>Welcome back!</IonCardTitle>
+            <IonCardTitle>Welcome !</IonCardTitle>
           </IonText>
         </div>
         <IonCard className="mx-4">
