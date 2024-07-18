@@ -46,9 +46,9 @@ interface DispatchProps {
   setSearchText: typeof setSearchText;
 }
 
-type UploadsProps = OwnProps & StateProps & DispatchProps;
+type RevaQuestionsProps = OwnProps & StateProps & DispatchProps;
 
-const Uploads: React.FC<UploadsProps> = ({
+const RevaQuestions: React.FC<RevaQuestionsProps> = ({
   favoritesSchedule,
   schedule,
   setSearchText,
@@ -88,19 +88,20 @@ const Uploads: React.FC<UploadsProps> = ({
   return (
     <IonPage ref={pageRef} id="schedule-page">
 
-      <IonHeader translucent={true}>
+<IonHeader translucent={true}>
         <IonToolbar>
           <IonButtons slot="start">
             <IonMenuButton />
           </IonButtons>
-          <IonTitle>Anything for REVA?</IonTitle>
+          <IonTitle>Please help Mary</IonTitle>
         </IonToolbar>
       </IonHeader>
-
+      
       <IonContent fullscreen={true}>
+
         <IonItem className="mt-4">
           <IonText color="secondary">
-            <h4>Let us know a little more about the patient...</h4>
+            <h4>Where is my blue jacket?</h4>
           </IonText>
         </IonItem>
 
@@ -182,5 +183,5 @@ export default connect<OwnProps, StateProps, DispatchProps>({
   mapDispatchToProps: {
     setSearchText,
   },
-  component: React.memo(Uploads),
+  component: React.memo(RevaQuestions),
 });

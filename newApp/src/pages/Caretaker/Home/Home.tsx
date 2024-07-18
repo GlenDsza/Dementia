@@ -185,7 +185,7 @@ const Home: React.FC<HomeProps> = ({
           <IonButtons slot="start">
             <IonMenuButton />
           </IonButtons>
-          <IonTitle className="">Home</IonTitle>
+          <IonTitle>Home</IonTitle>
           <IonButtons slot="end">
             <IonButton onClick={() => history.push('/ctabs/notifications')}>
               <IoNotifications size={25} color="#737373" />
@@ -195,11 +195,6 @@ const Home: React.FC<HomeProps> = ({
       </IonHeader>
 
       <IonContent fullscreen={true}>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Home</IonTitle>
-          </IonToolbar>
-        </IonHeader>
         <div className="scrollable-container">
           {/* Patient Details */}
           <IonCard className="rounded-xl card-shadow flex p-2 mt-4">

@@ -23,7 +23,6 @@ import {
   peopleOutline,
   person,
   personAdd,
-  cloudUpload
 } from 'ionicons/icons';
 
 import { connect } from '../data/connect';
@@ -83,9 +82,9 @@ const Menu: React.FC<MenuProps> = ({
       { title: 'Members', path: '/ctabs/speakers', icon: peopleOutline },
       { title: 'Notification', path: '/ctabs/map', icon: mapOutline },
       {
-        title: 'Upload Data',
-        path: '/ctabs/about',
-        icon: informationCircleOutline,
+        title: 'Anything for REVA',
+        path: '/ctabs/uploads',
+        icon: help,
       },
     ];
 

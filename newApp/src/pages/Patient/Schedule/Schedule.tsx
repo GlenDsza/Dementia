@@ -110,7 +110,7 @@ const Schedule: React.FC<ScheduleProps> = ({
               <IonMenuButton />
             </IonButtons>
           )}
-          {!ios && !showSearchbar && <IonTitle>Schedule</IonTitle>}
+          <IonTitle>Schedule</IonTitle>
           {showSearchbar && (
             <IonSearchbar
               showCancelButton="always"

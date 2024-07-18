@@ -29,6 +29,7 @@ import ChatBot from './ChatBot';
 import Uploads from './Uploads/Uploads';
 import Notification from './Notifications/Notifications';
 import { TbMessageChatbot } from 'react-icons/tb';
+import QuestionsReva from './Uploads/QuestionsReva';
 
 interface CTabsProps {}
 
@@ -49,6 +50,11 @@ const CTabs: React.FC<CTabsProps> = () => {
           exact={true}
         />
         <Route
+          path="/ctabs/questions"
+          render={() => <QuestionsReva />}
+          exact={true}
+        />
+        <Route
           path="/ctabs/speakers"
           render={() => <SpeakerList />}
           exact={true}
@@ -66,6 +72,7 @@ const CTabs: React.FC<CTabsProps> = () => {
         <Route path="/ctabs/schedule/:id" component={SessionDetail} />
         <Route path="/ctabs/speakers/sessions/:id" component={SessionDetail} />
         <Route path="/ctabs/map" render={() => <MapView />} exact={true} />
+        <Route path="/ctabs/uploads" render={() => <Uploads />} exact={true} />
       </IonRouterOutlet>
       <IonTabBar slot="bottom">
         <IonTabButton tab="home" href="/ctabs/home">
