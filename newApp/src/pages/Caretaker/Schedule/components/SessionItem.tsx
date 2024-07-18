@@ -62,7 +62,10 @@ const SessionItem: FC<SessionItemProps> = ({ routine }) => {
             </div>
             <p>
               {routine.startTime} &mdash;&nbsp; {routine.endTime} (
-              {routine.location?.name})
+              {routine.location
+                ? routine.location.name
+                : routine.endLocation?.name}
+              )
             </p>
           </IonLabel>
         </IonItem>

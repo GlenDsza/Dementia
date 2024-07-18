@@ -93,6 +93,8 @@ const Schedule: React.FC<ScheduleProps> = ({
     startTime: '',
     endTime: '',
     location: null,
+    startLocation: null,
+    endLocation: null,
     status: 'pending',
   });
 
@@ -259,7 +261,7 @@ const Schedule: React.FC<ScheduleProps> = ({
             {groupedRoutines['3am'].length > 0 && (
               <>
                 <IonItemDivider sticky>
-                  <IonLabel>12:00 am</IonLabel>
+                  <IonLabel>03:00 am</IonLabel>
                 </IonItemDivider>
                 <div className="py-1">
                   {groupedRoutines['3am'].map((routine) => (
@@ -271,7 +273,7 @@ const Schedule: React.FC<ScheduleProps> = ({
             {groupedRoutines['6am'].length > 0 && (
               <>
                 <IonItemDivider sticky>
-                  <IonLabel>12:00 am</IonLabel>
+                  <IonLabel>06:00 am</IonLabel>
                 </IonItemDivider>
                 <div className="py-1">
                   {groupedRoutines['6am'].map((routine) => (
@@ -283,7 +285,7 @@ const Schedule: React.FC<ScheduleProps> = ({
             {groupedRoutines['9am'].length > 0 && (
               <>
                 <IonItemDivider sticky>
-                  <IonLabel>12:00 am</IonLabel>
+                  <IonLabel>09:00 am</IonLabel>
                 </IonItemDivider>
                 <div className="py-1">
                   {groupedRoutines['9am'].map((routine) => (
@@ -295,7 +297,7 @@ const Schedule: React.FC<ScheduleProps> = ({
             {groupedRoutines['12pm'].length > 0 && (
               <>
                 <IonItemDivider sticky>
-                  <IonLabel>12:00 am</IonLabel>
+                  <IonLabel>12:00 pm</IonLabel>
                 </IonItemDivider>
                 <div className="py-1">
                   {groupedRoutines['12pm'].map((routine) => (
@@ -307,7 +309,7 @@ const Schedule: React.FC<ScheduleProps> = ({
             {groupedRoutines['3pm'].length > 0 && (
               <>
                 <IonItemDivider sticky>
-                  <IonLabel>12:00 am</IonLabel>
+                  <IonLabel>03:00 pm</IonLabel>
                 </IonItemDivider>
                 <div className="py-1">
                   {groupedRoutines['3pm'].map((routine) => (
@@ -319,7 +321,7 @@ const Schedule: React.FC<ScheduleProps> = ({
             {groupedRoutines['6pm'].length > 0 && (
               <>
                 <IonItemDivider sticky>
-                  <IonLabel>12:00 am</IonLabel>
+                  <IonLabel>06:00 pm</IonLabel>
                 </IonItemDivider>
                 <div className="py-1">
                   {groupedRoutines['6pm'].map((routine) => (
@@ -331,7 +333,7 @@ const Schedule: React.FC<ScheduleProps> = ({
             {groupedRoutines['9pm'].length > 0 && (
               <>
                 <IonItemDivider sticky>
-                  <IonLabel>12:00 am</IonLabel>
+                  <IonLabel>09:00 pm</IonLabel>
                 </IonItemDivider>
                 <div className="py-1">
                   {groupedRoutines['9pm'].map((routine) => (
