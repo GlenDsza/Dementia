@@ -19,31 +19,14 @@ import 'react-chat-elements/dist/main.css';
 
 const ChatBot: React.FC = () => {
   const [messages, setMessages] = useState<any[]>([
+
     {
       position: 'left',
       type: 'text',
-      text: 'Hello!',
-      date: new Date(),
-      id: '1',
-      avatar: 'https://helpx.adobe.com/content/dam/help/en/photoshop/how-to/vector-objects/jcr_content/main-pars/image_738713385/vector-objects-Step1_900x506.jpg',
-      title: 'John',
-    },
-    {
-      position: 'left',
-      type: 'text',
-      text: 'How are you?',
-      date: new Date(),
-      id: '2',
-      avatar: 'https://cdn.pixabay.com/photo/2020/08/19/09/52/vector-art-5500539_640.jpg',
-      title: 'Mary',
-    },
-    {
-      position: 'left',
-      type: 'text',
-      text: 'Good morning!',
+      text: "Welcome! I'm ChatBot, your AI assistant. Let me know how can I help you",
       date: new Date(),
       id: '3',
-      avatar: 'https://static.vecteezy.com/vite/assets/vector-qneIUV6W.webp',
+      avatar: 'https://img.freepik.com/free-vector/chatbot-chat-message-vectorart_78370-4104.jpg?size=338&ext=jpg&ga=GA1.1.2113030492.1720224000&semt=ais_user',
       title: 'Cris',
     },
   ]);
