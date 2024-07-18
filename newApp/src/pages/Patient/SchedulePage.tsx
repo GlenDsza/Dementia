@@ -30,13 +30,13 @@ import ShareSocialFab from '../../components/ShareSocialFab';
 import * as selectors from '../../data/selectors';
 import { connect } from '../../data/connect';
 import { setSearchText } from '../../data/sessions/sessions.actions';
-import { Schedule } from '../../models/Schedule';
+import { ScheduleModel } from '../../models/Schedule';
 
 interface OwnProps {}
 
 interface StateProps {
-  schedule: Schedule;
-  favoritesSchedule: Schedule;
+  schedule: ScheduleModel;
+  favoritesSchedule: ScheduleModel;
   mode: 'ios' | 'md';
 }
 

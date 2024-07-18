@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Session } from '../models/Schedule';
-import { Speaker } from '../models/Speaker';
+import { Session } from '../../../models/Schedule';
+import { Speaker } from '../../../models/Speaker';
 import {
   IonCard,
   IonCardHeader,
