@@ -16,6 +16,8 @@ import {
   IonLabel,
   IonItemGroup,
   IonItemDivider,
+  ActionSheetButton,
+  IonActionSheet,
 } from '@ionic/react';
 import { options, search, calendar, add, star } from 'ionicons/icons';
 import './Schedule.scss';
@@ -37,7 +39,6 @@ interface StateProps {
 interface DispatchProps {
   setSearchText: typeof setSearchText;
 }
-
 type ScheduleProps = OwnProps & StateProps & DispatchProps;
 
 const Schedule: React.FC<ScheduleProps> = ({
@@ -45,8 +46,12 @@ const Schedule: React.FC<ScheduleProps> = ({
   setSearchText,
   mode,
 }) => {
-  const [showSearchbar, setShowSearchbar] = useState<boolean>(false);
   const [selectedDate, setSelectedDate] = useState(new Date());
+  const [showActionSheet, setShowActionSheet] = useState(false);
+  const [actionSheetButtons, setActionSheetButtons] = useState<
+    ActionSheetButton[]
+  >([]);
+  const [actionSheetHeader, setActionSheetHeader] = useState('');
   interface GroupedRoutine {
     [key: string]: RoutineInterface[];
   }
@@ -99,33 +104,45 @@ const Schedule: React.FC<ScheduleProps> = ({
   }, [routines]);
 
   const pageRef = useRef<HTMLElement>(null);
-  const ios = mode === 'ios';
+  const handleSOSClick = () => {
+    openContact();
+  };
+
+  function openContact() {
+    setActionSheetButtons([
+      {
+        text: `Call - +91 9967878741`,
+        handler: () => {
+          window.open('tel: +91 9967878741');
+        },
+      },
+      {
+        text: `Call - +91 9000078741`,
+        handler: () => {
+          window.open('tel: +91 9000078741');
+        },
+      },
+    ]);
+    setActionSheetHeader(`Call All for SOS Situation`);
+    setShowActionSheet(true);
+  }
 
   return (
     <IonPage ref={pageRef} id="schedule-page">
       <IonHeader translucent={true}>
         <IonToolbar>
-          {!showSearchbar && (
-            <IonButtons slot="start">
-              <IonMenuButton />
-            </IonButtons>
-          )}
+          <IonButtons slot="start">
+            <IonMenuButton />
+          </IonButtons>
           <IonTitle>Schedule</IonTitle>
-          {showSearchbar && (
-            <IonSearchbar
-              showCancelButton="always"
-              placeholder="Search"
-              onIonInput={(e: CustomEvent) => setSearchText(e.detail.value)}
-              onIonCancel={() => setShowSearchbar(false)}
-            ></IonSearchbar>
-          )}
-
           <IonButtons slot="end">
-            {!ios && !showSearchbar && (
-              <IonButton onClick={() => setShowSearchbar(true)}>
-                <IonIcon slot="icon-only" icon={search}></IonIcon>
-              </IonButton>
-            )}
+            <IonButton
+              color="danger"
+              className="sos-button"
+              onClick={handleSOSClick}
+            >
+              SOS
+            </IonButton>
           </IonButtons>
         </IonToolbar>
         <IonToolbar className="px-4 pb-2">
@@ -244,6 +261,12 @@ const Schedule: React.FC<ScheduleProps> = ({
           </IonItemGroup>
         </div>
       </IonContent>
+      <IonActionSheet
+        isOpen={showActionSheet}
+        header={actionSheetHeader}
+        onDidDismiss={() => setShowActionSheet(false)}
+        buttons={actionSheetButtons}
+      />
     </IonPage>
   );
 };
