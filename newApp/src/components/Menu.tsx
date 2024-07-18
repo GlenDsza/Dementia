@@ -37,9 +37,7 @@ const routes = {
     { title: 'Map', path: '/tabs/map', icon: mapOutline },
     { title: 'About', path: '/tabs/about', icon: informationCircleOutline },
   ],
-  loggedInPages: [
-    { title: 'Logout', path: '/logout', icon: logOut },
-  ],
+  loggedInPages: [{ title: 'Logout', path: '/logout', icon: logOut }],
   loggedOutPages: [
     { title: 'Login', path: '/login', icon: logIn },
     { title: 'Signup', path: '/signup', icon: personAdd },
@@ -146,18 +144,6 @@ const Menu: React.FC<MenuProps> = ({
             >
               Dark Mode
             </IonToggle>
-          </IonItem>
-        </IonList>
-        <IonList lines="none">
-          <IonListHeader>Tutorial</IonListHeader>
-          <IonItem
-            button
-            onClick={() => {
-              history.push('/tutorial');
-            }}
-          >
-            <IonIcon slot="start" icon={hammer} />
-            <IonLabel>Show Tutorial</IonLabel>
           </IonItem>
         </IonList>
       </IonContent>
