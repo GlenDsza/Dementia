@@ -27,7 +27,6 @@ import Community from './Community';
 import Chat from './Chat';
 import ChatBot from './ChatBot';
 import Notification from './Notifications/Notifications';
-import NotificationDetail from './Notifications/NotificationDetail';
 import { TbMessageChatbot } from 'react-icons/tb';
 
 interface CTabsProps {}
