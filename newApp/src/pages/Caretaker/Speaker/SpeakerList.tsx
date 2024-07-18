@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   IonHeader,
   IonToolbar,
@@ -10,12 +10,20 @@ import {
   IonGrid,
   IonRow,
   IonCol,
+  IonButton,
+  IonIcon,
+  IonActionSheet,
+  ActionSheetButton,
+  IonFab,
+  IonFabButton,
 } from '@ionic/react';
-import SpeakerItem from '../../components/SpeakerItem';
-import { Speaker } from '../../models/Speaker';
-import { Session } from '../../models/Schedule';
-import { connect } from '../../data/connect';
-import * as selectors from '../../data/selectors';
+
+import { options, search, calendar, add, star } from 'ionicons/icons';
+import SpeakerItem from './SpeakerItem';
+import { Speaker } from '../../../models/Speaker';
+import { Session } from '../../../models/Schedule';
+import { connect } from '../../../data/connect';
+import * as selectors from '../../../data/selectors';
 import './SpeakerList.scss';
 
 interface OwnProps {}
@@ -33,6 +41,12 @@ const SpeakerList: React.FC<SpeakerListProps> = ({
   speakers,
   speakerSessions,
 }) => {
+  const [showActionSheet, setShowActionSheet] = useState(false);
+  const [actionSheetButtons, setActionSheetButtons] = useState<
+    ActionSheetButton[]
+  >([]);
+  const [actionSheetHeader, setActionSheetHeader] = useState('');
+
   return (
     <IonPage id="speaker-list">
       <IonHeader translucent={true}>
@@ -45,12 +59,6 @@ const SpeakerList: React.FC<SpeakerListProps> = ({
       </IonHeader>
 
       <IonContent fullscreen={true}>
-        {/* <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Speakers</IonTitle>
-          </IonToolbar>
-        </IonHeader> */}
-
         <IonGrid fixed>
           <IonRow>
             {speakers.map((speaker) => (
@@ -64,7 +72,18 @@ const SpeakerList: React.FC<SpeakerListProps> = ({
             ))}
           </IonRow>
         </IonGrid>
+        <IonActionSheet
+          isOpen={showActionSheet}
+          header={actionSheetHeader}
+          onDidDismiss={() => setShowActionSheet(false)}
+          buttons={actionSheetButtons}
+        />
       </IonContent>
+      <IonFab vertical="bottom" horizontal="end">
+        <IonFabButton>
+          <IonIcon icon={add} />
+        </IonFabButton>
+      </IonFab>
     </IonPage>
   );
 };

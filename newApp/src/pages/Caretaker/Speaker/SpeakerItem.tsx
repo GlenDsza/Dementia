@@ -21,6 +21,8 @@ import {
   callSharp,
   navigateCircleSharp,
   navigateCircle,
+  trashOutline,
+  createOutline,
 } from 'ionicons/icons';
 import { useHistory } from 'react-router-dom';
 import './SpeakerItem.css';
@@ -53,12 +55,12 @@ const SpeakerItem: React.FC<SpeakerItemProps> = ({ speaker, sessions }) => {
       setActionSheetHeader(`Call ${speaker.name}`);
       setShowActionSheet(true);
     } else {
-      history.push(`/ptabs/speakers/${speaker.id}`);
+      history.push(`/ctabs/speakers/${speaker.id}`);
     }
   }
 
   const navigateToPage = () => {
-    history.push(`/ptabs/speakers/${speaker.id}`);
+    history.push(`/ctabs/speakers/${speaker.id}`);
   };
 
   return (
@@ -72,25 +74,27 @@ const SpeakerItem: React.FC<SpeakerItemProps> = ({ speaker, sessions }) => {
         <IonCardHeader>
           <IonCardTitle>{speaker.name}</IonCardTitle>
           <IonCardSubtitle>{speaker.title}</IonCardSubtitle>
-          <IonButton
-            onClick={(e) => openContact(speaker, e)}
-            className="speaker-call-button"
-          >
-            {speaker.type == 'person' ? (
-              <IonIcon
-                slot="icon-only"
-                ios={callOutline}
-                md={callSharp}
-              ></IonIcon>
-            ) : (
-              <IonIcon
-                slot="icon-only"
-                ios={navigateCircle}
-                md={navigateCircleSharp}
-              ></IonIcon>
-            )}
-          </IonButton>
         </IonCardHeader>
+        <IonCardContent>
+          <p>{speaker.phone}</p>
+          <p>{speaker.about}</p>
+          <div className="speaker-delete-button">
+            <IonButton fill="clear" slot="end" color="medium">
+              <IonIcon
+                slot="icon-only"
+                ios={createOutline}
+                md={createOutline}
+              ></IonIcon>
+            </IonButton>
+            <IonButton fill="clear" color="medium">
+              <IonIcon
+                slot="icon-only"
+                ios={trashOutline}
+                md={trashOutline}
+              ></IonIcon>
+            </IonButton>
+          </div>
+        </IonCardContent>
       </IonCard>
       <IonActionSheet
         isOpen={showActionSheet}

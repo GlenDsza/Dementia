@@ -16,6 +16,16 @@ import {
   IonButton,
   IonBackButton,
   IonPage,
+  IonCol,
+  IonGrid,
+  IonMenuButton,
+  IonRow,
+  IonTitle,
+  IonCard,
+  IonCardHeader,
+  IonCardSubtitle,
+  IonCardTitle,
+  IonCardContent,
 } from '@ionic/react';
 import {
   callOutline,
@@ -25,15 +35,19 @@ import {
   logoInstagram,
   shareOutline,
   shareSharp,
+  navigateCircle,
+  navigateCircleSharp,
 } from 'ionicons/icons';
 
-import { connect } from '../../data/connect';
-import * as selectors from '../../data/selectors';
+import { connect } from '../../../data/connect';
+import * as selectors from '../../../data/selectors';
 
-import { Speaker } from '../../models/Speaker';
+import { Speaker } from '../../../models/Speaker';
+import SpeakerMap from './SpeakerMap';
+import SpeakerItem from './SpeakerItem';
 
 interface OwnProps extends RouteComponentProps {
-  speaker?: Speaker;
+  speaker?: any;
 }
 
 interface StateProps {}
@@ -94,58 +108,46 @@ const SpeakerDetail: React.FC<SpeakerDetailProps> = ({ speaker }) => {
     setShowActionSheet(true);
   }
 
-  function openExternalUrl(url: string) {
-    window.open(url, '_blank');
-  }
-
-  if (!speaker) {
-    return <div>Speaker not found</div>;
-  }
-
   return (
-    <IonPage id="speaker-detail">
-      <IonContent>
-        <IonHeader className="ion-no-border">
-          <IonToolbar>
-            <IonButtons slot="start">
-              <IonBackButton defaultHref="/tabs/speakers" />
-            </IonButtons>
-            <IonButtons slot="end">
-              <IonButton onClick={() => openContact(speaker)}>
-                <IonIcon
-                  slot="icon-only"
-                  ios={callOutline}
-                  md={callSharp}
-                ></IonIcon>
-              </IonButton>
-              <IonButton onClick={() => openSpeakerShare(speaker)}>
-                <IonIcon
-                  slot="icon-only"
-                  ios={shareOutline}
-                  md={shareSharp}
-                ></IonIcon>
-              </IonButton>
-            </IonButtons>
-          </IonToolbar>
-        </IonHeader>
+    <IonPage id="speaker-detail-new">
+      <IonHeader translucent={true}>
+        <IonToolbar>
+          <IonButtons slot="start">
+            <IonBackButton defaultHref="/ctabs/speakers" />
+          </IonButtons>
+          <IonTitle>{speaker.title}</IonTitle>
+        </IonToolbar>
+      </IonHeader>
 
-        <div className="speaker-background">
-          <img src={speaker.profilePic} alt={speaker.name} />
-          <h2>{speaker.name}</h2>
-        </div>
-
-        <div className="ion-padding speaker-detail">
-          <p>{speaker.about}</p>
-
-          <hr />
-        </div>
+      <IonContent fullscreen={true}>
+        <IonCard className="speaker-container">
+          <img
+            src={speaker.profilePic}
+            alt="Speaker profile pic"
+            className="speaker-custom-image"
+          />
+          <IonCardHeader>
+            <IonCardTitle>{speaker.name}</IonCardTitle>
+          </IonCardHeader>
+          <IonCardContent>
+            <p>{speaker.phone}</p>
+            <p>{speaker.about}</p>
+            <p>
+              {speaker.type != 'person' ? (
+                <div className="ion-padding speaker-map">
+                  <SpeakerMap />
+                </div>
+              ) : null}
+            </p>
+          </IonCardContent>
+        </IonCard>
+        <IonActionSheet
+          isOpen={showActionSheet}
+          header={actionSheetHeader}
+          onDidDismiss={() => setShowActionSheet(false)}
+          buttons={actionSheetButtons}
+        />
       </IonContent>
-      <IonActionSheet
-        isOpen={showActionSheet}
-        header={actionSheetHeader}
-        onDidDismiss={() => setShowActionSheet(false)}
-        buttons={actionSheetButtons}
-      />
     </IonPage>
   );
 };
