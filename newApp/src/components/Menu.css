@@ -1,6 +1,4 @@
 ion-menu ion-content {
-  --padding-top: 20px;
-  --padding-bottom: 20px;
 
   --background: var(--ion-item-background, var(--ion-background-color, #fff));
 }
@@ -17,9 +15,6 @@ ion-item.selected {
 /*
  * Material Design Menu
 */
-ion-menu.md ion-list {
-  padding: 20px 0;
-}
 
 ion-menu.md ion-list-header {
   padding-left: 18px;
@@ -86,4 +81,26 @@ ion-menu.ios ion-item ion-icon {
 
 ion-menu.ios ion-item.selected ion-icon {
   color: var(--ion-color-primary);
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  border-bottom: 1px solid #ccc;
+}
+
+.user-avatar {
+  margin-right: 16px;
+}
+
+.user-details h2 {
+  margin: 0 10px 0px;
+  font-size: 18px;
+}
+
+.user-details p {
+  margin: 0 10px 0px;
+  color: gray;
+  font-size: 14px;
 }

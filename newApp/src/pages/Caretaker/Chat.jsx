@@ -32,12 +32,21 @@ const Chat = () => {
     {
       position: 'left',
       type: 'text',
-      text: 'How are you?',
+      text: 'Hey! How have you been John?',
       date: new Date(),
       id: '2',
       avatar:
         'https://cdn.pixabay.com/photo/2020/08/19/09/52/vector-art-5500539_640.jpg',
       title: 'Mary',
+    },
+    {
+      position: 'left',
+      type: 'text',
+      text: "Hi everyone, \nI'm John. I wanted to share a story about my mom, who has dementia. \nOne Saturday, I found Mom trying to make breakfast, looking confused. I took over and then suggested we go to the park, a place she loves. As we walked, I talked about our old picnics, and she smiled, remembering bits and pieces. \nWe sat by the pond, and Mom started humming an old tune. I joined in, and for a moment, everything felt normal. When we got home, we looked through a photo album. Mom recognized some pictures and told me stories, even if some details were mixed up. \nI know my mom's situation is worsening gradually. But that day reminded me that even though things are tough, we can still have special moments. It’s these moments that make all the challenges worthwhile.",
+      date: new Date(),
+      id: '3',
+      avatar: 'https://helpx.adobe.com/content/dam/help/en/photoshop/how-to/vector-objects/jcr_content/main-pars/image_738713385/vector-objects-Step1_900x506.jpg',
+      title: 'John',
     },
     {
       position: 'left',
@@ -105,7 +114,7 @@ const Chat = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent>
-        <MessageList
+        {/* <MessageList
           className="chat-list"
           lockable={true}
           toBottomHeight={'100%'}
@@ -120,9 +129,9 @@ const Chat = () => {
             avatar: msg.avatar,
             key: index.toString(), // Ensure each item has a unique key
           }))}
-          id="chat-list-id"
-          lazyLoadingImage="lazy-loading-image-url"
-        />
+          id = "chat-list-id"
+          lazyLoadingImage = "lazy-loading-image-url"
+        /> */}
       </IonContent>
       <IonFooter>
         <IonToolbar>

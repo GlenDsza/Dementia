@@ -60,6 +60,10 @@ import RedirectToLogin from './components/RedirectToLogin';
 import PTabs from './pages/Patient/PTabs';
 import CTabs from './pages/Caretaker/CTabs';
 import Notifications from './pages/Caretaker/Notifications/Notifications';
+import { LocalNotifications } from '@capacitor/local-notifications';
+
+// ...
+import Uploads from './pages/Caretaker/Uploads/Uploads';
 
 setupIonicReact();
 
@@ -93,10 +97,50 @@ const IonicApp: React.FC<IonicAppProps> = ({
   loadConfData,
   loadUserData,
 }) => {
+  const getRandomId = () => {
+    const randomId = Math.floor(Math.random() * 10000) + 1;
+    console.log(randomId);
+    return randomId;
+  };
+
+  const scheduleNotification = () => {
+    LocalNotifications.schedule({
+      notifications: [
+        {
+          title: 'Reva - Attention Required',
+          body: 'Customer seems uncomfortable. Panicked locoking for help !',
+          id: getRandomId(),
+          smallIcon: 'information.svg',
+          schedule: {
+            at: new Date(Date.now() + 1000),
+            repeats: true,
+            every: 'second',
+          }, // 5 seconds from now
+          sound: 'beep.wav', // Optional: specify a custom sound
+        },
+        {
+          title: 'Reva - Information',
+          body: 'Harit has completed his morning walk. Now he is at home !',
+          id: getRandomId(),
+          smallIcon: 'warning.svg',
+          iconColor: '#FF0000',
+          schedule: {
+            at: new Date(Date.now() + 3000),
+            repeats: true,
+            every: 'second',
+          }, // 5 seconds from now
+          sound: 'beep.wav', // Optional: specify a custom sound
+        },
+      ],
+    });
+  };
+
   useEffect(() => {
     loadUserData();
     loadConfData();
-    // eslint-disable-next-line
+    setInterval(() => {
+      scheduleNotification();
+    }, 5000);
   }, []);
 
   return schedule.groups.length === 0 ? (
@@ -115,6 +159,7 @@ const IonicApp: React.FC<IonicAppProps> = ({
             <Route path="/support" component={Support} />
             <Route path="/tutorial" component={Tutorial} />
             <Route path="/notifications" component={Notifications} />
+            <Route path="/ctabs/uploads" component={Uploads} />
             <Route
               path="/logout"
               render={() => {
@@ -126,7 +171,6 @@ const IonicApp: React.FC<IonicAppProps> = ({
                 );
               }}
             />
-            {/* <Route path="/" component={HomeOrTutorial} exact /> */}
             <Route path="/" exact={true}>
               <Redirect to="/login" />
             </Route>

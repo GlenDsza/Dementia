@@ -230,7 +230,7 @@ const Map: FC = () => {
               width={30}
               height={30}
             />
-            <h1>Dementia 101</h1>
+            <h1>Reva</h1>
           </div>
           {loading && <IonProgressBar type="indeterminate" />}
         </IonToolbar>

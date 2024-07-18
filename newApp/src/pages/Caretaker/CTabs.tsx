@@ -26,7 +26,10 @@ import Home from './Home/Home';
 import Community from './Community';
 import Chat from './Chat';
 import ChatBot from './ChatBot';
+import Uploads from './Uploads/Uploads';
+import NotificationContainer from './Notifications/NotificationContainer';
 import { TbMessageChatbot } from 'react-icons/tb';
+import QuestionsReva from './Uploads/QuestionsReva';
 
 interface CTabsProps {}
 
@@ -39,6 +42,12 @@ const CTabs: React.FC<CTabsProps> = () => {
         <Route
           path="/ctabs/schedule"
           render={() => <SchedulePage />}
+          exact={true}
+        />
+        <Route path="/ctabs/uploads" render={() => <Uploads />} exact={true} />
+        <Route
+          path="/ctabs/questions"
+          render={() => <QuestionsReva />}
           exact={true}
         />
         <Route
@@ -54,10 +63,16 @@ const CTabs: React.FC<CTabsProps> = () => {
         <Route path="/ctabs/community" component={Community} exact={true} />
         <Route path="/ctabs/community/chat" component={Chat} exact={true} />
         <Redirect from="/" to="/community/chat" exact />
+        <Route
+          path="/ctabs/notifications"
+          render={() => <NotificationContainer />}
+          exact={true}
+        />
         <Route path="/ctabs/chatbot" component={ChatBot} exact={true} />
         <Route path="/ctabs/schedule/:id" component={SessionDetail} />
         <Route path="/ctabs/speakers/sessions/:id" component={SessionDetail} />
         <Route path="/ctabs/map" render={() => <MapView />} exact={true} />
+        <Route path="/ctabs/uploads" render={() => <Uploads />} exact={true} />
       </IonRouterOutlet>
       <IonTabBar slot="bottom">
         <IonTabButton tab="home" href="/ctabs/home">

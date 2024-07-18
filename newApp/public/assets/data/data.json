@@ -246,23 +246,23 @@
 
   "speakers": [
     {
-      "name": "Scarlett Bear",
-      "profilePic": "/assets/img/member/wife.jpg",
-      "about": "Scarlett Bear. Is my wife we got married 20  years ago. We love each other a lot. Contact no is 9967878741",
-      "title": "Wife",
+      "name": "Ben Johnson",
+      "profilePic": "/assets/img/member/son.jpg",
+      "about": "Ben Johnson. Is your son currently in grade 3, he is 10 years old. You and Ben love making cookies.",
+      "title": "Son",
       "type": "person",
-      "email": "burt@example.com",
-      "phone": "+1-541-754-3010",
+      "email": "ben@gmail.com",
+      "phone": "+91 9967878741",
       "id": "1"
     },
     {
-      "name": "Jason Cheetah",
-      "profilePic": "/assets/img/member/brother.jpg",
-      "about": "Charlie is a Cheetah. Charlie's interests include country music, plush animals, pyrotechnics, and skeletons.",
-      "title": "Brother",
+      "name": "Rachel Green",
+      "profilePic": "/assets/img/member/wife.jpg",
+      "about": "Rachel Green is your elder sister who visits you daily and take care of you.Sje always provides a nurturing presence and unwavering support to your child. ",
+      "title": "Sister",
       "type": "person",
-      "email": "charlie@example.com",
-      "phone": "+1-541-754-3010",
+      "email": "rachel@gmail.com",
+      "phone": "+91 77876655.",
       "id": "2"
     },
     {
@@ -282,37 +282,18 @@
       "title": "My Current Office",
       "type": "location",
       "location":"",
-      "email": "donald@example.com",
+      "email": "bajaj@example.com",
       "id": "4"
     },
+   
     {
-      "name": "Sheila Duck",
-      "profilePic": "/assets/img/member/maid.jpg",
-      "about": "Donald is a Duck. Donald's interests include carpentry, superheroes, merpeople, and glam rock.",
-      "title": "Maid",
-      "type": "person",
-      "email": "donald@example.com",
-      "phone": "+1-541-754-3010",
-      "id": "5"
-    },
-    {
-      "name": "Parent",
-      "profilePic": "/assets/img/member/parent.jpg",
-      "about": "Eva is an Eagle. Eva's interests include ants, seashells, and cupcakes.",
-      "title": "Parent",
-      "type": "person",
-      "email": "eva@example.com",
-      "phone": "+1-541-754-3010",
-      "id": "6"
-    },
-    {
-      "name": "Ellie Elephant",
-      "profilePic": "/assets/img/member/father.jpg",
-      "about": "Ellie is an Elephant. Ellie's interests include pocket watches, pool, hand fans, and ninjas.",
+      "name": "* Dr. Elizabeth Carter",
+      "profilePic": "/assets/img/member/doctor.jpg",
+      "about": "Elizabeth is your doctor,she is a neurologist specialist.Her clinic's address is 123 Wellness Avenue, Suite 101, Cityville, ST 12345",
       "title": "My Doctor",
       "type": "person",
-      "email": "ellie@example.com",
-      "phone": "+1-541-754-3010",
+      "email": "ellizabeth@gmail.com",
+      "phone": "(555) 987-6543",
       "id": "7"
     }
   ],

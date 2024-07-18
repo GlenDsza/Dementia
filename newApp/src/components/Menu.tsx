@@ -1,7 +1,7 @@
 import React from 'react';
 import { RouteComponentProps, withRouter, useLocation } from 'react-router';
-
 import {
+  IonAvatar,
   IonContent,
   IonIcon,
   IonItem,
@@ -24,6 +24,7 @@ import {
   peopleOutline,
   person,
   personAdd,
+  notifications,
 } from 'ionicons/icons';
 
 import { connect } from '../data/connect';
@@ -38,14 +39,9 @@ const routes = {
     { title: 'Map', path: '/tabs/map', icon: mapOutline },
     { title: 'About', path: '/tabs/about', icon: informationCircleOutline },
   ],
-  loggedInPages: [
-    { title: 'Account', path: '/account', icon: person },
-    { title: 'Support', path: '/support', icon: help },
-    { title: 'Logout', path: '/logout', icon: logOut },
-  ],
+  loggedInPages: [{ title: 'Logout', path: '/logout', icon: logOut }],
   loggedOutPages: [
     { title: 'Login', path: '/login', icon: logIn },
-    { title: 'Support', path: '/support', icon: help },
     { title: 'Signup', path: '/signup', icon: personAdd },
   ],
 };
@@ -56,6 +52,7 @@ interface Pages {
   icon: string;
   routerDirection?: string;
 }
+
 interface StateProps {
   darkMode: boolean;
   isAuthenticated: boolean;
@@ -83,11 +80,11 @@ const Menu: React.FC<MenuProps> = ({
     const cData = [
       { title: 'Schedule', path: '/ctabs/schedule', icon: calendarOutline },
       { title: 'Members', path: '/ctabs/speakers', icon: peopleOutline },
-      { title: 'Notification', path: '/ctabs/map', icon: mapOutline },
+      { title: 'Notification', path: '/ctabs/map', icon: notifications },
       {
-        title: 'Upload Data',
-        path: '/ctabs/about',
-        icon: informationCircleOutline,
+        title: 'Anything for REVA',
+        path: '/ctabs/uploads',
+        icon: help,
       },
     ];
 
@@ -97,7 +94,7 @@ const Menu: React.FC<MenuProps> = ({
       {
         title: 'Notification',
         path: '/tabs/map',
-        icon: informationCircleOutline,
+        icon: notifications,
       },
     ];
 
@@ -125,11 +122,42 @@ const Menu: React.FC<MenuProps> = ({
       ));
   }
 
+  const renderImage = () => {
+    if (userType === 'patient') {
+      return <img src="/assets/img/patient.png" alt="User Avatar" />;
+    } else {
+      return <img src="/assets/img/member/brother.jpg" alt="User Avatar" />;
+    }
+  };
+
+  const getRole = () => {
+    if (userType === 'patient') {
+      return 'Patient';
+    } else {
+      return 'Care Taker';
+    }
+  };
+
+  const getUserNamer = () => {
+    if (userType === 'patient') {
+      return 'John Doe Patient';
+    } else {
+      return 'Michael C';
+    }
+  };
+
   return (
     <IonMenu type="overlay" disabled={!menuEnabled} contentId="main">
+      <div className="user-info">
+        <IonAvatar>{renderImage()}</IonAvatar>
+        <div className="user-details">
+          <h2>{getUserNamer()}</h2>
+          <p>{getRole()}</p>
+        </div>
+      </div>
       <IonContent forceOverscroll={false}>
-        <IonList lines="none">
-          <IonListHeader>Conference</IonListHeader>
+        <IonList lines="none" className="reva-menu">
+          <IonListHeader>Reva</IonListHeader>
           {renderSideNav()}
         </IonList>
         <IonList lines="none">
@@ -149,18 +177,6 @@ const Menu: React.FC<MenuProps> = ({
             >
               Dark Mode
             </IonToggle>
-          </IonItem>
-        </IonList>
-        <IonList lines="none">
-          <IonListHeader>Tutorial</IonListHeader>
-          <IonItem
-            button
-            onClick={() => {
-              history.push('/tutorial');
-            }}
-          >
-            <IonIcon slot="start" icon={hammer} />
-            <IonLabel>Show Tutorial</IonLabel>
           </IonItem>
         </IonList>
       </IonContent>
