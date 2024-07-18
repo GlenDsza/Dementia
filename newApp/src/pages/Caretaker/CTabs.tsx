@@ -17,10 +17,10 @@ import {
   chatboxEllipses,
 } from 'ionicons/icons';
 
-import SchedulePage from './SchedulePage';
+import SchedulePage from './Schedule/Schedule';
 import SpeakerList from './SpeakerList';
 import SpeakerDetail from './SpeakerDetail';
-import SessionDetail from './SessionDetail';
+import SessionDetail from './SessionDetail/SessionDetail';
 import MapView from './Map/Map';
 import Home from './Home/Home';
 import Community from './Community';

@@ -1,4 +1,4 @@
-export interface Schedule {
+export interface ScheduleModel {
   date: string;
   groups: ScheduleGroup[];
 }
