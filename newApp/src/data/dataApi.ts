@@ -9,6 +9,7 @@ const locationsUrl = '/assets/data/locations.json';
 const HAS_LOGGED_IN = 'hasLoggedIn';
 const HAS_SEEN_TUTORIAL = 'hasSeenTutorial';
 const USERNAME = 'username';
+const USERTYPE = 'patient';
 
 export const getConfData = async () => {
   const response = await Promise.all([fetch(dataUrl), fetch(locationsUrl)]);
@@ -38,6 +39,7 @@ export const getUserData = async () => {
     Storage.get({ key: HAS_LOGGED_IN }),
     Storage.get({ key: HAS_SEEN_TUTORIAL }),
     Storage.get({ key: USERNAME }),
+    Storage.get({ key: USERTYPE }),
   ]);
   const isLoggedin = (await response[0].value) === 'true';
   const hasSeenTutorial = (await response[1].value) === 'true';
@@ -66,6 +68,14 @@ export const setUsernameData = async (username?: string) => {
     await Storage.remove({ key: USERNAME });
   } else {
     await Storage.set({ key: USERNAME, value: username });
+  }
+};
+
+export const setUserTypeData = async (usertype?: string) => {
+  if (!usertype) {
+    await Storage.remove({ key: USERTYPE });
+  } else {
+    await Storage.set({ key: USERTYPE, value: usertype });
   }
 };
 

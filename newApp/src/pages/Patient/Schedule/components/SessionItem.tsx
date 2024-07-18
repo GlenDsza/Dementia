@@ -45,7 +45,7 @@ const SessionItem: FC<SessionItemProps> = ({ routine }) => {
     <IonItemSliding ref={ionItemSlidingRef} className="track1">
       <div className="flex w-full">
         <IonItem
-          routerLink={`/ctabs/schedule/${routine.id}`}
+          routerLink={`/ptabs/schedule/${routine.id}`}
           className="flex-grow"
         >
           <IonLabel
@@ -79,20 +79,6 @@ const SessionItem: FC<SessionItemProps> = ({ routine }) => {
             </p>
           </IonLabel>
         </IonItem>
-        <IonButton
-          fill="clear"
-          color={'dark'}
-          onClick={(e) => {
-            e.preventDefault();
-          }}
-        >
-          <IonIcon
-            slot="end"
-            icon={trashOutline}
-            aria-hidden="true"
-            style={{ width: '1.1rem', height: '1.1rem' }}
-          />
-        </IonButton>
       </div>
 
       <IonItemOptions>

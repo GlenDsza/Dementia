@@ -3,6 +3,7 @@ import {
   setIsLoggedInData,
   setUsernameData,
   setHasSeenTutorialData,
+  setUserTypeData,
 } from '../dataApi';
 import { ActionType } from '../../util/types';
 import { UserState } from './user.state';
@@ -49,6 +50,15 @@ export const setUsername =
     } as const;
   };
 
+export const setUserType =
+  (usertype?: string) => async (dispatch: React.Dispatch<any>) => {
+    await setUserTypeData(usertype);
+    return {
+      type: 'set-usertype',
+      usertype,
+    } as const;
+  };
+
 export const setHasSeenTutorial =
   (hasSeenTutorial: boolean) => async (dispatch: React.Dispatch<any>) => {
     await setHasSeenTutorialData(hasSeenTutorial);
@@ -70,4 +80,5 @@ export type UserActions =
   | ActionType<typeof setIsLoggedIn>
   | ActionType<typeof setUsername>
   | ActionType<typeof setHasSeenTutorial>
-  | ActionType<typeof setDarkMode>;
+  | ActionType<typeof setDarkMode>
+  | ActionType<typeof setUserType>;
