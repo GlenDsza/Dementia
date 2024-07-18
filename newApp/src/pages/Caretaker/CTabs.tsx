@@ -26,6 +26,7 @@ import Home from './Home/Home';
 import Community from './Community';
 import Chat from './Chat';
 import ChatBot from './ChatBot';
+import Uploads from './Uploads/Uploads';
 
 interface CTabsProps {}
 
@@ -38,6 +39,11 @@ const CTabs: React.FC<CTabsProps> = () => {
         <Route
           path="/ctabs/schedule"
           render={() => <SchedulePage />}
+          exact={true}
+        />
+        <Route
+          path="/ctabs/upload"
+          render={() => <Uploads />}
           exact={true}
         />
         <Route

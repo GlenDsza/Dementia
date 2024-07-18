@@ -12,6 +12,10 @@ export interface RoutineInterface {
   location: LocationInterface | null;
 }
 
+export interface UploadsDescription {
+  description: string;
+}
+
 export interface LocationInterface {
   lat: number;
   lng: number;

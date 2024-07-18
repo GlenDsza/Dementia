@@ -24,17 +24,20 @@ import OTPInput from "react-otp-input";
 import { call } from "ionicons/icons";
 import "../../theme/styles.css"
 
-
-const Login: FC= () => {
+const Login: FC = () => {
   const history = useHistory();
   const otpModal = useRef<HTMLIonModalElement>(null);
   const [mobile, setMobile] = useState<string>("");
   const [otp, setOtp] = useState<string>("");
   const [userType, setUserType] = useState<"patient" | "caretaker">("patient");
+
   const handleGetOtp = () => {
     console.log("Get OTP");
   };
+
   const handleSubmitOtp = () => {
+    // Save user type to local storage
+    localStorage.setItem('userType', userType);
     const url = userType === 'patient' ? '/ptabs' : '/ctabs';
     history.push(url);
   };

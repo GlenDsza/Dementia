@@ -1,6 +1,5 @@
 import React from 'react';
 import { RouteComponentProps, withRouter, useLocation } from 'react-router';
-
 import {
   IonContent,
   IonIcon,
@@ -24,6 +23,7 @@ import {
   peopleOutline,
   person,
   personAdd,
+  cloudUpload
 } from 'ionicons/icons';
 
 import { connect } from '../data/connect';
@@ -32,20 +32,22 @@ import { setDarkMode } from '../data/user/user.actions';
 import './Menu.css';
 
 const routes = {
-  appPages: [
-    { title: 'Schedule', path: '/tabs/schedule', icon: calendarOutline },
-    { title: 'Speakers', path: '/tabs/speakers', icon: peopleOutline },
-    { title: 'Map', path: '/tabs/map', icon: mapOutline },
-    { title: 'About', path: '/tabs/about', icon: informationCircleOutline },
+  patientPages: [
+    { title: 'Schedule', path: '/ptabs/schedule', icon: calendarOutline },
+    { title: 'Support', path: '/support', icon: help },
+    { title: 'Account', path: '/account', icon: person },
+  ],
+  caretakerPages: [
+    { title: 'Schedule', path: '/ctabs/schedule', icon: informationCircleOutline },
+    { title: 'Uploads', path: '/ctabs/upload', icon: cloudUpload },
+    { title: 'Support', path: '/support', icon: help },
+    { title: 'Account', path: '/account', icon: person },
   ],
   loggedInPages: [
-    { title: 'Account', path: '/account', icon: person },
-    { title: 'Support', path: '/support', icon: help },
     { title: 'Logout', path: '/logout', icon: logOut },
   ],
   loggedOutPages: [
     { title: 'Login', path: '/login', icon: logIn },
-    { title: 'Support', path: '/support', icon: help },
     { title: 'Signup', path: '/signup', icon: personAdd },
   ],
 };
@@ -56,10 +58,12 @@ interface Pages {
   icon: string;
   routerDirection?: string;
 }
+
 interface StateProps {
   darkMode: boolean;
   isAuthenticated: boolean;
   menuEnabled: boolean;
+  userType: 'patient' | 'caretaker' | null;
 }
 
 interface DispatchProps {
@@ -74,6 +78,7 @@ const Menu: React.FC<MenuProps> = ({
   isAuthenticated,
   setDarkMode,
   menuEnabled,
+  userType,
 }) => {
   const location = useLocation();
 
@@ -97,12 +102,15 @@ const Menu: React.FC<MenuProps> = ({
       ));
   }
 
+  const appPages = userType === 'patient' ? routes.patientPages : routes.caretakerPages;
+  console.log(appPages, 'Hello')
+
   return (
     <IonMenu type="overlay" disabled={!menuEnabled} contentId="main">
       <IonContent forceOverscroll={false}>
         <IonList lines="none">
-          <IonListHeader>Conference</IonListHeader>
-          {renderlistItems(routes.appPages)}
+          <IonListHeader>Dementia 101</IonListHeader>
+          {renderlistItems(appPages)}
         </IonList>
         <IonList lines="none">
           <IonListHeader>Account</IonListHeader>
@@ -145,6 +153,7 @@ export default connect<{}, StateProps, {}>({
     darkMode: state.user.darkMode,
     isAuthenticated: state.user.isLoggedin,
     menuEnabled: state.data.menuEnabled,
+    userType: state.user.userType,
   }),
   mapDispatchToProps: {
     setDarkMode,

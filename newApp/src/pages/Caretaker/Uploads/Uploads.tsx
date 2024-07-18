@@ -11,26 +11,28 @@ import {
   IonSegmentButton,
   IonButton,
   IonIcon,
+  IonItem,
   IonSearchbar,
-  IonRefresher,
-  IonRefresherContent,
-  IonToast,
+  IonText,
   IonModal,
   IonHeader,
+  IonFooter,
+  IonInput,
   getConfig,
+  IonTextarea,
 } from '@ionic/react';
 import { options, search } from 'ionicons/icons';
+import { UploadsDescription } from '../../../constants';
 
-import SessionList from '../../components/SessionList';
-import SessionListFilter from '../../components/SessionListFilter';
-import './SchedulePage.scss';
+import SessionListFilter from '../../../components/SessionListFilter';
+import './Uploads.scss';
 
-import ShareSocialFab from '../../components/ShareSocialFab';
+import ShareSocialFab from '../../../components/ShareSocialFab';
 
-import * as selectors from '../../data/selectors';
-import { connect } from '../../data/connect';
-import { setSearchText } from '../../data/sessions/sessions.actions';
-import { ScheduleModel } from '../../models/Schedule';
+import * as selectors from '../../../data/selectors';
+import { connect } from '../../../data/connect';
+import { setSearchText } from '../../../data/sessions/sessions.actions';
+import { ScheduleModel } from '../../../models/Schedule';
 
 interface OwnProps {}
 
@@ -44,9 +46,9 @@ interface DispatchProps {
   setSearchText: typeof setSearchText;
 }
 
-type SchedulePageProps = OwnProps & StateProps & DispatchProps;
+type UploadsProps = OwnProps & StateProps & DispatchProps;
 
-const SchedulePage: React.FC<SchedulePageProps> = ({
+const Uploads: React.FC<UploadsProps> = ({
   favoritesSchedule,
   schedule,
   setSearchText,
@@ -56,6 +58,14 @@ const SchedulePage: React.FC<SchedulePageProps> = ({
   const [showSearchbar, setShowSearchbar] = useState<boolean>(false);
   const [showFilterModal, setShowFilterModal] = useState(false);
   const ionRefresherRef = useRef<HTMLIonRefresherElement>(null);
+  const [pdfFile, setPDFFile] = useState<File | null>(null);
+  const [pdfFileName, setPDFFileName] = useState<string>('');
+  const hiddenInput = useRef<HTMLInputElement>(null);
+  const [formState, setFormState] = useState<UploadsDescription>({
+    description: '',
+  });
+  const { description, } = formState;
+  
   const [showCompleteToast, setShowCompleteToast] = useState(false);
 
   const pageRef = useRef<HTMLElement>(null);
@@ -67,6 +77,12 @@ const SchedulePage: React.FC<SchedulePageProps> = ({
       ionRefresherRef.current!.complete();
       setShowCompleteToast(true);
     }, 2500);
+  };
+
+  const handlePDFChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0] || null;
+    setPDFFile(file);
+    setPDFFileName(file?.name || '');
   };
 
   return (
@@ -82,12 +98,9 @@ const SchedulePage: React.FC<SchedulePageProps> = ({
             <IonSegment
               value={segment}
               onIonChange={(e) => setSegment(e.detail.value as any)}
-            >
-              <IonSegmentButton value="all">All</IonSegmentButton>
-              <IonSegmentButton value="favorites">Favorites</IonSegmentButton>
-            </IonSegment>
+            ></IonSegment>
           )}
-          {!ios && !showSearchbar && <IonTitle>Schedule</IonTitle>}
+          {!ios && !showSearchbar && <IonTitle>Upload File</IonTitle>}
           {showSearchbar && (
             <IonSearchbar
               showCancelButton="always"
@@ -121,8 +134,6 @@ const SchedulePage: React.FC<SchedulePageProps> = ({
               value={segment}
               onIonChange={(e) => setSegment(e.detail.value as any)}
             >
-              <IonSegmentButton value="all">All</IonSegmentButton>
-              <IonSegmentButton value="favorites">Favorites</IonSegmentButton>
             </IonSegment>
           </IonToolbar>
         )}
@@ -131,7 +142,7 @@ const SchedulePage: React.FC<SchedulePageProps> = ({
       <IonContent fullscreen={true}>
         <IonHeader collapse="condense">
           <IonToolbar>
-            <IonTitle size="large">Schedule</IonTitle>
+            <IonTitle size="large">Uploads</IonTitle>
           </IonToolbar>
           <IonToolbar>
             <IonSearchbar
@@ -141,32 +152,57 @@ const SchedulePage: React.FC<SchedulePageProps> = ({
           </IonToolbar>
         </IonHeader>
 
-        <IonRefresher
-          slot="fixed"
-          ref={ionRefresherRef}
-          onIonRefresh={doRefresh}
-        >
-          <IonRefresherContent />
-        </IonRefresher>
+        <IonItem className="mt-4">
+            <IonInput
+              id="pdfInput"
+              fill="solid"
+              label="Add PDF"
+              labelPlacement="floating"
+              className="rounded-lg"
+              readonly
+              value={pdfFileName}
+              onClick={() => hiddenInput.current?.click()}
+            />
+            <input
+              type="file"
+              accept="pdf/*"
+              ref={hiddenInput}
+              onChange={handlePDFChange}
+              style={{ display: 'none' }}
+            />
+          </IonItem>
 
-        <IonToast
-          isOpen={showCompleteToast}
-          message="Refresh complete"
-          duration={2000}
-          onDidDismiss={() => setShowCompleteToast(false)}
-        />
+          <div className='ml-4'>
+            <IonButton>Upload</IonButton>
+          </div>
 
-        <SessionList
-          schedule={schedule}
-          listType={segment}
-          hide={segment === 'favorites'}
-        />
-        <SessionList
-          schedule={favoritesSchedule}
-          listType={segment}
-          hide={segment === 'all'}
-        />
+          <IonItem className="mt-4">
+            <IonText color="secondary">
+              <h4>Where is my blue jacket?</h4>
+            </IonText>
+          </IonItem>
+
+          <IonItem className="mt-4">
+            <IonTextarea
+              fill="solid"
+              label="Description"
+              autoGrow={true}
+              labelPlacement="floating"
+              className="rounded-xl"
+              value={description}
+              onIonChange={(e) =>
+                setFormState({ ...formState, description: e.detail.value! })
+              }
+            />
+          </IonItem>
       </IonContent>
+
+      <IonFooter>
+            <div className='flex justify-center gap-4 mb-4'>
+              <IonButton>Submit</IonButton>
+              <IonButton color="danger">Delete</IonButton>
+            </div> 
+      </IonFooter>
 
       <IonModal
         isOpen={showFilterModal}
@@ -190,5 +226,5 @@ export default connect<OwnProps, StateProps, DispatchProps>({
   mapDispatchToProps: {
     setSearchText,
   },
-  component: React.memo(SchedulePage),
+  component: React.memo(Uploads),
 });

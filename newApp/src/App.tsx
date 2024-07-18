@@ -55,7 +55,7 @@ import Login from './pages/Login/Login';
 import Signup from './pages/Signup/Signup';
 import Support from './pages/Patient/Support';
 import Tutorial from './pages/Patient/Tutorial';
-import { Schedule } from './models/Schedule';
+import { ScheduleModel } from './models/Schedule';
 import RedirectToLogin from './components/RedirectToLogin';
 import PTabs from './pages/Caretaker/PTabs';
 import CTabs from './pages/Caretaker/CTabs';
@@ -73,7 +73,7 @@ const App: React.FC = () => {
 
 interface StateProps {
   darkMode: boolean;
-  schedule: Schedule;
+  schedule: ScheduleModel;
 }
 
 interface DispatchProps {
