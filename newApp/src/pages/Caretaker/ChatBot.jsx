@@ -19,8 +19,7 @@ import 'react-chat-elements/dist/main.css';
 
 const ChatBot = () => {
   const [messages, setMessages] =
-    useState <
-    any >
+    useState(
     [
       {
         position: 'left',
@@ -32,14 +31,11 @@ const ChatBot = () => {
           'https://img.freepik.com/free-vector/chatbot-chat-message-vectorart_78370-4104.jpg?size=338&ext=jpg&ga=GA1.1.2113030492.1720224000&semt=ais_user',
         title: 'Reva',
       },
-    ];
-  const [text, setText] = useState < string > '';
-  const textRef = useRef < string > '';
+    ]);
+  const [text, setText] = useState('');
+  const textRef = useRef({});
 
-  const imageUploadRef = useRef < HTMLInputElement > null;
-  const videoUploadRef = useRef < HTMLInputElement > null;
-  const audioUploadRef = useRef < HTMLInputElement > null;
-  const fileUploadRef = useRef < HTMLInputElement > null;
+  const audioUploadRef = useRef(null);
 
   const handleSend = (messageType, content) => {
     const newMessage = {
