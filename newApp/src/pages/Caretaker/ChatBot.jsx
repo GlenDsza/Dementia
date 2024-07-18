@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import {
   IonContent,
   IonPage,
@@ -16,30 +16,35 @@ import {
 import { MessageList } from 'react-chat-elements';
 import { mic, send } from 'ionicons/icons';
 import 'react-chat-elements/dist/main.css';
+import { SpeechRecognition } from '@capacitor-community/speech-recognition';
 
 const ChatBot = () => {
-  const [messages, setMessages] =
-    useState <
-    any >
-    [
-      {
-        position: 'left',
-        type: 'text',
-        text: "Welcome! I'm ChatBot, your AI assistant. Let me know how can I help you",
-        date: new Date(),
-        id: '3',
-        avatar:
-          'https://img.freepik.com/free-vector/chatbot-chat-message-vectorart_78370-4104.jpg?size=338&ext=jpg&ga=GA1.1.2113030492.1720224000&semt=ais_user',
-        title: 'Reva',
-      },
-    ];
-  const [text, setText] = useState < string > '';
-  const textRef = useRef < string > '';
+  const [messages, setMessages] = useState([
+    {
+      position: 'left',
+      type: 'text',
+      text: "Welcome! I'm ChatBot, your AI assistant. Let me know how can I help you",
+      date: new Date(),
+      id: '3',
+      avatar:
+        'https://img.freepik.com/free-vector/chatbot-chat-message-vectorart_78370-4104.jpg?size=338&ext=jpg&ga=GA1.1.2113030492.1720224000&semt=ais_user',
+      title: 'Reva',
+    },
+  ]);
 
-  const imageUploadRef = useRef < HTMLInputElement > null;
-  const videoUploadRef = useRef < HTMLInputElement > null;
-  const audioUploadRef = useRef < HTMLInputElement > null;
-  const fileUploadRef = useRef < HTMLInputElement > null;
+  const [text, setText] = useState('');
+  const [isAudioAvailable, setIsAudioAvailable] = useState(false);
+  const textRef = useRef('');
+
+  const checkAudioPermission = async () => {
+    await SpeechRecognition.requestPermissions();
+    const res = await SpeechRecognition.available();
+    setIsAudioAvailable(res.available);
+  };
+
+  useEffect(() => {
+    checkAudioPermission();
+  }, []);
 
   const handleSend = (messageType, content) => {
     const newMessage = {
@@ -68,17 +73,26 @@ const ChatBot = () => {
     textRef.current = '';
   };
 
-  const handleFileUpload = (event, type) => {
-    if (event.target.files && event.target.files[0]) {
-      const file = URL.createObjectURL(event.target.files[0]);
-      handleSend(type, file);
-    }
-  };
+  const getAudioInput = async () => {
+    textRef.current = '';
+    await SpeechRecognition.start({
+      language: 'en-US',
+      maxResults: 2,
+      prompt: 'Say something',
+      partialResults: true,
+      popup: true,
+    });
+    // listen to partial results
+    SpeechRecognition.addListener('partialResults', (data) => {
+      if (data.matches && data.matches.length > 0) {
+        setText(data.matches[0]);
+        textRef.current = data.matches[0];
+      }
+    });
 
-  const triggerFileInput = (inputRef) => {
-    if (inputRef.current) {
-      inputRef.current.click();
-    }
+    SpeechRecognition.addListener('end', () => {
+      console.log('Stopped listening');
+    });
   };
 
   return (
@@ -90,7 +104,7 @@ const ChatBot = () => {
       </IonHeader>
       <IonContent>
         <MessageList
-          className="chat-list"
+          className="chat-list pt-8"
           lockable={true}
           toBottomHeight={'100%'}
           dataSource={messages.map((msg, index) => ({
@@ -110,42 +124,32 @@ const ChatBot = () => {
       <IonFooter>
         <IonToolbar>
           <IonGrid>
-            <IonRow>
-              <IonCol size="1">
-                <input
-                  type="file"
-                  accept="audio/*"
-                  style={{ display: 'none' }}
-                  id="audio-upload"
-                  ref={audioUploadRef}
-                  onChange={(e) => handleFileUpload(e, 'audio')}
-                />
-                <IonFabButton
-                  size="small"
-                  onClick={() => triggerFileInput(audioUploadRef)}
-                >
+            <IonRow className="flex items-center">
+              <div>
+                <IonFabButton size="small" onClick={getAudioInput}>
                   <IonIcon icon={mic} />
                 </IonFabButton>
-              </IonCol>
+              </div>
 
-              <IonCol size="8">
+              <div className="flex-grow">
                 <IonInput
-                  value={text}
+                  value={textRef.current}
+                  className={`ml-2`}
                   placeholder="Type a message"
                   onIonChange={(e) => {
                     setText(e.detail.value);
                     textRef.current = e.detail.value;
                   }}
                 />
-              </IonCol>
-              <IonCol size="1">
+              </div>
+              <div>
                 <IonFabButton
                   size="small"
                   onClick={() => handleSend('text', textRef.current)}
                 >
                   <IonIcon icon={send} />
                 </IonFabButton>
-              </IonCol>
+              </div>
             </IonRow>
           </IonGrid>
         </IonToolbar>

@@ -6,3 +6,11 @@ ion-back-button::part(text) {
   height: 1px;
   overflow: hidden;
 }
+
+ion-content {
+  --background: transparent !important;
+}
+
+body {
+  background: transparent !important;
+}

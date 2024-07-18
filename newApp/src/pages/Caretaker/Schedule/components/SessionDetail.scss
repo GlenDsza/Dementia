@@ -71,3 +71,11 @@
     margin: 0;
   }
 }
+
+ion-content {
+  --background: transparent !important;
+}
+
+body {
+  background: transparent !important;
+}
