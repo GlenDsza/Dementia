@@ -200,10 +200,10 @@ const Home: React.FC<HomeProps> = ({
               className="rounded-lg"
             />
             <div className="flex flex-col ml-2 flex-grow">
-              <h3 className="mb-0 mt-2">John Doe</h3>
-              <span className="mt-1 text-xs">70 years</span>
+              <h3 className="mb-0 mt-2">Mary Parker</h3>
+              <span className="mt-1 text-xs">45 years</span>
               <span className="mt-1 text-xs">
-                1234 Main St, City, State, Zip
+                1234 Main St,London
               </span>
             </div>
             <IonButton fill="clear">
