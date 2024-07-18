@@ -19,8 +19,7 @@ import 'react-chat-elements/dist/main.css';
 
 const ChatBot = () => {
   const [messages, setMessages] =
-    useState <
-    any >
+    useState <any >
     [
       {
         position: 'left',

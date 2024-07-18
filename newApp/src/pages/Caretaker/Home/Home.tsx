@@ -211,10 +211,10 @@ const Home: React.FC<HomeProps> = ({
               className="rounded-lg"
             />
             <div className="flex flex-col ml-2 flex-grow">
-              <h3 className="mb-0 mt-2">John Doe</h3>
-              <span className="mt-1 text-xs">70 years</span>
+              <h3 className="mb-0 mt-2">Mary Parker</h3>
+              <span className="mt-1 text-xs">45 years</span>
               <span className="mt-1 text-xs">
-                1234 Main St, City, State, Zip
+                1234 Main St,London
               </span>
             </div>
             <IonButton fill="clear">
@@ -251,13 +251,13 @@ const Home: React.FC<HomeProps> = ({
               <div className="flex items-center w-full">
                 <BsFillInfoCircleFill size={20} color="#20a732" />
                 <p className="text-xs ml-2">
-                  John reached his daily step goal of 10,000 steps.
+                  Mary reached his daily step goal of 10,000 steps.
                 </p>
               </div>
               <div className="flex items-center w-full">
                 <BsFillInfoCircleFill size={20} color="#20a732" />
                 <p className="text-xs ml-2">
-                  John took his medication at 10:00 AM.
+                  Mary took his medication at 10:00 AM.
                 </p>
               </div>
             </div>
