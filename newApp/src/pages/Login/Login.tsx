@@ -81,7 +81,7 @@ const Login: React.FC<any> = ({
         </IonHeader>
         <div>
           <IonText className="flex justify-center mt-8">
-            <IonCardTitle>Welcome !</IonCardTitle>
+            <IonCardTitle>Welcome 2</IonCardTitle>
           </IonText>
         </div>
         <IonCard className="mx-4">

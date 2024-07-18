@@ -17,12 +17,12 @@ import {
   IonText,
   IonTitle,
   IonToolbar,
-} from "@ionic/react";
-import React, { FC, useRef, useState } from "react";
-import { call, person } from "ionicons/icons";
-import OTPInput from "react-otp-input";
-import "./Signup.scss";
-import { useHistory } from "react-router";
+} from '@ionic/react';
+import React, { FC, useRef, useState } from 'react';
+import { call, person } from 'ionicons/icons';
+import OTPInput from 'react-otp-input';
+import './Signup.scss';
+import { useHistory } from 'react-router';
 
 export interface UserDetailsInterface {
   name: string;
@@ -32,10 +32,10 @@ export interface UserDetailsInterface {
 const Signup: FC = () => {
   const history = useHistory();
   const otpModal = useRef<HTMLIonModalElement>(null);
-  const [otp, setOtp] = useState<string>("");
+  const [otp, setOtp] = useState<string>('');
   const [userDetails, setUserDetails] = useState<UserDetailsInterface>({
-    name: "abcd",
-    mobile: "",
+    name: 'abcd',
+    mobile: '',
   });
   const { name, mobile } = userDetails;
   const handleSubmit = () => {
@@ -49,10 +49,15 @@ const Signup: FC = () => {
     <IonPage>
       <IonContent fullscreen className="ion-padding">
         <IonHeader>
-          <IonToolbar style={{ borderRadius: "1rem" }}>
+          <IonToolbar style={{ borderRadius: '1rem' }}>
             <div className="title">
-              <img src="/assets/icon/favicon.png" alt="Logo" width={30} height={30} />
-              <h1>Dementia 101</h1>
+              <img
+                src="/assets/icon/favicon.png"
+                alt="Logo"
+                width={30}
+                height={30}
+              />
+              <h1>Reva</h1>
             </div>
           </IonToolbar>
         </IonHeader>
@@ -134,10 +139,10 @@ const Signup: FC = () => {
             </IonCardTitle>
             <OTPInput
               containerStyle={{
-                height: "100%",
-                width: "100%",
-                justifyContent: "center",
-                marginTop: "0.25rem",
+                height: '100%',
+                width: '100%',
+                justifyContent: 'center',
+                marginTop: '0.25rem',
               }}
               value={otp}
               onChange={setOtp}
@@ -146,11 +151,11 @@ const Signup: FC = () => {
               renderInput={(props) => <input {...props} />}
               inputType="number"
               inputStyle={{
-                padding: "1rem",
-                borderRadius: "0.5rem",
-                border: "1px solid #ccc",
-                width: "3rem",
-                textAlign: "center",
+                padding: '1rem',
+                borderRadius: '0.5rem',
+                border: '1px solid #ccc',
+                width: '3rem',
+                textAlign: 'center',
               }}
             />
             <IonButton fill="outline" expand="block" onClick={handleSubmitOtp}>
