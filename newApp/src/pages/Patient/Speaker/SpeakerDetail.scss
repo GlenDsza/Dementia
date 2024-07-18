@@ -1,9 +1,9 @@
-#speaker-detail {
+#speaker-detail-new {
   /*
    * Speaker Background
    */
 
-  ion-toolbar {
+   ion-toolbar {
     position: absolute;
 
     top: 0;
@@ -35,22 +35,15 @@
     height: calc(250px + var(--ion-safe-area-top));
 
     background: center / cover url("/assets/img/speaker-background.png")
-      no-repeat;
+    no-repeat;
   }
 
   .speaker-background img {
-    width: 70px;
-    border-radius: 50%;
+    width: 80%;
+    height: 100%;
     margin-top: calc(-1 * var(--ion-safe-area-top));
   }
 
-  .speaker-background h2 {
-    position: absolute;
-
-    bottom: 10px;
-
-    color: white;
-  }
 
   .md .speaker-background {
     box-shadow: rgba(0, 0, 0, 0.2) 0 3px 1px -2px,
@@ -75,5 +68,14 @@
     margin-bottom: 20px;
 
     background: var(--ion-color-step-150, #d7d8da);
+  }
+
+  .speaker-map{
+    height: 300px;
+    margin-top: -45px !important;
+  }
+
+  .ion-padding{
+    padding-top: 0px !important;
   }
 }

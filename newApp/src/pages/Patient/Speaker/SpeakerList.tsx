@@ -11,11 +11,11 @@ import {
   IonRow,
   IonCol,
 } from '@ionic/react';
-import SpeakerItem from '../../components/SpeakerItem';
-import { Speaker } from '../../models/Speaker';
-import { Session } from '../../models/Schedule';
-import { connect } from '../../data/connect';
-import * as selectors from '../../data/selectors';
+import SpeakerItem from '../../../components/SpeakerItem';
+import { Speaker } from '../../../models/Speaker';
+import { Session } from '../../../models/Schedule';
+import { connect } from '../../../data/connect';
+import * as selectors from '../../../data/selectors';
 import './SpeakerList.scss';
 
 interface OwnProps {}
@@ -45,12 +45,6 @@ const SpeakerList: React.FC<SpeakerListProps> = ({
       </IonHeader>
 
       <IonContent fullscreen={true}>
-        {/* <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Speakers</IonTitle>
-          </IonToolbar>
-        </IonHeader> */}
-
         <IonGrid fixed>
           <IonRow>
             {speakers.map((speaker) => (

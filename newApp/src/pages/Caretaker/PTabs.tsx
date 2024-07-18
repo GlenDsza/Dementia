@@ -10,8 +10,8 @@ import {
 import { Route, Redirect } from 'react-router';
 import { calendar, location, informationCircle, people } from 'ionicons/icons';
 import SchedulePage from '../Patient/SchedulePage';
-import SpeakerList from '../Patient/SpeakerList';
-import SpeakerDetail from '../Patient/SpeakerDetail';
+import SpeakerList from '../Patient/Speaker/SpeakerList';
+import SpeakerDetail from '../Patient/Speaker/SpeakerDetail';
 import SessionDetail from '../Patient/SessionDetail';
 import MapView from '../Patient/MapView';
 import About from '../Patient/About';

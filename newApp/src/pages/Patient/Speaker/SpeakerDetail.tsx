@@ -27,13 +27,14 @@ import {
   shareSharp,
 } from 'ionicons/icons';
 
-import { connect } from '../../data/connect';
-import * as selectors from '../../data/selectors';
+import { connect } from '../../../data/connect';
+import * as selectors from '../../../data/selectors';
 
-import { Speaker } from '../../models/Speaker';
+import { Speaker } from '../../../models/Speaker';
+import SpeakerMap from './SpeakerMap';
 
 interface OwnProps extends RouteComponentProps {
-  speaker?: Speaker;
+  speaker?: any;
 }
 
 interface StateProps {}
@@ -103,12 +104,12 @@ const SpeakerDetail: React.FC<SpeakerDetailProps> = ({ speaker }) => {
   }
 
   return (
-    <IonPage id="speaker-detail">
+    <IonPage id="speaker-detail-new">
       <IonContent>
         <IonHeader className="ion-no-border">
           <IonToolbar>
             <IonButtons slot="start">
-              <IonBackButton defaultHref="/tabs/speakers" />
+              <IonBackButton defaultHref="/ptabs/speakers" />
             </IonButtons>
             <IonButtons slot="end">
               <IonButton onClick={() => openContact(speaker)}>
@@ -131,14 +132,19 @@ const SpeakerDetail: React.FC<SpeakerDetailProps> = ({ speaker }) => {
 
         <div className="speaker-background">
           <img src={speaker.profilePic} alt={speaker.name} />
-          <h2>{speaker.name}</h2>
         </div>
 
         <div className="ion-padding speaker-detail">
+          <h2>{speaker.name}</h2>
           <p>{speaker.about}</p>
 
           <hr />
         </div>
+        {speaker.type != 'person' ? (
+          <div className="ion-padding speaker-map">
+            <SpeakerMap />
+          </div>
+        ) : null}
       </IonContent>
       <IonActionSheet
         isOpen={showActionSheet}

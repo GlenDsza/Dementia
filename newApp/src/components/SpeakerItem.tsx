@@ -16,12 +16,17 @@ import {
   ActionSheetButton,
   IonActionSheet,
 } from '@ionic/react';
-import { callOutline, callSharp } from 'ionicons/icons';
+import {
+  callOutline,
+  callSharp,
+  navigateCircleSharp,
+  navigateCircle,
+} from 'ionicons/icons';
 import { useHistory } from 'react-router-dom';
 import './SpeakerItem.css';
 
 interface SpeakerItemProps {
-  speaker: Speaker;
+  speaker: any;
   sessions: Session[];
 }
 
@@ -34,18 +39,22 @@ const SpeakerItem: React.FC<SpeakerItemProps> = ({ speaker, sessions }) => {
   >([]);
   const [actionSheetHeader, setActionSheetHeader] = useState('');
 
-  function openContact(speaker: Speaker, event: any) {
+  function openContact(speaker: any, event: any) {
     event.stopPropagation(); // Prevents the card click event
-    setActionSheetButtons([
-      {
-        text: `Call ( ${speaker.phone} )`,
-        handler: () => {
-          window.open('tel:' + speaker.phone);
+    if (speaker.type === 'person') {
+      setActionSheetButtons([
+        {
+          text: `Call ( ${speaker.phone} )`,
+          handler: () => {
+            window.open('tel:' + speaker.phone);
+          },
         },
-      },
-    ]);
-    setActionSheetHeader(`Share ${speaker.name}`);
-    setShowActionSheet(true);
+      ]);
+      setActionSheetHeader(`Call ${speaker.name}`);
+      setShowActionSheet(true);
+    } else {
+      history.push(`/ptabs/speakers/${speaker.id}`);
+    }
   }
 
   const navigateToPage = () => {
@@ -67,11 +76,19 @@ const SpeakerItem: React.FC<SpeakerItemProps> = ({ speaker, sessions }) => {
             onClick={(e) => openContact(speaker, e)}
             className="speaker-call-button"
           >
-            <IonIcon
-              slot="icon-only"
-              ios={callOutline}
-              md={callSharp}
-            ></IonIcon>
+            {speaker.type == 'person' ? (
+              <IonIcon
+                slot="icon-only"
+                ios={callOutline}
+                md={callSharp}
+              ></IonIcon>
+            ) : (
+              <IonIcon
+                slot="icon-only"
+                ios={navigateCircle}
+                md={navigateCircleSharp}
+              ></IonIcon>
+            )}
           </IonButton>
         </IonCardHeader>
       </IonCard>
