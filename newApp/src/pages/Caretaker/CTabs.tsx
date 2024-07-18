@@ -26,6 +26,8 @@ import Home from './Home/Home';
 import Community from './Community';
 import Chat from './Chat';
 import ChatBot from './ChatBot';
+import Notification from './Notifications/Notifications';
+import NotificationDetail from './Notifications/NotificationDetail';
 
 interface CTabsProps {}
 
@@ -53,6 +55,7 @@ const CTabs: React.FC<CTabsProps> = () => {
         <Route path="/ctabs/community" component={Community} exact={true} />
         <Route path='/ctabs/community/chat' component={Chat} exact={true}/>
         <Redirect from="/" to="/community/chat" exact />
+        <Route path="/ctabs/notifications" render={() => <Notification />} exact={true}/>
         <Route path="/ctabs/chatbot" component={ChatBot} exact={true}/>
         <Route path="/ctabs/schedule/:id" component={SessionDetail} />
         <Route path="/ctabs/speakers/sessions/:id" component={SessionDetail} />
