@@ -158,7 +158,7 @@ const SpeakerDetail: React.FC<SpeakerDetailProps> = ({ speaker }) => {
             <IonCardTitle>{speaker.name}</IonCardTitle>
             {speaker.type == 'person' ? (
               <IonButton
-                onClick={(e) => openContact(speaker, e)}
+                onClick={(e) => openContact(speaker)}
                 className="speaker-call-button"
               >
                 <IonIcon
