@@ -38,8 +38,6 @@ const SessionItem: FC<SessionItemProps> = ({ routine }) => {
     const routineEndTime = new Date();
     routineEndTime.setHours(endHour24, parseInt(endMinutes), 0, 0);
 
-    console.log({ currentDate, routineEndTime });
-
     return currentDate > routineEndTime;
   };
 
@@ -50,16 +48,19 @@ const SessionItem: FC<SessionItemProps> = ({ routine }) => {
           routerLink={`/ctabs/schedule/${routine.id}`}
           className="flex-grow"
         >
-          <IonLabel className={`primary pl-4 flex-grow`}>
+          <IonLabel
+            className={`${
+              isRoutineEndTimePast(routine) ? 'success' : 'primary'
+            } pl-4 flex-grow`}
+          >
             <div className="flex gap-4 mb-2">
               <h3>{routine.name}</h3>
 
               {isRoutineEndTimePast(routine) ? (
                 <IonBadge
-                  color="primary"
-                  className="rounded-xl text-white flex items-center px-2"
+                  color="success"
+                  className="rounded-xl text-white flex items-center"
                 >
-                  Ended
                   <TiTick
                     size={15}
                     style={{ marginBottom: '0.1rem', marginLeft: '0.1rem' }}
@@ -89,7 +90,7 @@ const SessionItem: FC<SessionItemProps> = ({ routine }) => {
             slot="end"
             icon={trashOutline}
             aria-hidden="true"
-            size="large"
+            style={{ width: '1.5rem', height: '1.5rem' }}
           />
         </IonButton>
       </div>

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   IonHeader,
   IonToolbar,
@@ -9,12 +9,9 @@ import {
   IonButton,
   IonIcon,
   IonText,
-  IonList,
-  IonItem,
-  IonLabel,
-  useIonViewWillEnter,
   IonFab,
   IonFabButton,
+  IonTitle,
 } from '@ionic/react';
 import { connect } from '../../../../data/connect';
 import { withRouter, RouteComponentProps, useParams } from 'react-router';
@@ -28,10 +25,6 @@ import {
 } from 'ionicons/icons';
 import { GoogleMap, Polyline } from '@capacitor/google-maps';
 import './SessionDetail.scss';
-import {
-  addFavorite,
-  removeFavorite,
-} from '../../../../data/sessions/sessions.actions';
 import { Session } from '../../../../models/Schedule';
 import { RoutineInterface, routines } from '../../../../constants';
 import { decode } from '@googlemaps/polyline-codec';
@@ -175,6 +168,7 @@ const SessionDetail: React.FC<SessionDetailProps> = ({ session }) => {
     <IonPage id="session-detail-page">
       <IonHeader>
         <IonToolbar>
+          <IonTitle size="large">Schedule Details</IonTitle>
           <IonButtons slot="start">
             <IonBackButton defaultHref="/ctabs/schedule"></IonBackButton>
           </IonButtons>
@@ -202,7 +196,7 @@ const SessionDetail: React.FC<SessionDetailProps> = ({ session }) => {
             </div>
             <div className="mt-2">
               {routine?.location
-                ? routine.location.name
+                ? 'Location: ' + routine.location.name
                 : 'Route: ' +
                   routine?.startLocation?.name +
                   ' - ' +
