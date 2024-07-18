@@ -9,13 +9,12 @@ import {
 } from '@ionic/react';
 import { Route, Redirect } from 'react-router';
 import { calendar, location, informationCircle, people } from 'ionicons/icons';
-import SchedulePage from '../Patient/SchedulePage';
-import SpeakerList from '../Patient/SpeakerList';
-import SpeakerDetail from '../Patient/SpeakerDetail';
-import SessionDetail from '../Patient/SessionDetail';
-import MapView from '../Patient/MapView';
-import About from '../Patient/About';
-import Home from '../Patient/Home';
+import SchedulePage from './Schedule/Schedule';
+import SpeakerList from './Speaker/SpeakerList';
+import SpeakerDetail from './Speaker/SpeakerDetail';
+import SessionDetail from './Schedule/components/SessionDetail';
+import MapView from './MapView';
+import About from './About';
 
 interface PTabsProps {}
 
@@ -24,7 +23,6 @@ const PTabs: React.FC<PTabsProps> = () => {
     <IonTabs>
       <IonRouterOutlet>
         <Redirect exact path="/ptabs" to="/ptabs/schedule" />
-        <Route path="/ptabs/home" render={() => <Home />} exact={true} />
         <Route
           path="/ptabs/schedule"
           render={() => <SchedulePage />}
@@ -41,7 +39,6 @@ const PTabs: React.FC<PTabsProps> = () => {
           exact={true}
         />
         <Route path="/ptabs/schedule/:id" component={SessionDetail} />
-        <Route path="/ptabs/speakers/sessions/:id" component={SessionDetail} />
         <Route path="/ptabs/map" render={() => <MapView />} exact={true} />
         <Route path="/ptabs/about" render={() => <About />} exact={true} />
       </IonRouterOutlet>
@@ -52,7 +49,7 @@ const PTabs: React.FC<PTabsProps> = () => {
         </IonTabButton>
         <IonTabButton tab="speakers" href="/ptabs/speakers">
           <IonIcon icon={people} />
-          <IonLabel>Speakers</IonLabel>
+          <IonLabel>Members</IonLabel>
         </IonTabButton>
         <IonTabButton tab="map" href="/ptabs/map">
           <IonIcon icon={location} />
