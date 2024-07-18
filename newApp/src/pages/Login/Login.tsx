@@ -56,6 +56,8 @@ const Login: React.FC<any> = ({
   };
 
   const handleSubmitOtp = () => {
+    // Save user type to local storage
+    localStorage.setItem('userType', userType);
     const url = userType === 'patient' ? '/ptabs' : '/ctabs';
     setIsLoggedIn(true);
     setUsername('Harit2101');

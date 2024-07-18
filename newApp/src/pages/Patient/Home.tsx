@@ -1,4 +1,5 @@
-import React, { useRef, useState } from 'react';
+
+import React, { useState } from 'react';
 import {
   IonHeader,
   IonToolbar,
@@ -21,23 +22,15 @@ import {
   IonList,
   IonCard,
   IonCardContent,
+  IonCheckbox,
 } from '@ionic/react';
 import { add, trash } from 'ionicons/icons';
-import MemberItem from './components/MemberItem';
-import { Speaker } from '../../../models/Speaker';
-import { Session } from '../../../models/Schedule';
-import { connect } from '../../../data/connect';
-import * as selectors from '../../../data/selectors';
-import { Todo } from '../../../models/Todo';
-import { call } from 'ionicons/icons';
-import '../../../theme/styles.css';
-import './Home.scss';
-import { TbClockHour4Filled } from 'react-icons/tb';
-import { IoNotifications } from 'react-icons/io5';
-import RoutineItem from './components/RoutineItem';
-import { routines2 } from '../../../constants';
-import { useHistory } from 'react-router';
-import Notification from '../Notifications/Notifications';
+// import SpeakerItem from '../../components/SpeakerItem';
+import { Speaker } from '../../models/Speaker';
+import { Session } from '../../models/Schedule';
+import { connect } from '../../data/connect';
+import * as selectors from '../../data/selectors';
+import { Todo } from '../../models/Todo';
 
 interface OwnProps {}
 
@@ -48,9 +41,9 @@ interface StateProps {
 
 interface DispatchProps {}
 
-interface HomeProps extends OwnProps, StateProps, DispatchProps {}
+interface SpeakerListProps extends OwnProps, StateProps, DispatchProps {}
 
-const Home: React.FC<HomeProps> = ({
+const SpeakerList: React.FC<SpeakerListProps> = ({
   speakers: initialSpeakers,
   speakerSessions,
 }) => {
@@ -58,7 +51,6 @@ const Home: React.FC<HomeProps> = ({
   const [showSpeakerModal, setShowSpeakerModal] = useState(false);
   const [showTodoModal, setShowTodoModal] = useState(false);
   const [showLocationModal, setShowLocationModal] = useState(false);
-  const history = useHistory();
 
   //caller list
   const [newSpeaker, setNewSpeaker] = useState<Partial<Speaker>>({
@@ -97,15 +89,14 @@ const Home: React.FC<HomeProps> = ({
 
   const handleAddSpeaker = () => {
     setShowSpeakerModal(false);
-    const newId =
-      speakers.length > 0 ? Math.max(...speakers.map((s) => s.id)) + 1 : 1;
+    const newId = speakers.length > 0 ? Math.max(...speakers.map(s => s.id)) + 1 : 1;
     const newSpeakerWithId = { ...newSpeaker, id: newId };
     setSpeakers([...speakers, newSpeakerWithId as Speaker]);
     setNewSpeaker({ id: undefined, profilePic: '', name: '', phone: '' });
   };
 
   const handleDeleteSpeaker = (id: number) => {
-    setSpeakers(speakers.filter((speaker) => speaker.id !== id));
+    setSpeakers(speakers.filter(speaker => speaker.id !== id));
   };
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -121,7 +112,7 @@ const Home: React.FC<HomeProps> = ({
       reader.readAsDataURL(file);
     }
   };
-
+  
   // Functions for managing todos
   const handleTodoInputChange = (e: CustomEvent) => {
     const { name, value } = e.target as HTMLInputElement;
@@ -129,8 +120,7 @@ const Home: React.FC<HomeProps> = ({
   };
 
   const handleAddTodo = () => {
-    const newId =
-      todos.length > 0 ? Math.max(...todos.map((t) => t.id)) + 1 : 1;
+    const newId = todos.length > 0 ? Math.max(...todos.map(t => t.id)) + 1 : 1;
     const newTodoWithId = { ...newTodo, id: newId };
     setTodos([...todos, newTodoWithId as Todo]);
     setNewTodo({
@@ -147,7 +137,7 @@ const Home: React.FC<HomeProps> = ({
   };
 
   const handleDeleteTodo = (id: number) => {
-    setTodos(todos.filter((todo) => todo.id !== id));
+    setTodos(todos.filter(todo => todo.id !== id));
   };
 
   // Functions for managing locations
@@ -157,8 +147,7 @@ const Home: React.FC<HomeProps> = ({
   };
 
   const handleAddLocation = () => {
-    const newId =
-      locations.length > 0 ? Math.max(...locations.map((l) => l.id)) + 1 : 1;
+    const newId = locations.length > 0 ? Math.max(...locations.map(l => l.id)) + 1 : 1;
     const newLocationWithId = { ...newLocation, id: newId };
     setLocations([...locations, newLocationWithId]);
     setNewLocation({
@@ -170,106 +159,49 @@ const Home: React.FC<HomeProps> = ({
   };
 
   const handleDeleteLocation = (id: number) => {
-    setLocations(locations.filter((location) => location.id !== id));
+    setLocations(locations.filter(location => location.id !== id));
   };
+
   return (
     <IonPage id="speaker-list">
       <IonHeader translucent={true}>
-        <IonToolbar className="flex">
+        <IonToolbar>
           <IonButtons slot="start">
             <IonMenuButton />
           </IonButtons>
           <IonTitle>Home</IonTitle>
-          <IonButtons slot="end">
-            <IonButton onClick={() => history.push('/ctabs/notifications')}>
-              <IoNotifications size={25} color="#737373" />
-            </IonButton>
-          </IonButtons>
         </IonToolbar>
       </IonHeader>
 
       <IonContent fullscreen={true}>
+        <IonHeader collapse="condense">
+          <IonToolbar>
+            <IonTitle size="large">Home</IonTitle>
+          </IonToolbar>
+        </IonHeader>
         <div className="scrollable-container">
-          {/* Patient Details */}
-          <IonCard className="rounded-xl card-shadow flex p-2 mt-4">
-            <img
-              src="/assets/img/patient.png"
-              alt="patientImg"
-              width={80}
-              height={80}
-              className="rounded-lg"
-            />
-            <div className="flex flex-col ml-2 flex-grow">
-              <h3 className="mb-0 mt-2">Mary Parker</h3>
-              <span className="mt-1 text-xs">45 years</span>
-              <span className="mt-1 text-xs">
-                1234 Main St,London
-              </span>
-            </div>
-            <IonButton fill="clear">
-              <IonIcon slot="end" icon={call} aria-hidden="true" className="" />
-            </IonButton>
-          </IonCard>
-          {/* Current Routine */}
-          <IonCard className="rounded-xl card-shadow flex flex-col mt-4 p-4 mb-4">
-            <div className="flex items-center mb-2">
-              <TbClockHour4Filled size={25} color="#737373" />
-              <h4 className="mb-1 mt-2 ml-2">Routine</h4>
-            </div>
-            <div className="flex flex-col gap-4">
-              {routines2.slice(0, 4).map((routine, index) => (
-                <RoutineItem
-                  key={index}
-                  type={routine.type}
-                  title={routine.title}
-                  startTime={routine.startTime}
-                  endTime={routine.endTime}
-                  location={routine.location}
-                />
-              ))}
-            </div>
-          </IonCard>
-
-          {/* Latest Notifications */}
-
-          <IonCard className="rounded-xl card-shadow flex flex-col mt-4 p-4 mb-4">
-            <div className="flex items-center mb-2">
-              <TbClockHour4Filled size={25} color="#737373" />
-              <h4 className="mb-1 mt-2 ml-2">Notification</h4>
-            </div>
-            <div className="flex flex-col gap-4">
-              <Notification />
-            </div>
-          </IonCard>
-
           <IonGrid fixed>
-            {/* <div className="flex overflow-x-scroll">
-              {members.map((speaker, index) => (
-                <div key={index}>
-                  <MemberItem
-                    key={index}
+            <IonRow className="speaker-list-add" style={{ flexWrap: 'nowrap', overflowX: 'auto' }}>
+              {speakers.map((speaker) => (
+                <IonCol size="11" size-md="4" size-lg="4" key={speaker.id}>
+                  {/* <SpeakerItem
+                    key={speaker.id}
                     speaker={speaker}
                     sessions={speakerSessions[speaker.name]}
                     onDelete={() => handleDeleteSpeaker(speaker.id)}
-                  />
-                </div>
+                  /> */}
+                </IonCol>
               ))}
-            </div> */}
-
-            {/* <IonCol
-              size="12"
-              size-md="6"
-              size-lg="8"
-              className="add-speaker-col"
-            >
+            </IonRow>
+            <IonCol size="12" size-md="6" size-lg="8" className="add-speaker-col">
               <IonFab vertical="bottom" horizontal="end">
                 <IonFabButton onClick={() => setShowSpeakerModal(true)}>
                   <IonIcon icon={add} />
                 </IonFabButton>
               </IonFab>
-            </IonCol> */}
+            </IonCol>
 
-            {/* <IonRow className="todo-list">
+            <IonRow className="todo-list">
               <IonCol size="12" size-md="6" size-lg="8">
                 <h5 style={{ paddingLeft: '14px' }}>Routine</h5>
                 <IonFab vertical="top" horizontal="end">
@@ -278,17 +210,13 @@ const Home: React.FC<HomeProps> = ({
                   </IonFabButton>
                 </IonFab>
                 <IonList>
-                  {todos.map((todo) => (
+                  {todos.map(todo => (
                     <IonCard key={todo.id}>
-                      <IonCardContent className="todo-list-card">
-                        <IonItem className="todo-list-card-item">
+                      <IonCardContent className='todo-list-card'>
+                        <IonItem className='todo-list-card-item'>
                           <IonLabel>{todo.name}</IonLabel>
                           <IonCheckbox slot="end" checked={todo.completed} />
-                          <IonButton
-                            fill="clear"
-                            slot="end"
-                            onClick={() => handleDeleteTodo(todo.id)}
-                          >
+                          <IonButton fill="clear" slot="end" onClick={() => handleDeleteTodo(todo.id)}>
                             <IonIcon icon={trash} />
                           </IonButton>
                         </IonItem>
@@ -297,51 +225,29 @@ const Home: React.FC<HomeProps> = ({
                   ))}
                 </IonList>
               </IonCol>
-            </IonRow> */}
+            </IonRow>
 
-            <IonRow
-              className="location-list-add"
-              style={{ flexWrap: 'nowrap', overflowX: 'auto' }}
-            >
-              {/* <h5 style={{ paddingLeft: '14px' }}>Let's Go</h5> */}
-
+            <IonRow className="location-list-add" style={{ flexWrap: 'nowrap', overflowX: 'auto' }}>
+            {/* <h5 style={{ paddingLeft: '14px' }}>Let's Go</h5> */}
+            
               {locations.map((location) => (
-                <IonCol
-                  className="location-card"
-                  size="11"
-                  size-md="7"
-                  size-lg="4"
-                  key={location.id}
-                >
+                <IonCol className='location-card' size="11" size-md="7" size-lg="4" key={location.id}>
                   <IonCard>
                     <img src={location.imageUrl} alt={location.name} />
                     <IonCardContent>
                       <h2>{location.name}</h2>
-                      <IonButton
-                        fill="solid"
-                        onClick={() => {
-                          /* Add navigation logic here */
-                        }}
-                      >
+                      <IonButton fill="solid" onClick={() => { /* Add navigation logic here */ }}>
                         Go
                       </IonButton>
-                      <IonButton
-                        fill="clear"
-                        onClick={() => handleDeleteLocation(location.id)}
-                      >
-                        <IonIcon icon={trash} />
+                      <IonButton fill="clear" onClick={() => handleDeleteLocation(location.id)}>
+                        <IonIcon icon={trash}/>
                       </IonButton>
                     </IonCardContent>
                   </IonCard>
                 </IonCol>
               ))}
             </IonRow>
-            <IonCol
-              size="12"
-              size-md="6"
-              size-lg="8"
-              className="add-speaker-col"
-            >
+            <IonCol size="12" size-md="6" size-lg="8" className="add-speaker-col">
               <IonFab vertical="bottom" horizontal="end">
                 <IonFabButton onClick={() => setShowLocationModal(true)}>
                   <IonIcon icon={add} />
@@ -351,17 +257,12 @@ const Home: React.FC<HomeProps> = ({
           </IonGrid>
         </div>
 
-        <IonModal
-          isOpen={showSpeakerModal}
-          onDidDismiss={() => setShowSpeakerModal(false)}
-        >
+        <IonModal isOpen={showSpeakerModal} onDidDismiss={() => setShowSpeakerModal(false)}>
           <IonHeader>
             <IonToolbar>
               <IonTitle>Add New Speaker</IonTitle>
               <IonButtons slot="end">
-                <IonButton onClick={() => setShowSpeakerModal(false)}>
-                  Close
-                </IonButton>
+                <IonButton onClick={() => setShowSpeakerModal(false)}>Close</IonButton>
               </IonButtons>
             </IonToolbar>
           </IonHeader>
@@ -396,17 +297,12 @@ const Home: React.FC<HomeProps> = ({
           </IonContent>
         </IonModal>
 
-        <IonModal
-          isOpen={showTodoModal}
-          onDidDismiss={() => setShowTodoModal(false)}
-        >
+        <IonModal isOpen={showTodoModal} onDidDismiss={() => setShowTodoModal(false)}>
           <IonHeader>
             <IonToolbar>
               <IonTitle>Add New To-Do</IonTitle>
               <IonButtons slot="end">
-                <IonButton onClick={() => setShowTodoModal(false)}>
-                  Close
-                </IonButton>
+                <IonButton onClick={() => setShowTodoModal(false)}>Close</IonButton>
               </IonButtons>
             </IonToolbar>
           </IonHeader>
@@ -453,27 +349,15 @@ const Home: React.FC<HomeProps> = ({
             </IonItem> */}
             <IonItem>
               <IonLabel position="stacked">Image URL</IonLabel>
-              <IonInput
-                name="image"
-                value={newTodo.image}
-                onIonChange={handleTodoInputChange}
-              />
-              <input
-                type="file"
-                accept="image/*"
-                onChange={(e) => handleImageUpload(e)}
-              />
+              <IonInput name="image" value={newTodo.image} onIonChange={handleTodoInputChange} />
+              <input type="file" accept="image/*" onChange={(e) => handleImageUpload(e)} />
             </IonItem>
             <IonItem>
-              <IonLabel position="stacked">Image Preview</IonLabel>
-              {newTodo.image && (
-                <img
-                  src={newTodo.image}
-                  alt="Uploaded"
-                  style={{ maxWidth: '100%', height: 'auto' }}
-                />
-              )}
-            </IonItem>
+            <IonLabel position="stacked">Image Preview</IonLabel>
+            {newTodo.image && (
+              <img src={newTodo.image} alt="Uploaded" style={{ maxWidth: '100%', height: 'auto' }} />
+            )}
+          </IonItem>
 
             <IonItem>
               <IonLabel position="stacked">Map URL</IonLabel>
@@ -489,17 +373,12 @@ const Home: React.FC<HomeProps> = ({
           </IonContent>
         </IonModal>
 
-        <IonModal
-          isOpen={showLocationModal}
-          onDidDismiss={() => setShowLocationModal(false)}
-        >
+        <IonModal isOpen={showLocationModal} onDidDismiss={() => setShowLocationModal(false)}>
           <IonHeader>
             <IonToolbar>
               <IonTitle>Add New Location</IonTitle>
               <IonButtons slot="end">
-                <IonButton onClick={() => setShowLocationModal(false)}>
-                  Close
-                </IonButton>
+                <IonButton onClick={() => setShowLocationModal(false)}>Close</IonButton>
               </IonButtons>
             </IonToolbar>
           </IonHeader>
@@ -520,11 +399,7 @@ const Home: React.FC<HomeProps> = ({
                 onIonChange={handleLocationInputChange}
               />
             </IonItem>
-            <input
-              type="file"
-              accept="image/*"
-              onChange={(e) => handleImageUpload(e)}
-            />
+            <input type="file" accept="image/*" onChange={(e) => handleImageUpload(e)} />
 
             <IonItem>
               <IonLabel position="stacked">Location URL</IonLabel>
@@ -539,9 +414,9 @@ const Home: React.FC<HomeProps> = ({
             </IonButton>
           </IonContent>
         </IonModal>
-        {/* Embedded CSS */}
-
-        <style>{`
+         {/* Embedded CSS */}
+        
+          <style>{`
             #speaker-list {
               .scrollable-container {
                 height: 100vh; 
@@ -552,7 +427,7 @@ const Home: React.FC<HomeProps> = ({
                 height: 35vh; 
                 overflow-y: auto; 
                 background-color: #FDAB96;
-                border-radius: 25px;
+                border-radius: 15px;
                 padding: 10px;
               }
 
@@ -650,5 +525,5 @@ export default connect<OwnProps, StateProps, DispatchProps>({
     speakers: selectors.getSpeakers(state),
     speakerSessions: selectors.getSpeakerSessions(state),
   }),
-  component: React.memo(Home),
+  component: React.memo(SpeakerList),
 });

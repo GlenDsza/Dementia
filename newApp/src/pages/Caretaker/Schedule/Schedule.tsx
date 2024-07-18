@@ -185,7 +185,7 @@ const Schedule: React.FC<ScheduleProps> = ({
               <IonMenuButton />
             </IonButtons>
           )}
-          {!ios && !showSearchbar && <IonTitle>Schedule</IonTitle>}
+          <IonTitle>Schedule</IonTitle>
           {showSearchbar && (
             <IonSearchbar
               showCancelButton="always"
@@ -218,17 +218,6 @@ const Schedule: React.FC<ScheduleProps> = ({
       </IonHeader>
 
       <IonContent fullscreen={true}>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Schedule</IonTitle>
-          </IonToolbar>
-          <IonToolbar>
-            <IonSearchbar
-              placeholder="Search"
-              onIonInput={(e: CustomEvent) => setSearchText(e.detail.value)}
-            ></IonSearchbar>
-          </IonToolbar>
-        </IonHeader>
 
         <IonRefresher
           slot="fixed"

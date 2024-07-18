@@ -1,6 +1,5 @@
 import React from 'react';
 import { RouteComponentProps, withRouter, useLocation } from 'react-router';
-
 import {
   IonContent,
   IonIcon,
@@ -39,13 +38,10 @@ const routes = {
     { title: 'About', path: '/tabs/about', icon: informationCircleOutline },
   ],
   loggedInPages: [
-    { title: 'Account', path: '/account', icon: person },
-    { title: 'Support', path: '/support', icon: help },
     { title: 'Logout', path: '/logout', icon: logOut },
   ],
   loggedOutPages: [
     { title: 'Login', path: '/login', icon: logIn },
-    { title: 'Support', path: '/support', icon: help },
     { title: 'Signup', path: '/signup', icon: personAdd },
   ],
 };
@@ -56,6 +52,7 @@ interface Pages {
   icon: string;
   routerDirection?: string;
 }
+
 interface StateProps {
   darkMode: boolean;
   isAuthenticated: boolean;
@@ -85,9 +82,9 @@ const Menu: React.FC<MenuProps> = ({
       { title: 'Members', path: '/ctabs/speakers', icon: peopleOutline },
       { title: 'Notification', path: '/ctabs/map', icon: mapOutline },
       {
-        title: 'Upload Data',
-        path: '/ctabs/about',
-        icon: informationCircleOutline,
+        title: 'Anything for REVA',
+        path: '/ctabs/uploads',
+        icon: help,
       },
     ];
 

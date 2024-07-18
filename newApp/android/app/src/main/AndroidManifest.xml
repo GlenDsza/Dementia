@@ -24,7 +24,8 @@
 
         </activity>
 
-        <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyBpcI22DAqiUldfGdLKW_F4Kg8ZYQOdWEA"/>
+        <meta-data android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyBpcI22DAqiUldfGdLKW_F4Kg8ZYQOdWEA" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -44,4 +45,6 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-feature android:name="android.hardware.location.gps" />
+
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
 </manifest>
