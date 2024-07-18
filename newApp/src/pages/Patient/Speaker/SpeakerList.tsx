@@ -75,7 +75,11 @@ const SpeakerList: React.FC<SpeakerListProps> = ({
           </IonButtons>
           <IonTitle>Members</IonTitle>
           <IonButtons slot="end">
-            <IonButton color="danger" onClick={handleSOSClick}>
+            <IonButton
+              color="danger"
+              className="sos-button"
+              onClick={handleSOSClick}
+            >
               SOS
             </IonButton>
           </IonButtons>

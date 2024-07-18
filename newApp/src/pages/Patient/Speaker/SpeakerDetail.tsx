@@ -16,6 +16,16 @@ import {
   IonButton,
   IonBackButton,
   IonPage,
+  IonCol,
+  IonGrid,
+  IonMenuButton,
+  IonRow,
+  IonTitle,
+  IonCard,
+  IonCardHeader,
+  IonCardSubtitle,
+  IonCardTitle,
+  IonCardContent,
 } from '@ionic/react';
 import {
   callOutline,
@@ -25,6 +35,8 @@ import {
   logoInstagram,
   shareOutline,
   shareSharp,
+  navigateCircle,
+  navigateCircleSharp,
 } from 'ionicons/icons';
 
 import { connect } from '../../../data/connect';
@@ -32,6 +44,7 @@ import * as selectors from '../../../data/selectors';
 
 import { Speaker } from '../../../models/Speaker';
 import SpeakerMap from './SpeakerMap';
+import SpeakerItem from './SpeakerItem';
 
 interface OwnProps extends RouteComponentProps {
   speaker?: any;
@@ -95,63 +108,86 @@ const SpeakerDetail: React.FC<SpeakerDetailProps> = ({ speaker }) => {
     setShowActionSheet(true);
   }
 
-  function openExternalUrl(url: string) {
-    window.open(url, '_blank');
-  }
-
-  if (!speaker) {
-    return <div>Speaker not found</div>;
+  function handleSOSClick() {
+    setActionSheetButtons([
+      {
+        text: `Call - +91 9967878741`,
+        handler: () => {
+          window.open('tel: +91 9967878741');
+        },
+      },
+      {
+        text: `Call - +91 9000078741`,
+        handler: () => {
+          window.open('tel: +91 9000078741');
+        },
+      },
+    ]);
+    setActionSheetHeader(`Call All for SOS Situation`);
+    setShowActionSheet(true);
   }
 
   return (
     <IonPage id="speaker-detail-new">
-      <IonContent>
-        <IonHeader className="ion-no-border">
-          <IonToolbar>
-            <IonButtons slot="start">
-              <IonBackButton defaultHref="/ptabs/speakers" />
-            </IonButtons>
-            <IonButtons slot="end">
-              <IonButton onClick={() => openContact(speaker)}>
+      <IonHeader translucent={true}>
+        <IonToolbar>
+          <IonButtons slot="start">
+            <IonBackButton defaultHref="/ptabs/speakers" />
+          </IonButtons>
+          <IonTitle>{speaker.title}</IonTitle>
+          <IonButtons slot="end">
+            <IonButton
+              color="danger"
+              className="sos-button"
+              onClick={handleSOSClick}
+            >
+              SOS
+            </IonButton>
+          </IonButtons>
+        </IonToolbar>
+      </IonHeader>
+
+      <IonContent fullscreen={true}>
+        <IonCard className="speaker-container">
+          <img
+            src={speaker.profilePic}
+            alt="Speaker profile pic"
+            className="speaker-custom-image"
+          />
+          <IonCardHeader>
+            <IonCardTitle>{speaker.name}</IonCardTitle>
+            {speaker.type == 'person' ? (
+              <IonButton
+                onClick={(e) => openContact(speaker, e)}
+                className="speaker-call-button"
+              >
                 <IonIcon
                   slot="icon-only"
                   ios={callOutline}
                   md={callSharp}
                 ></IonIcon>
               </IonButton>
-              <IonButton onClick={() => openSpeakerShare(speaker)}>
-                <IonIcon
-                  slot="icon-only"
-                  ios={shareOutline}
-                  md={shareSharp}
-                ></IonIcon>
-              </IonButton>
-            </IonButtons>
-          </IonToolbar>
-        </IonHeader>
-
-        <div className="speaker-background">
-          <img src={speaker.profilePic} alt={speaker.name} />
-        </div>
-
-        <div className="ion-padding speaker-detail">
-          <h2>{speaker.name}</h2>
-          <p>{speaker.about}</p>
-
-          <hr />
-        </div>
-        {speaker.type != 'person' ? (
-          <div className="ion-padding speaker-map">
-            <SpeakerMap />
-          </div>
-        ) : null}
+            ) : null}
+          </IonCardHeader>
+          <IonCardContent>
+            <p>{speaker.about}</p>
+            <p>
+              {' '}
+              {speaker.type != 'person' ? (
+                <div className="ion-padding speaker-map">
+                  <SpeakerMap />
+                </div>
+              ) : null}
+            </p>
+          </IonCardContent>
+        </IonCard>
+        <IonActionSheet
+          isOpen={showActionSheet}
+          header={actionSheetHeader}
+          onDidDismiss={() => setShowActionSheet(false)}
+          buttons={actionSheetButtons}
+        />
       </IonContent>
-      <IonActionSheet
-        isOpen={showActionSheet}
-        header={actionSheetHeader}
-        onDidDismiss={() => setShowActionSheet(false)}
-        buttons={actionSheetButtons}
-      />
     </IonPage>
   );
 };
