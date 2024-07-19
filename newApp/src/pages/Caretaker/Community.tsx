@@ -21,9 +21,9 @@ const mockData = [
   {
     name: 'London LGBTQ Community',
     description:
-      'It is inclusive and vibrant community, providing a safe space for connection, support, and celebration of diversity.',
+      'A vibrant community, providing a safe space for connection, support, and celebration of diversity.',
     image:
-      'https://www.google.com/imgres?q=london%20lgbtq%20community%20logo&imgurl=https%3A%2F%2Fwww.consortium.lgbt%2Fwp-content%2Fuploads%2F2020%2F02%2FLGBTQ-newest-logo--1024x1024.jpg&imgrefurl=https%3A%2F%2Fwww.consortium.lgbt%2Fmember-directory%2Flondon-lgbtq-community-centre%2F&docid=YQNc7QgXAfE1CM&tbnid=coUh8PvXbQnEqM&vet=12ahUKEwiwraSF-LGHAxWW1DgGHTcMCkAQM3oECGYQAA..i&w=1024&h=1024&hcb=2&ved=2ahUKEwiwraSF-LGHAxWW1DgGHTcMCkAQM3oECGYQAA',
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwW6FdH8oB1dHRaBHANsZaqEHXtaF4s9Iajg&s',
   },
   {
     name: 'Dementia Care Circle',
@@ -31,21 +31,6 @@ const mockData = [
     image:
       'https://img.freepik.com/premium-vector/cute-elephant-logo-icon-vector-character_760408-50.jpg',
   },
-  {
-    name: 'The Queer Republic',
-    description:
-      'The Queer Republic organizes events, meet-ups, and discussions, creating a safe and inclusive space for LGBTQ. Join us to be part of a vibrant community advocating for equality and acceptance.',
-    image:
-      'https://www.google.com/url?sa=i&url=https%3A%2F%2Fstock.adobe.com%2Fimages%2Fpair-of-hands-in-heart-shape-painted-with-rainbow-colors-of-lgbt-or-glbt-flag-the-symbol-of-lesbian-gay-bisexual-transgender-and-queer-lgbtq-white-transparent-background-vector-illustration%2F199971386&psig=AOvVaw2zQdPVJUxpO1smVhToQiGT&ust=1721415234075000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCJjssIqisYcDFQAAAAAdAAAAABAZ',
-  },
-  {
-    name: 'Pride Circle',
-    description:
-      'Pride Circle is an LGBTQ+ advocacy group in India, promoting workplace inclusivity and community support through resources, training, and events.',
-    image:
-      'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.facebook.com%2FPrideCircles%2F&psig=AOvVaw3HuBMQs2-vgPl2ydCCV0cy&ust=1721416030565000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCIDcm-GksYcDFQAAAAAdAAAAABAE',
-  },
-
   {
     name: 'Memory Lane Companions',
     description: 'A space to discuss and share memory care strategies.',
@@ -66,59 +51,46 @@ const mockData = [
   },
   {
     name: 'Supportive Hands',
-    description: '',
+    description: "A supportive community for Alzheimer's caregivers.",
     image:
       'https://logowik.com/content/uploads/images/cute-peeking-dog8044.logowik.com.webp',
   },
   {
     name: 'Dementia Allies',
-    description: '',
+    description: 'A community of allies in dementia care.',
     image:
       'https://cdn5.vectorstock.com/i/1000x1000/61/19/cute-cartoon-unicorn-fantasy-logo-vector-27996119.jpg',
   },
   {
     name: 'Dementia Caregivers United',
-    description: '',
+    description: 'United in the fight against dementia.',
     image:
       'https://img.freepik.com/premium-vector/cute-peace-hand-cartoon-vector-icon-illustration-logo-mascot-hand-drawn-concept-trandy-cartoon_519183-176.jpg',
   },
   {
     name: 'Memory Keepers',
-    description: '',
+    description: 'Preserving memories, one day at a time.',
     image:
       'https://i.pinimg.com/736x/54/fa/ca/54facabf95a6b95acd2d085deb505816.jpg',
   },
   {
     name: 'Gentle Care Network',
-    description: '',
+    description: 'Gentle care for loved ones with dementia.',
     image:
       'https://c8.alamy.com/comp/2G9PA3A/cute-funny-happy-star-sign-character-vector-hand-drawn-cartoon-kawaii-character-illustration-icon-isolated-on-white-background-star-rating-symbol-review-doodle-character-concept-2G9PA3A.jpg',
   },
   {
     name: "Caregiver's Oasis",
-    description: '',
+    description: 'A place for caregivers to relax and recharge.',
     image:
       'https://i.pinimg.com/736x/86/79/be/8679be5b00e470cd84e5a19513451d52.jpg',
   },
   {
     name: 'Hope and Healing',
-    description: '',
+    description: 'A community of hope and healing for dementia caregivers.',
     image:
       'https://thumbs.dreamstime.com/b/caring-hands-team-vector-illustration-logo-vector-illustration-caring-hands-team-suitable-logo-white-background-88084233.jpg',
   },
-  {
-    name: 'Memory Care Network',
-    description: '',
-    image:
-      'https://st4.depositphotos.com/16921356/20303/v/450/depositphotos_203031124-stock-illustration-cute-owl-logo-vector-dsign.jpg',
-  },
-  {
-    name: 'Peaceful Minds',
-    description: '',
-    image:
-      'https://www.shutterstock.com/image-vector/teamwork-logo-abstract-two-hands-260nw-2282414665.jpg',
-  },
-  // Add more mock data as needed
 ];
 
 const Community: React.FC = () => {

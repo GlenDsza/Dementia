@@ -22,6 +22,7 @@ import SessionDetail from './Schedule/components/SessionDetail';
 import MapView from './MapView';
 import About from './About';
 import NotificationContainer from './Notifications/NotificationContainer';
+import ChatBot from './Chatbot/ChatBot';
 import './PTab.css';
 import { TbMessageChatbot } from 'react-icons/tb';
 
@@ -50,6 +51,7 @@ const PTabs: React.FC<PTabsProps> = () => {
         <Route path="/ptabs/schedule/:id" component={SessionDetail} />
         <Route path="/ptabs/map" render={() => <MapView />} exact={true} />
         <Route path="/ptabs/about" render={() => <About />} exact={true} />
+        <Route path="/ptabs/chatbot" component={ChatBot} exact={true} />
         <Route
           path="/ptabs/notifications"
           render={() => <NotificationContainer />}
@@ -70,7 +72,7 @@ const PTabs: React.FC<PTabsProps> = () => {
           <div className="red-dot"></div>
           <IonLabel>Notification</IonLabel>
         </IonTabButton>
-        <IonTabButton tab="chatbot" href="/ctabs/chatbot">
+        <IonTabButton tab="chatbot" href="/ptabs/chatbot">
           <TbMessageChatbot size={25} />
           <IonLabel>Reva</IonLabel>
         </IonTabButton>

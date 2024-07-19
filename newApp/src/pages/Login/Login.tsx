@@ -62,6 +62,7 @@ const Login: React.FC<any> = ({
     setIsLoggedIn(true);
     setUsername('Harit2101');
     setUserType(userType);
+    otpModal.current?.dismiss();
     history.push(url);
   };
 

@@ -130,7 +130,7 @@ const Menu: React.FC<MenuProps> = ({
     if (userType === 'patient') {
       return <img src="/assets/img/patient.jpg" alt="User Avatar" />;
     } else {
-      return <img src="/assets/img/member/brother.jpg" alt="User Avatar" />;
+      return <img src="/assets/img/sister.jpg" alt="User Avatar" />;
     }
   };
 
@@ -146,7 +146,7 @@ const Menu: React.FC<MenuProps> = ({
     if (userType === 'patient') {
       return 'Mary Parker';
     } else {
-      return 'Ben Parker';
+      return 'Rachel Green';
     }
   };
 

@@ -257,7 +257,7 @@
     },
     {
       "name": "Rachel Green",
-      "profilePic": "/assets/img/member/wife.jpg",
+      "profilePic": "/assets/img/sister.jpg",
       "about": "Rachel Green is your elder sister who visits you daily and take care of you.Sje always provides a nurturing presence and unwavering support to your child. ",
       "title": "Sister",
       "type": "person",
@@ -266,30 +266,30 @@
       "id": "2"
     },
     {
-      "name": "My House - Radhe Heights, Ravet",
-      "profilePic": "/assets/img/member/building.jpg",
-      "about": "29, Ravet Village Rd, Shinde Vasti, Ravet, Pimpri-Chinchwad, Maharashtra 411044",
+      "name": "Ruth Fillery House",
+      "profilePic": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5x4UHeuLmTisf0AGoe7KP9trhKnxUyl5zYg&s",
+      "about": "123 Valery Street, London, SW1A 1AA, United Kingdom",
       "title": "My House",
       "type": "location",
-      "location":"",
+      "location": "",
       "email": "donald@example.com",
       "id": "3"
     },
     {
-      "name": "My Office - Bajaj Allianz , Pune",
-      "profilePic": "/assets/img/member/office.jpg",
-      "about": "3rd Floor, Millenium Plaza, Fergusson College Rd, Shivajinagar, Pune, Maharashtra 411005",
+      "name": "Deutsche Bank (London Office)",
+      "profilePic": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCz5jBBHm1ROgj93dJiKDwqOecUf8S5q6HLw&s",
+      "about": "Deutsche Bank AG, Winchester House, Great Winchester Street, London EC2N 2DB, United Kingdom",
       "title": "My Current Office",
       "type": "location",
-      "location":"",
+      "location": "",
       "email": "bajaj@example.com",
       "id": "4"
     },
-   
+
     {
       "name": "* Dr. Elizabeth Carter",
       "profilePic": "/assets/img/member/doctor.jpg",
-      "about": "Elizabeth is your doctor,she is a neurologist specialist.Her clinic's address is 123 Wellness Avenue, Suite 101, Cityville, ST 12345",
+      "about": "Elizabeth is your doctor,she is a neurologist specialist.Her clinic's address is 123 Wellness Avenue, Suite 101, Cityville, St. 12345",
       "title": "My Doctor",
       "type": "person",
       "email": "ellizabeth@gmail.com",

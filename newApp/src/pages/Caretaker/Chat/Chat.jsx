@@ -29,17 +29,17 @@ const Chat = () => {
       id: '1',
       avatar:
         'https://helpx.adobe.com/content/dam/help/en/photoshop/how-to/vector-objects/jcr_content/main-pars/image_738713385/vector-objects-Step1_900x506.jpg',
-      title: 'Ben',
+      title: 'John',
     },
     {
       position: 'right',
       type: 'text',
-      text: 'Hey! How have you been Ben?',
+      text: 'Hey! How have you been John?',
       date: new Date(),
       id: '2',
       avatar:
         'https://cdn.pixabay.com/photo/2020/08/19/09/52/vector-art-5500539_640.jpg',
-      title: 'Ben',
+      title: 'Rachel',
     },
     {
       position: 'left',
