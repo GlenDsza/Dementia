@@ -50,13 +50,12 @@ const ChatBot = () => {
         let message = '';
         if (count === 2) {
           message =
-            'Dementia patients often have trouble remembering things, thinking clearly, communicating with others, and taking care of themselves. If you have any questions or need help, feel free to ask me.';
+            "Please take one tablet of Donepezil and one capsule of Vitamin E with a glass of water, ensuring you follow Dr. Carter's instructions carefully.";
         } else if (count === 4) {
           message =
-            'Dementia patients can listen to music to reduce anxiety and depression. You can also try reminiscence therapy to help them remember past events.';
+            'Medications are stored in a blue pillbox labeled "Morning Meds, placed on the third shelf of the cabinet next to the refrigerator';
         } else if (count === 6) {
-          message =
-            'Reminiscene therapy involves discussing past activities, events, and experiences with dementia patients. It can help them remember past events and improve their mood.';
+          message = 'Mary your son is in grade 3';
         }
         setMessages((prev) => [
           ...prev,
