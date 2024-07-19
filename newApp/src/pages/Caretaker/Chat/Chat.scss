@@ -54,3 +54,26 @@
   bottom: -15px;
   right: 10px;
 }
+
+.rce-mbox {
+  border-radius: 1rem !important;
+  max-width: 80%;
+  font-size: 1rem;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.rce-mbox-left-notch {
+  margin-left: 0.3rem !important;
+}
+
+.rce-mbox-right-notch {
+  margin-right: 0.3rem !important;
+}
+
+.rce-mbox-right-notch path {
+  fill: #d5e4fd !important;
+}
+
+.rce-mbox-right {
+  background-color: #d5e4fd !important;
+}

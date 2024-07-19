@@ -822,3 +822,9 @@ input[type="number"] {
 .text-justify {
   text-align: justify;
 }
+ion-content {
+  --background: transparent !important;
+}
+body {
+  background: transparent !important;
+}

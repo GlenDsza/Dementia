@@ -146,7 +146,7 @@ const Menu: React.FC<MenuProps> = ({
     if (userType === 'patient') {
       return 'Mary Parker';
     } else {
-      return 'Michael C';
+      return 'Ben Parker';
     }
   };
 

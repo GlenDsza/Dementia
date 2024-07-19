@@ -23,6 +23,7 @@ import MapView from './MapView';
 import About from './About';
 import NotificationContainer from './Notifications/NotificationContainer';
 import './PTab.css';
+import { TbMessageChatbot } from 'react-icons/tb';
 
 interface PTabsProps {}
 
@@ -64,14 +65,14 @@ const PTabs: React.FC<PTabsProps> = () => {
           <IonIcon icon={people} />
           <IonLabel>Members</IonLabel>
         </IonTabButton>
-        <IonTabButton tab="about" href="/ptabs/about">
-          <IonIcon icon={informationCircle} />
-          <IonLabel>About</IonLabel>
-        </IonTabButton>
         <IonTabButton tab="notifications" href="/ptabs/notifications">
           <IonIcon icon={notifications} />
           <div className="red-dot"></div>
           <IonLabel>Notification</IonLabel>
+        </IonTabButton>
+        <IonTabButton tab="chatbot" href="/ctabs/chatbot">
+          <TbMessageChatbot size={25} />
+          <IonLabel>Reva</IonLabel>
         </IonTabButton>
       </IonTabBar>
     </IonTabs>
