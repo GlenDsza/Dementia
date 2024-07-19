@@ -11,19 +11,21 @@ import {
   IonFabButton,
   IonGrid,
   IonRow,
-  IonCol,
+  IonButtons,
+  IonMenuButton,
 } from '@ionic/react';
 import { MessageList } from 'react-chat-elements';
 import { mic, send } from 'ionicons/icons';
 import 'react-chat-elements/dist/main.css';
 import { SpeechRecognition } from '@capacitor-community/speech-recognition';
+import './ChatBot.scss';
 
 const ChatBot = () => {
   const [messages, setMessages] = useState([
     {
       position: 'left',
       type: 'text',
-      text: "Welcome! I'm ChatBot, your AI assistant. Let me know how can I help you",
+      text: "Welcome! I'm Reva, your AI assistant. Let me know how can I help you",
       date: new Date(),
       id: '3',
       avatar:
@@ -32,14 +34,9 @@ const ChatBot = () => {
     },
   ]);
 
-  const [text, setText] = useState('');
-  const [isAudioAvailable, setIsAudioAvailable] = useState(false);
   const textRef = useRef('');
-
   const checkAudioPermission = async () => {
     await SpeechRecognition.requestPermissions();
-    const res = await SpeechRecognition.available();
-    setIsAudioAvailable(res.available);
   };
 
   useEffect(() => {
@@ -69,7 +66,6 @@ const ChatBot = () => {
         'https://static.vecteezy.com/system/resources/thumbnails/026/829/465/small/beautiful-girl-with-autumn-leaves-photo.jpg',
     };
     setMessages([...messages, newMessage]);
-    setText('');
     textRef.current = '';
   };
 
@@ -82,10 +78,9 @@ const ChatBot = () => {
       partialResults: true,
       popup: true,
     });
-    // listen to partial results
+
     SpeechRecognition.addListener('partialResults', (data) => {
       if (data.matches && data.matches.length > 0) {
-        setText(data.matches[0]);
         textRef.current = data.matches[0];
       }
     });
@@ -99,7 +94,10 @@ const ChatBot = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>ChatBot</IonTitle>
+          <IonButtons slot="start" className="ml-2">
+            <IonMenuButton />
+          </IonButtons>
+          <IonTitle>Reva</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent>
@@ -137,7 +135,6 @@ const ChatBot = () => {
                   className={`ml-2`}
                   placeholder="Type a message"
                   onIonChange={(e) => {
-                    setText(e.detail.value);
                     textRef.current = e.detail.value;
                   }}
                 />

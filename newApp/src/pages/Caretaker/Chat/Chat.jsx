@@ -10,11 +10,13 @@ import {
   IonIcon,
   IonFabButton,
   IonGrid,
-  IonRow,
-  IonCol,
+  IonButtons,
 } from '@ionic/react';
 import { MessageList } from 'react-chat-elements';
+import { FaChevronLeft } from 'react-icons/fa6';
+import { useHistory } from 'react-router';
 import { image, mic, send } from 'ionicons/icons';
+import './Chat.scss';
 import 'react-chat-elements/dist/main.css';
 
 const Chat = () => {
@@ -30,7 +32,7 @@ const Chat = () => {
       title: 'John',
     },
     {
-      position: 'left',
+      position: 'right',
       type: 'text',
       text: 'Hey! How have you been John?',
       date: new Date(),
@@ -45,7 +47,8 @@ const Chat = () => {
       text: "Hi everyone, \nI'm John. I wanted to share a story about my mom, who has dementia. \nOne Saturday, I found Mom trying to make breakfast, looking confused. I took over and then suggested we go to the park, a place she loves. As we walked, I talked about our old picnics, and she smiled, remembering bits and pieces. \nWe sat by the pond, and Mom started humming an old tune. I joined in, and for a moment, everything felt normal. When we got home, we looked through a photo album. Mom recognized some pictures and told me stories, even if some details were mixed up. \nI know my mom's situation is worsening gradually. But that day reminded me that even though things are tough, we can still have special moments. It’s these moments that make all the challenges worthwhile.",
       date: new Date(),
       id: '3',
-      avatar: 'https://helpx.adobe.com/content/dam/help/en/photoshop/how-to/vector-objects/jcr_content/main-pars/image_738713385/vector-objects-Step1_900x506.jpg',
+      avatar:
+        'https://helpx.adobe.com/content/dam/help/en/photoshop/how-to/vector-objects/jcr_content/main-pars/image_738713385/vector-objects-Step1_900x506.jpg',
       title: 'John',
     },
     {
@@ -58,13 +61,13 @@ const Chat = () => {
       title: 'Cris',
     },
   ]);
-  const [text, setText] = useState < string > '';
-  const textRef = useRef < string > '';
+  const [text, setText] = useState('');
+  const textRef = useRef('');
+  const history = useHistory();
 
-  const imageUploadRef = useRef < HTMLInputElement > null;
-  const videoUploadRef = useRef < HTMLInputElement > null;
-  const audioUploadRef = useRef < HTMLInputElement > null;
-  const fileUploadRef = useRef < HTMLInputElement > null;
+  const imageUploadRef = useRef(null);
+  const audioUploadRef = useRef(null);
+  const fileUploadRef = useRef(null);
 
   const handleSend = (messageType, content) => {
     const newMessage = {
@@ -110,11 +113,18 @@ const Chat = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
+          <IonButtons
+            slot="start"
+            className="ml-4"
+            onClick={() => history.push('/ctabs/community')}
+          >
+            <FaChevronLeft />
+          </IonButtons>
           <IonTitle>Chat</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent>
-        {/* <MessageList
+        <MessageList
           className="chat-list"
           lockable={true}
           toBottomHeight={'100%'}
@@ -129,15 +139,15 @@ const Chat = () => {
             avatar: msg.avatar,
             key: index.toString(), // Ensure each item has a unique key
           }))}
-          id = "chat-list-id"
-          lazyLoadingImage = "lazy-loading-image-url"
-        /> */}
+          id="chat-list-id"
+          lazyLoadingImage="lazy-loading-image-url"
+        />
       </IonContent>
       <IonFooter>
         <IonToolbar>
           <IonGrid>
-            <IonRow>
-              <IonCol size="1">
+            <div className="flex">
+              <div>
                 <input
                   type="file"
                   accept="image/*"
@@ -152,8 +162,8 @@ const Chat = () => {
                 >
                   <IonIcon icon={image} />
                 </IonFabButton>
-              </IonCol>
-              <IonCol size="1">
+              </div>
+              <div>
                 <input
                   type="file"
                   accept="audio/*"
@@ -168,8 +178,8 @@ const Chat = () => {
                 >
                   <IonIcon icon={mic} />
                 </IonFabButton>
-              </IonCol>
-              <IonCol size="1">
+              </div>
+              <div>
                 <input
                   type="file"
                   style={{ display: 'none' }}
@@ -177,8 +187,8 @@ const Chat = () => {
                   ref={fileUploadRef}
                   onChange={(e) => handleFileUpload(e, 'file')}
                 />
-              </IonCol>
-              <IonCol size="6">
+              </div>
+              <div className="flex-grow flex items-center">
                 <IonInput
                   value={text}
                   placeholder="Type a message"
@@ -187,16 +197,16 @@ const Chat = () => {
                     textRef.current = e.detail.value;
                   }}
                 />
-              </IonCol>
-              <IonCol size="1">
+              </div>
+              <div>
                 <IonFabButton
                   size="small"
                   onClick={() => handleSend('text', textRef.current)}
                 >
                   <IonIcon icon={send} />
                 </IonFabButton>
-              </IonCol>
-            </IonRow>
+              </div>
+            </div>
           </IonGrid>
         </IonToolbar>
       </IonFooter>

@@ -128,7 +128,7 @@ const Menu: React.FC<MenuProps> = ({
 
   const renderImage = () => {
     if (userType === 'patient') {
-      return <img src="/assets/img/patient.png" alt="User Avatar" />;
+      return <img src="/assets/img/patient.jpg" alt="User Avatar" />;
     } else {
       return <img src="/assets/img/member/brother.jpg" alt="User Avatar" />;
     }
@@ -144,7 +144,7 @@ const Menu: React.FC<MenuProps> = ({
 
   const getUserNamer = () => {
     if (userType === 'patient') {
-      return 'John Doe Patient';
+      return 'Mary Parker';
     } else {
       return 'Michael C';
     }

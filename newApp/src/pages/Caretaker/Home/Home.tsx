@@ -29,7 +29,7 @@ import { Session } from '../../../models/Schedule';
 import { connect } from '../../../data/connect';
 import * as selectors from '../../../data/selectors';
 import { Todo } from '../../../models/Todo';
-import { call } from 'ionicons/icons';
+import { call, location } from 'ionicons/icons';
 import '../../../theme/styles.css';
 import './Home.scss';
 import { TbClockHour4Filled } from 'react-icons/tb';
@@ -193,7 +193,7 @@ const Home: React.FC<HomeProps> = ({
           {/* Patient Details */}
           <IonCard className="rounded-xl card-shadow flex p-2 mt-4">
             <img
-              src="/assets/img/patient.png"
+              src="/assets/img/patient.jpg"
               alt="patientImg"
               width={80}
               height={80}
@@ -202,12 +202,13 @@ const Home: React.FC<HomeProps> = ({
             <div className="flex flex-col ml-2 flex-grow">
               <h3 className="mb-0 mt-2">Mary Parker</h3>
               <span className="mt-1 text-xs">45 years</span>
-              <span className="mt-1 text-xs">
-                1234 Main St,London
-              </span>
+              <span className="mt-1 text-xs">1234 Main St,London</span>
             </div>
+            <IonButton fill="clear" onClick={() => history.push('/ctabs/map')}>
+              <IonIcon icon={location} slot="end" />
+            </IonButton>
             <IonButton fill="clear">
-              <IonIcon slot="end" icon={call} aria-hidden="true" className="" />
+              <IonIcon slot="end" icon={call} aria-hidden="true" />
             </IonButton>
           </IonCard>
           {/* Current Routine */}

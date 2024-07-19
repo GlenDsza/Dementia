@@ -1,53 +1,52 @@
 .avatars-list-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 8px;
-  }
-  .padding-remove{
-    padding-right: 0px;
-  }
-  .avatars-card {
-    width: 100%;
-    max-width: 600px;
-    margin: 15px 0;
-    display: flex;
-    align-items: center;
-    padding: 5px;
-    box-shadow: 0 4px 5px rgba(23, 23, 23, 0.1);
-    border-radius: 10px;
-    background-color: #fafafa; /* Adds a white background to the card */
-  }
-  
-  .avatar-img {
-    width: 60px;
-    height: 60px;
-    border-radius: 25px;
-    object-fit: cover;
-    margin-right: 16px;
-    margin-left: 10px;
-    border: 2px solid #ccc; /* Optional: adds a border around the avatar */
-  }
-  
-  .avatar-details {
-    flex-grow: 1;
-  }
-  
-  .avatar-name {
-    font-size: 1.2em;
-    font-weight: bold;
-    margin: 0;
-  }
-  
-  .avatar-description {
-    margin: 4px 0 0;
-    color: #666;
-    font-size: 10px;
-  }
-  .community-container .ion-inherit-color{
-    padding:0px
-  }
-  .join-button {
-    margin-left: 16px;
-    align-self: center;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px;
+}
+.padding-remove {
+  padding-right: 0px;
+}
+.avatars-card {
+  width: 100%;
+  max-width: 600px;
+  margin: 15px 0;
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  box-shadow: 0 4px 5px rgba(23, 23, 23, 0.1);
+  border-radius: 10px;
+  background-color: #fafafa; /* Adds a white background to the card */
+}
+
+.avatar-img {
+  width: 60px;
+  height: 60px;
+  border-radius: 25px;
+  object-fit: cover;
+  margin-right: 16px;
+  margin-left: 10px;
+  border: 2px solid #ccc; /* Optional: adds a border around the avatar */
+}
+
+.avatar-details {
+  flex-grow: 1;
+}
+
+.avatar-name {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin: 0;
+}
+
+.avatar-description {
+  margin: 4px 0 0;
+  color: #666;
+  font-size: 10px;
+}
+.community-container .ion-inherit-color {
+  padding: 0px;
+}
+.join-button {
+  align-self: center;
+}

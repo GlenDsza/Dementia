@@ -218,7 +218,6 @@ const Schedule: React.FC<ScheduleProps> = ({
       </IonHeader>
 
       <IonContent fullscreen={true}>
-
         <IonRefresher
           slot="fixed"
           ref={ionRefresherRef}
@@ -479,7 +478,7 @@ const Schedule: React.FC<ScheduleProps> = ({
             <IonLabel position="floating">Image Preview</IonLabel>
             {imageFile && (
               <img
-                src={'/assets/img/patient.png'}
+                src={'/assets/img/patient.jpg'}
                 alt="Uploaded"
                 className="w-full rounded-lg"
                 style={{ maxWidth: '100%', height: 'auto' }}
