@@ -73,7 +73,7 @@ const Login: React.FC<any> = ({
           <img src="/assets/icon/logo.png" alt="Logo" className="app-logo" />
           <h1 className="app-name">Reva</h1>
 
-          <IonCard className="mx-4">
+          <IonCard className="mx-4 card">
             <IonCardHeader>
               <IonCardSubtitle className="flex justify-center">
                 Login to your account
