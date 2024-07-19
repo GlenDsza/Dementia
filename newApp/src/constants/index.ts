@@ -223,6 +223,24 @@ export const routines: RoutineInterface[] = [
   },
   {
     id: '2',
+    name: 'Medicines',
+    description:
+      'Make sure to follow the recommended dosage and timing to maintain your health and well-being.',
+    startDate: new Date('2024-07-01'),
+    endDate: new Date('2024-07-31'),
+    startTime: '7:15 AM',
+    endTime: '7:30 AM',
+    location: {
+      lat: 18.520306,
+      lng: 73.256733,
+      name: 'Home',
+    },
+    startLocation: null,
+    endLocation: null,
+    status: 'Pending',
+  },
+  {
+    id: '2',
     name: 'Breakfast',
     description:
       'Today, you have the option of choosing between a bowl of oatmeal with fresh fruits and nuts, scrambled eggs with whole grain toast, or a protein-packed smoothie made with Greek yogurt, banana, and almond butter. Enjoy your breakfast at home before heading out for the day.',
