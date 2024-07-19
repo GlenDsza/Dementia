@@ -224,13 +224,7 @@ const Map: FC = () => {
             ></IonBackButton>
           </IonButtons>
           <div className="title">
-            <img
-              src="/assets/icon/favicon.png"
-              alt="Logo"
-              width={30}
-              height={30}
-            />
-            <h1>Reva</h1>
+            <h1>Current Location</h1>
           </div>
           {loading && <IonProgressBar type="indeterminate" />}
         </IonToolbar>

@@ -157,7 +157,7 @@ const SpeakerMap: FC = () => {
     await getCurrentPosition();
 
     newMap = await GoogleMap.create({
-      id: 'my-map',
+      id: 'my-map_123',
       element: mapRef.current,
       apiKey: import.meta.env.VITE_GMAPS_KEY,
       config: {
@@ -208,6 +208,20 @@ const SpeakerMap: FC = () => {
 
   useEffect(() => {
     createMap();
+  }, []);
+
+  useEffect(() => {
+    // This code runs when the component mounts
+
+    return () => {
+      // This code runs when the component unmounts
+      console.log('Component is unmounting');
+
+      // Perform any necessary cleanup here, such as:
+      // - Canceling timers
+      // - Removing event listeners
+      // - Cleaning up subscriptions
+    };
   }, []);
 
   return (

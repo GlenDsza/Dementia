@@ -7,12 +7,9 @@ import {
   IonButtons,
   IonTitle,
   IonMenuButton,
-  IonSegment,
-  IonSegmentButton,
   IonButton,
   IonIcon,
   IonItem,
-  IonSearchbar,
   IonText,
   IonModal,
   IonHeader,
@@ -21,13 +18,12 @@ import {
   getConfig,
   IonTextarea,
 } from '@ionic/react';
-import { options, search, arrowUpOutline } from 'ionicons/icons';
+import { arrowUpOutline } from 'ionicons/icons';
 import { UploadsDescription } from '../../../constants';
 
 import SessionListFilter from '../../../components/SessionListFilter';
 import './Uploads.scss';
 
-import ShareSocialFab from '../../../components/ShareSocialFab';
 
 import * as selectors from '../../../data/selectors';
 import { connect } from '../../../data/connect';
@@ -54,8 +50,6 @@ const RevaQuestions: React.FC<RevaQuestionsProps> = ({
   setSearchText,
   mode,
 }) => {
-  const [segment, setSegment] = useState<'all' | 'favorites'>('all');
-  const [showSearchbar, setShowSearchbar] = useState<boolean>(false);
   const [showFilterModal, setShowFilterModal] = useState(false);
   const ionRefresherRef = useRef<HTMLIonRefresherElement>(null);
   const [pdfFile, setPDFFile] = useState<File | null>(null);

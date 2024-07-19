@@ -64,6 +64,7 @@ const Login: React.FC<any> = ({
     setUserType(userType);
     otpModal.current?.dismiss();
     history.push(url);
+    otpModal.current?.dismiss();
   };
 
   return (

@@ -28,7 +28,7 @@ import './SessionDetail.scss';
 import { Session } from '../../../../models/Schedule';
 import { RoutineInterface, routines } from '../../../../constants';
 import { decode } from '@googlemaps/polyline-codec';
-
+import { Geolocation } from '@capacitor/geolocation';
 interface OwnProps extends RouteComponentProps {}
 
 interface StateProps {
@@ -164,6 +164,17 @@ const SessionDetail: React.FC<SessionDetailProps> = ({ session }) => {
     await newMap.enableCurrentLocation(true);
   };
 
+  const openGoogleMaps = async () => {
+    try {
+      const position = await Geolocation.getCurrentPosition();
+      const { latitude, longitude } = position.coords;
+      const url = `https://www.google.com/maps/dir/18.5132841,73.9240567/Hadapsar,+Pune,+Maharashtra/@18.5054297,73.9199091,15.25z/data=!4m9!4m8!1m0!1m5!1m1!1s0x3bc2e9ff81f1aae9:0x2560343555ac8b53!2m2!1d73.9259102!2d18.508934!3e9?entry=ttu`;
+      window.open(url, '_system');
+    } catch (error) {
+      console.error('Error getting location:', error);
+    }
+  };
+
   return (
     <IonPage id="session-detail-page">
       <IonHeader>
@@ -181,13 +192,14 @@ const SessionDetail: React.FC<SessionDetailProps> = ({ session }) => {
       </IonHeader>
       <IonContent>
         <div className="ion-padding">
-          <capacitor-google-map
-            ref={mapRef}
+          <img
             style={{
               display: 'inline-block',
               width: '100%',
               height: '300px',
             }}
+            src="/assets/img/map/member.png"
+            onClick={() => openGoogleMaps()}
           />
           <h1>{routine?.name}</h1>
           <IonText color="medium">

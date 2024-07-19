@@ -1,81 +1,40 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './Notifications.scss';
 import {
-  IonButtons,
-  IonCard,
   IonContent,
-  IonHeader,
-  IonMenuButton,
-  IonPage,
-  IonTitle,
-  IonToolbar,
 } from '@ionic/react';
-import { IoAlertCircleOutline, IoAlertCircle } from 'react-icons/io5';
+import { useHistory } from 'react-router-dom';
 import { AiFillCheckCircle, AiFillWarning } from 'react-icons/ai';
 import { BiSolidErrorAlt } from 'react-icons/bi';
+import { IoAlertCircle } from 'react-icons/io5';
 
 const initialNotificationsData = [
   {
-    id: 1,
     type: 'reminder',
-    icon: 'FaClock',
-    header: 'Reminder',
-    message: 'Mary reached his daily step goal of 10,000 steps.',
-    completed: false,
-    time: '12:20 pm',
-    for: 'patient',
-  },
-  {
-    type: 'warning',
     icon: 'BsFillInfoCircleFill',
-    header: 'Warning',
-    message: 'Mary has been stationary for over an hour.',
+    header: 'Reminder',
+    message: "Mary has to step out for her morning walk",
     completed: false,
-    time: '12:20 pm',
     for: 'caretaker',
+    time: '07:00 am',
   },
   {
     type: 'success',
     icon: 'BsFillInfoCircleFill',
     header: 'Reminder',
-    message: "123 Mary's medication needs to be taken at 10 AM.",
+    message: "Mary has to help Ben ready for school",
     completed: false,
-    time: '12:20 pm',
+    time: '09:00 am',
     for: 'both',
   },
   {
-    type: 'reminder',
-    icon: 'FaClock',
-    header: 'Reminder',
-    message: '232323  Mary reached his daily step goal of 10,000 steps.',
-    completed: false,
-    time: '12:20 pm',
-    for: 'patient',
-  },
-  {
-    type: 'alert',
-    icon: 'BsFillInfoCircleFill',
-    header: 'Warning',
-    message: '1111Mary has been stationary for over an hour.',
-    completed: false,
-    time: '12:20 pm',
-    for: 'caretaker',
-  },
-  {
-    type: 'reminder',
+    type: 'success',
     icon: 'BsFillInfoCircleFill',
     header: 'Reminder',
     message: "Mary's medication needs to be taken at 10 AM.",
     completed: false,
-    for: 'caretaker',
-  },
-  {
-    type: 'reminder',
-    icon: 'FaClock',
-    header: 'Reminder',
-    message: 'Mary reached his daily step goal of 10,000 steps.',
-    completed: false,
-    for: 'caretaker',
+    time: '10:30 am',
+    for: 'both',
   },
   {
     type: 'warning',
@@ -83,14 +42,25 @@ const initialNotificationsData = [
     header: 'Warning',
     message: 'Mary has been stationary for over an hour.',
     completed: false,
+    time: '01:20 pm',
     for: 'caretaker',
   },
   {
     type: 'reminder',
     icon: 'BsFillInfoCircleFill',
     header: 'Reminder',
-    message: "Mary's medication needs to be taken at 10 AM.",
+    message: "Mary has to attend cognitive sessions",
     completed: false,
+    for: 'caretaker',
+    time: '01:30 pm',
+  },
+  {
+    type: 'alert',
+    icon: 'BsFillInfoCircleFill',
+    header: 'Reminder',
+    message: "Mary is asking about her blue jacket!",
+    completed: false,
+    time: '04:00 pm',
     for: 'caretaker',
   },
 ];
@@ -98,6 +68,7 @@ const initialNotificationsData = [
 const Notification = () => {
   const cardRef = useRef<HTMLIonCardElement>(null);
   const [notifications, setNotifications] = useState(initialNotificationsData);
+  const history = useHistory();
 
   useEffect(() => {
     const scrollToLastNotification = () => {
@@ -141,14 +112,24 @@ const Notification = () => {
     );
   };
 
+  const handleNotificationClick = (type) => {
+    if (type === 'alert') {
+      history.push('/ctabs/questions'); // replace '/alert-page' with your desired path
+    }
+  };
+
   return (
     <IonContent id="care-notification-container" className="ion-padding">
       <div className="flex flex-col">
         {notifications.map(
           (notification, index) =>
             !notification.completed &&
-            notification.for != 'patient' && (
-              <div key={index} className={`notification ${notification.type}`}>
+            notification.for !== 'patient' && (
+              <div
+                key={index}
+                className={`notification ${notification.type}`}
+                onClick={() => handleNotificationClick(notification.type)}
+              >
                 <div className="notification-content">
                   <div className="notification-details">
                     <div className="notification-icon">
