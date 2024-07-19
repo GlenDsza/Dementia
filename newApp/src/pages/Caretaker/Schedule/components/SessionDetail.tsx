@@ -66,11 +66,11 @@ const SessionDetail: React.FC<SessionDetailProps> = ({ session }) => {
   const addPatientMarker = async (): Promise<void> => {
     await newMap.addMarker({
       coordinate: {
-        lat: 18.701212,
-        lng: 73.644495,
+        lat: 51.508268,
+        lng: -0.16873,
       },
       title: 'Patient',
-      iconUrl: '/assets/svgs/patient.svg',
+      iconUrl: '/assets/svgs/caretaker.svg',
       iconSize: {
         width: 30,
         height: 30,
@@ -119,7 +119,7 @@ const SessionDetail: React.FC<SessionDetailProps> = ({ session }) => {
       let routiePolyline = '';
       if (id === '1' || id === '7') {
         routiePolyline =
-          'ip~oBcaebMlBDPCDEDi@HiJHoF`JRd@yIt@kJH[HMdDfChGlFTLt@JzBHFERCjFJdDLhAJt@C~@aEp@}DJiBTmCHiBDUTqI|AiTKe@?qA`@}HJy@JYRWRM`@Sr@En@Cd@I^WvE_GzBgCv@eAr@h@XHR?~@k@VCTD';
+          'odkyHjt_@fCxPBv@eCDoGZoBTc@\\_@f@]r@mBjGUT]DG?W]KEo@y@UAa@NVdGDNJvBANh@vHmAI}@Qk@G]KQ_@E[AOhCmEl@eAEy@BEoA{YkAqWqAoTI_A@_BWiGMAU_DG[ONiEdBU}B';
       } else if (id === '3' || id === '4') {
         routiePolyline =
           'ip~oBcaebMaLWgGKAvDXPNZBVG^SX]JKpGDj@HT_Cd@eF|@oBJgIL}EJ_EzA}E|AoFhBkDBmFNiML}DNkQPgBBCGYFIZKFMBYd@w@|Ae@pAEZaBhDkChG{CpGg@nAaFlKoArCuBzEeBnDk@tAq@lBSv@}@hGu@~DyKiCgCk@yDs@k@ZLdA@f@C`B_A~H{@hIc@fF[lB_@fBaBfESROBuPcBmH]oCKuJLyAFc@JSLORj@rCHX]`@OhDUzLQdOE|Dv@LdBJCc@f@@';
@@ -151,10 +151,10 @@ const SessionDetail: React.FC<SessionDetailProps> = ({ session }) => {
       apiKey: import.meta.env.VITE_GMAPS_KEY,
       config: {
         center: {
-          lat: 18.511564,
-          lng: 73.922984,
+          lat: 51.507268,
+          lng: -0.16573,
         },
-        zoom: 10,
+        zoom: 13,
       },
     });
 
@@ -162,7 +162,6 @@ const SessionDetail: React.FC<SessionDetailProps> = ({ session }) => {
     await addPatientMarker();
     await addRoutineMarkers();
     await addRoute(routineRef?.current?.id);
-    await newMap.enableCurrentLocation(true);
   };
 
   const openGoogleMaps = async () => {
@@ -193,14 +192,13 @@ const SessionDetail: React.FC<SessionDetailProps> = ({ session }) => {
       </IonHeader>
       <IonContent>
         <div className="ion-padding">
-          <img
+          <capacitor-google-map
+            ref={mapRef}
             style={{
               display: 'inline-block',
               width: '100%',
               height: '300px',
             }}
-            src="/assets/img/map/member.png"
-            onClick={() => openGoogleMaps()}
           />
           <h1>{routine?.name}</h1>
           <IonText color="medium">
