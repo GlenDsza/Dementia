@@ -13,4 +13,5 @@ export interface ConfState {
   loading?: boolean;
   allTracks: string[];
   menuEnabled: boolean;
+  notification: any[];
 }

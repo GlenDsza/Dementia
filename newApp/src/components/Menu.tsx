@@ -93,11 +93,11 @@ const Menu: React.FC<MenuProps> = ({
     ];
 
     const pData = [
-      { title: 'Schedule', path: '/ctabs/schedule', icon: calendarOutline },
-      { title: 'Members', path: '/ctabs/speakers', icon: peopleOutline },
+      { title: 'Schedule', path: '/ptabs/schedule', icon: calendarOutline },
+      { title: 'Members', path: '/ptabs/speakers', icon: peopleOutline },
       {
         title: 'Notification',
-        path: '/tabs/map',
+        path: '/ptabs/notifications',
         icon: notifications,
       },
     ];
