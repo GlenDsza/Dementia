@@ -211,6 +211,7 @@ const Home: React.FC<HomeProps> = ({
               <IonIcon slot="end" icon={call} aria-hidden="true" />
             </IonButton>
           </IonCard>
+
           {/* Current Routine */}
           <IonCard className="rounded-xl card-shadow flex flex-col mt-4 p-4 mb-4">
             <div className="flex items-center mb-2">
@@ -232,7 +233,6 @@ const Home: React.FC<HomeProps> = ({
           </IonCard>
 
           {/* Latest Notifications */}
-
           <IonCard className="rounded-xl card-shadow flex flex-col mt-4 p-4 mb-4">
             <div className="flex items-center mb-2">
               <TbClockHour4Filled size={25} color="#737373" />
