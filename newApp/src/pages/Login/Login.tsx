@@ -67,80 +67,68 @@ const Login: React.FC<any> = ({
 
   return (
     <IonPage>
-      <IonContent fullscreen className="ion-padding">
-        <IonHeader>
-          <IonToolbar style={{ borderRadius: '1rem' }}>
-            <div className="title">
-              <img
-                src="/assets/icon/favicon.png"
-                alt="Logo"
-                width={30}
-                height={30}
-              />
-              <h1>Reva</h1>
-            </div>
-          </IonToolbar>
-        </IonHeader>
-        <div>
-          <IonText className="flex justify-center mt-8">
-            <IonCardTitle>Welcome !</IonCardTitle>
-          </IonText>
+      <IonContent fullscreen className="ion-text-center ion-padding">
+        <div className="login-container">
+          <img src="/assets/icon/logo.png" alt="Logo" className="app-logo" />
+          <h1 className="app-name">Reva</h1>
+
+          <IonCard className="mx-4">
+            <IonCardHeader>
+              <IonCardSubtitle className="flex justify-center">
+                Login to your account
+              </IonCardSubtitle>
+            </IonCardHeader>
+
+            <IonCardContent className="p-3">
+              <IonSegment value={userType} className="mt-4" color={'primary'}>
+                <IonSegmentButton
+                  value="patient"
+                  onClick={() => setType('patient')}
+                >
+                  <IonLabel>Patient</IonLabel>
+                </IonSegmentButton>
+                <IonSegmentButton
+                  value="caretaker"
+                  onClick={() => setType('caretaker')}
+                >
+                  <IonLabel>Caretaker</IonLabel>
+                </IonSegmentButton>
+              </IonSegment>
+
+              <IonInput
+                label="Mobile No."
+                labelPlacement="floating"
+                type="number"
+                value={mobile}
+                onIonChange={(e) => setMobile(e.detail.value! as string)}
+                counter={true}
+                maxlength={10}
+                className="mt-8"
+              >
+                <IonIcon slot="start" icon={call} aria-hidden="true"></IonIcon>
+              </IonInput>
+              <IonButton
+                id="getOtpBtn"
+                className="my-8 "
+                expand="block"
+                onClick={handleGetOtp}
+              >
+                Get OTP
+              </IonButton>
+              <IonText
+                color="medium"
+                slot="end"
+                className="flex justify-end"
+                onClick={() => {
+                  history.push('/signup');
+                }}
+              >
+                <h3>Don't have an account? Sign up</h3>
+              </IonText>
+            </IonCardContent>
+          </IonCard>
         </div>
-        <IonCard className="mx-4">
-          <IonCardHeader>
-            <IonCardSubtitle className="flex justify-center">
-              Login to your account
-            </IonCardSubtitle>
-          </IonCardHeader>
 
-          <IonCardContent className="p-3">
-            <IonSegment value={userType} className="mt-4" color={'primary'}>
-              <IonSegmentButton
-                value="patient"
-                onClick={() => setType('patient')}
-              >
-                <IonLabel>Patient</IonLabel>
-              </IonSegmentButton>
-              <IonSegmentButton
-                value="caretaker"
-                onClick={() => setType('caretaker')}
-              >
-                <IonLabel>Caretaker</IonLabel>
-              </IonSegmentButton>
-            </IonSegment>
-
-            <IonInput
-              label="Mobile No."
-              labelPlacement="floating"
-              type="number"
-              value={mobile}
-              onIonChange={(e) => setMobile(e.detail.value! as string)}
-              counter={true}
-              maxlength={10}
-              className="mt-8"
-            >
-              <IonIcon slot="start" icon={call} aria-hidden="true"></IonIcon>
-            </IonInput>
-            <IonButton
-              id="getOtpBtn"
-              className="my-8 "
-              expand="block"
-              onClick={handleGetOtp}
-            >
-              Get OTP
-            </IonButton>
-            <IonText
-              color="medium"
-              slot="end"
-              className="flex justify-end"
-              onClick={() => {
-                history.push('/signup');
-              }}
-            >
-              <h3>Don't have an account? Sign up</h3>
-            </IonText>
-          </IonCardContent>
-        </IonCard>
         <IonModal
           ref={otpModal}
           trigger="getOtpBtn"
