@@ -38,7 +38,7 @@ import {
   navigateCircle,
   navigateCircleSharp,
 } from 'ionicons/icons';
-
+import { Capacitor } from '@capacitor/core';
 import { connect } from '../../../data/connect';
 import * as selectors from '../../../data/selectors';
 
@@ -46,6 +46,15 @@ import { Speaker } from '../../../models/Speaker';
 import SpeakerMap from './SpeakerMap';
 import SpeakerItem from './SpeakerItem';
 import { Geolocation } from '@capacitor/geolocation';
+
+function determineBrowser() {
+  let isApp = true;
+  console.log(Capacitor.getPlatform());
+  if (Capacitor.getPlatform() === 'web') {
+    isApp = false;
+  }
+  return isApp;
+}
 interface OwnProps extends RouteComponentProps {
   speaker?: any;
 }
@@ -62,6 +71,8 @@ const SpeakerDetail: React.FC<SpeakerDetailProps> = ({ speaker }) => {
     ActionSheetButton[]
   >([]);
   const [actionSheetHeader, setActionSheetHeader] = useState('');
+
+  const [] = useState();
 
   function openSpeakerShare(speaker: Speaker) {
     setActionSheetButtons([
@@ -185,10 +196,14 @@ const SpeakerDetail: React.FC<SpeakerDetailProps> = ({ speaker }) => {
             <p>
               {speaker.type != 'person' ? (
                 <div className="ion-padding speaker-map">
-                  <img
-                    src="/assets/img/map/member.png"
-                    onClick={() => openGoogleMaps()}
-                  />
+                  {determineBrowser() === false ? (
+                    <SpeakerMap />
+                  ) : (
+                    <img
+                      src="/assets/img/map/member.png"
+                      onClick={() => openGoogleMaps()}
+                    />
+                  )}
                 </div>
               ) : null}
             </p>
