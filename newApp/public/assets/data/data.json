@@ -348,13 +348,12 @@
       "type": "alert",
       "icon": "BsFillInfoCircleFill",
       "header": "Reminder",
-      "message": "Mary is asking about her blue jacket!",
+      "message": "Reva needs more context!",
       "completed": false,
       "time": "04:00 pm",
       "for": "caretaker"
     }
   ],
-
   "map": [
     {
       "name": "Monona Terrace Convention Center",
