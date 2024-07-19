@@ -23,8 +23,8 @@ export const MarkerInfoWindow = ({ marker, dismiss }) => {
         <IonRow className="ion-margin-bottom">
           <IonCol size="12">
             <IonLabel>
-              <h1>{marker?.title ?? 'God'}</h1>
-              <IonNote>{marker?.description ?? 'Caretaker'}</IonNote>
+              <h1>{marker?.title ?? 'Mary Parker'}</h1>
+              <IonNote>{marker?.description ?? 'Patient'}</IonNote>
             </IonLabel>
           </IonCol>
         </IonRow>
@@ -38,7 +38,9 @@ export const MarkerInfoWindow = ({ marker, dismiss }) => {
             />
           </IonCol>
 
-          <IonCol size="10">{marker?.address ?? 'Everywhere'}</IonCol>
+          <IonCol size="10">
+            {marker?.address ?? 'Victoria Embankment, London SW1A 2JR, UK'}
+          </IonCol>
         </IonRow>
 
         <IonRow className="ion-justify-content-start ion-align-items-center">
@@ -50,7 +52,7 @@ export const MarkerInfoWindow = ({ marker, dismiss }) => {
             />
           </IonCol>
 
-          <IonCol size="10">{marker?.email ?? 'god@godmail.com'}</IonCol>
+          <IonCol size="10">{marker?.email ?? 'maryparker@gmail.com'}</IonCol>
         </IonRow>
 
         <IonRow className="ion-justify-content-start ion-align-items-center">
@@ -62,7 +64,7 @@ export const MarkerInfoWindow = ({ marker, dismiss }) => {
             />
           </IonCol>
 
-          <IonCol size="10">{marker?.phone ?? '+00 0000000000'}</IonCol>
+          <IonCol size="10">{marker?.phone ?? '+01 1262938109'}</IonCol>
         </IonRow>
 
         <IonRow>

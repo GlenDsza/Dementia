@@ -89,11 +89,11 @@ const Map: FC = () => {
   const addPatientMarker = async (): Promise<void> => {
     await newMap.addMarker({
       coordinate: {
-        lat: 18.701212,
-        lng: 73.644495,
+        lat: 51.519865,
+        lng: -0.119092,
       },
       title: 'Patient',
-      iconUrl: '/assets/svgs/patient.svg',
+      iconUrl: '/assets/svgs/patient.png',
       iconSize: {
         width: 30,
         height: 30,
@@ -117,8 +117,8 @@ const Map: FC = () => {
           destination: {
             location: {
               latLng: {
-                latitude: 18.701212,
-                longitude: 73.644495,
+                latitude: 51.519865,
+                longitude: -0.119092,
               },
             },
           },
@@ -168,7 +168,7 @@ const Map: FC = () => {
           lat: locationRef.current.lat,
           lng: locationRef.current.lng,
         },
-        zoom: 10,
+        zoom: 13,
       },
     });
 
@@ -191,7 +191,6 @@ const Map: FC = () => {
       },
     ];
     await newMap.addPolylines(lines);
-    await newMap.enableCurrentLocation(true);
 
     setLoading(false);
   };
@@ -202,10 +201,10 @@ const Map: FC = () => {
 
   const getCurrentPosition = async () => {
     try {
-      const coordinates = await Geolocation.getCurrentPosition();
+      // const coordinates = await Geolocation.getCurrentPosition();
       locationRef.current = {
-        lat: coordinates.coords.latitude,
-        lng: coordinates.coords.longitude,
+        lat: 51.509865,
+        lng: -0.118092,
       };
     } catch (error) {
       console.error('Error getting current position:', error);
@@ -236,7 +235,7 @@ const Map: FC = () => {
             width: '100%',
             height: '100%',
           }}
-        ></capacitor-google-map>
+        />
       </IonContent>
     </IonPage>
   );
