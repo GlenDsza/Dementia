@@ -41,6 +41,17 @@ interface RouteParams {
   id: string;
 }
 
+import { Capacitor } from '@capacitor/core';
+
+function determineBrowser() {
+  let isApp = true;
+  console.log(Capacitor.getPlatform());
+  if (Capacitor.getPlatform() === 'web') {
+    isApp = false;
+  }
+  return isApp;
+}
+
 type SessionDetailProps = OwnProps & StateProps & DispatchProps;
 
 const SessionDetail: React.FC<SessionDetailProps> = ({ session }) => {
@@ -192,15 +203,27 @@ const SessionDetail: React.FC<SessionDetailProps> = ({ session }) => {
       </IonHeader>
       <IonContent>
         <div className="ion-padding">
-          <img
-            style={{
-              display: 'inline-block',
-              width: '100%',
-              height: '300px',
-            }}
-            src="/assets/img/map/member.png"
-            onClick={() => openGoogleMaps()}
-          />
+          {determineBrowser() === false ? (
+            <capacitor-google-map
+              ref={mapRef}
+              style={{
+                display: 'inline-block',
+                width: '100%',
+                height: '300px',
+              }}
+            />
+          ) : (
+            <img
+              style={{
+                display: 'inline-block',
+                width: '100%',
+                height: '300px',
+              }}
+              src="/assets/img/map/member.png"
+              onClick={() => openGoogleMaps()}
+            />
+          )}
+
           <h1>{routine?.name}</h1>
           <IonText color="medium">
             <div className="mt-2">
