@@ -61,6 +61,7 @@ import PTabs from './pages/Patient/PTabs';
 import CTabs from './pages/Caretaker/CTabs';
 import Notifications from './pages/Caretaker/Notifications/Notifications';
 import { LocalNotifications } from '@capacitor/local-notifications';
+import { Capacitor } from '@capacitor/core';
 
 // ...
 import Uploads from './pages/Caretaker/Uploads/Uploads';
@@ -97,6 +98,15 @@ const IonicApp: React.FC<IonicAppProps> = ({
   loadConfData,
   loadUserData,
 }) => {
+  const determineBrowser = () => {
+    let isApp = true;
+    console.log(Capacitor.getPlatform());
+    if (Capacitor.getPlatform() === 'web') {
+      isApp = false;
+    }
+    console.log(isApp);
+  };
+
   const getRandomId = () => {
     const randomId = Math.floor(Math.random() * 10000) + 1;
     return randomId;
@@ -122,7 +132,7 @@ const IonicApp: React.FC<IonicAppProps> = ({
           smallIcon: 'information.svg',
           iconColor: '#FF0000',
           schedule: {
-            at: new Date(Date.now() + 3000),
+            at: new Date(Date.now() + 5000),
           }, // 5 seconds from now
           sound: 'beep.wav', // Optional: specify a custom sound
         },
@@ -133,7 +143,7 @@ const IonicApp: React.FC<IonicAppProps> = ({
           smallIcon: 'information.svg',
           iconColor: '#FF0000',
           schedule: {
-            at: new Date(Date.now() + 6000),
+            at: new Date(Date.now() + 10000),
           }, // 5 seconds from now
           sound: 'beep.wav', // Optional: specify a custom sound
         },
@@ -144,7 +154,7 @@ const IonicApp: React.FC<IonicAppProps> = ({
           smallIcon: 'warning.svg',
           iconColor: '#FF0000',
           schedule: {
-            at: new Date(Date.now() + 9000),
+            at: new Date(Date.now() + 15000),
           }, // 5 seconds from now
           sound: 'beep.wav', // Optional: specify a custom sound
         },
@@ -167,6 +177,7 @@ const IonicApp: React.FC<IonicAppProps> = ({
     loadUserData();
     loadConfData();
     scheduleNotification();
+    determineBrowser();
   }, []);
 
   return schedule.groups.length === 0 ? (
