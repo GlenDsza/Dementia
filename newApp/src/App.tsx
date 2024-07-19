@@ -130,6 +130,71 @@ const IonicApp: React.FC<IonicAppProps> = ({
           }, // 5 seconds from now
           sound: 'beep.wav', // Optional: specify a custom sound
         },
+        {
+          title: 'Reva - Information',
+          body: 'Harit has completed his morning walk. Now he is at home !',
+          id: getRandomId(),
+          smallIcon: 'warning.svg',
+          iconColor: '#FF0000',
+          schedule: {
+            at: new Date(Date.now() + 6000),
+            repeats: true,
+            every: 'second',
+          }, // 5 seconds from now
+          sound: 'beep.wav', // Optional: specify a custom sound
+        },
+        {
+          title: 'Reva - Information',
+          body: 'Harit has completed his morning walk. Now he is at home !',
+          id: getRandomId(),
+          smallIcon: 'warning.svg',
+          iconColor: '#FF0000',
+          schedule: {
+            at: new Date(Date.now() + 9000),
+            repeats: true,
+            every: 'second',
+          }, // 5 seconds from now
+          sound: 'beep.wav', // Optional: specify a custom sound
+        },
+        {
+          title: 'Reva - Information',
+          body: 'Harit has completed his morning walk. Now he is at home !',
+          id: getRandomId(),
+          smallIcon: 'warning.svg',
+          iconColor: '#FF0000',
+          schedule: {
+            at: new Date(Date.now() + 30000),
+            repeats: true,
+            every: 'second',
+          }, // 5 seconds from now
+          sound: 'beep.wav', // Optional: specify a custom sound
+        },
+        {
+          title: 'Reva - Information',
+          body: 'Harit has completed his morning walk. Now he is at home !',
+          id: getRandomId(),
+          smallIcon: 'warning.svg',
+          iconColor: '#FF0000',
+          schedule: {
+            at: new Date(Date.now() + 13000),
+            repeats: true,
+            every: 'second',
+          }, // 5 seconds from now
+          sound: 'beep.wav', // Optional: specify a custom sound
+        },
+        {
+          title: 'Reva - Information',
+          body: 'Harit has completed his morning walk. Now he is at home !',
+          id: getRandomId(),
+          smallIcon: 'warning.svg',
+          iconColor: '#FF0000',
+          schedule: {
+            at: new Date(Date.now() + 23000),
+            repeats: true,
+            every: 'second',
+          }, // 5 seconds from now
+          sound: 'beep.wav', // Optional: specify a custom sound
+        },
       ],
     });
   };
@@ -137,9 +202,7 @@ const IonicApp: React.FC<IonicAppProps> = ({
   useEffect(() => {
     loadUserData();
     loadConfData();
-    setInterval(() => {
-      scheduleNotification();
-    }, 5000);
+    scheduleNotification();
   }, []);
 
   return schedule.groups.length === 0 ? (
