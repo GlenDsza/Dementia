@@ -130,7 +130,6 @@ const IonicApp: React.FC<IonicAppProps> = ({
           body: 'Mary has to help Ben ready for school',
           id: getRandomId(),
           smallIcon: 'information.svg',
-          iconColor: '#FF0000',
           schedule: {
             at: new Date(Date.now() + 5000),
           }, // 5 seconds from now
@@ -141,7 +140,6 @@ const IonicApp: React.FC<IonicAppProps> = ({
           body: 'Marys medication needs to be taken at 10 AM.',
           id: getRandomId(),
           smallIcon: 'information.svg',
-          iconColor: '#FF0000',
           schedule: {
             at: new Date(Date.now() + 10000),
           }, // 5 seconds from now
