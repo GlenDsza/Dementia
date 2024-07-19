@@ -106,92 +106,56 @@ const IonicApp: React.FC<IonicAppProps> = ({
     LocalNotifications.schedule({
       notifications: [
         {
-          title: 'Reva - Attention Required',
-          body: 'Customer seems uncomfortable. Panicked locoking for help !',
+          title: 'Reva - Information',
+          body: 'Mary has to step out for her morning walk',
           id: getRandomId(),
           smallIcon: 'information.svg',
           schedule: {
             at: new Date(Date.now() + 1000),
-            repeats: true,
-            every: 'second',
           }, // 5 seconds from now
           sound: 'beep.wav', // Optional: specify a custom sound
         },
         {
           title: 'Reva - Information',
-          body: 'Harit has completed his morning walk. Now he is at home !',
+          body: 'Mary has to help Ben ready for school',
           id: getRandomId(),
-          smallIcon: 'warning.svg',
+          smallIcon: 'information.svg',
           iconColor: '#FF0000',
           schedule: {
             at: new Date(Date.now() + 3000),
-            repeats: true,
-            every: 'second',
           }, // 5 seconds from now
           sound: 'beep.wav', // Optional: specify a custom sound
         },
         {
           title: 'Reva - Information',
-          body: 'Harit has completed his morning walk. Now he is at home !',
+          body: 'Marys medication needs to be taken at 10 AM.',
           id: getRandomId(),
-          smallIcon: 'warning.svg',
+          smallIcon: 'information.svg',
           iconColor: '#FF0000',
           schedule: {
             at: new Date(Date.now() + 6000),
-            repeats: true,
-            every: 'second',
           }, // 5 seconds from now
           sound: 'beep.wav', // Optional: specify a custom sound
         },
         {
-          title: 'Reva - Information',
-          body: 'Harit has completed his morning walk. Now he is at home !',
+          title: 'Reva - Warning',
+          body: 'Mary has been stationary for over an hour.',
           id: getRandomId(),
           smallIcon: 'warning.svg',
           iconColor: '#FF0000',
           schedule: {
             at: new Date(Date.now() + 9000),
-            repeats: true,
-            every: 'second',
           }, // 5 seconds from now
           sound: 'beep.wav', // Optional: specify a custom sound
         },
         {
-          title: 'Reva - Information',
-          body: 'Harit has completed his morning walk. Now he is at home !',
+          title: 'Reva - Attention Required',
+          body: 'Mary is asking about her blue jacket!',
           id: getRandomId(),
           smallIcon: 'warning.svg',
           iconColor: '#FF0000',
           schedule: {
             at: new Date(Date.now() + 30000),
-            repeats: true,
-            every: 'second',
-          }, // 5 seconds from now
-          sound: 'beep.wav', // Optional: specify a custom sound
-        },
-        {
-          title: 'Reva - Information',
-          body: 'Harit has completed his morning walk. Now he is at home !',
-          id: getRandomId(),
-          smallIcon: 'warning.svg',
-          iconColor: '#FF0000',
-          schedule: {
-            at: new Date(Date.now() + 13000),
-            repeats: true,
-            every: 'second',
-          }, // 5 seconds from now
-          sound: 'beep.wav', // Optional: specify a custom sound
-        },
-        {
-          title: 'Reva - Information',
-          body: 'Harit has completed his morning walk. Now he is at home !',
-          id: getRandomId(),
-          smallIcon: 'warning.svg',
-          iconColor: '#FF0000',
-          schedule: {
-            at: new Date(Date.now() + 23000),
-            repeats: true,
-            every: 'second',
           }, // 5 seconds from now
           sound: 'beep.wav', // Optional: specify a custom sound
         },

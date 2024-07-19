@@ -71,7 +71,7 @@ const Login: React.FC<any> = ({
       <IonContent fullscreen className="ion-text-center ion-padding">
         <div className="login-container">
           <img src="/assets/icon/logo.png" alt="Logo" className="app-logo" />
-          <h1 className="app-name">Reva 2</h1>
+          <h1 className="app-name">Reva</h1>
 
           <IonCard className="mx-4">
             <IonCardHeader>
