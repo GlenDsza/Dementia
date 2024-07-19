@@ -30,5 +30,8 @@ export const sessionsReducer = (
     case 'set-menu-enabled': {
       return { ...state, menuEnabled: action.menuEnabled };
     }
+    case 'set-notification-data': {
+      return { ...state, notification: action.data };
+    }
   }
 };

@@ -17,6 +17,7 @@ export const getConfData = async () => {
   const schedule = responseData.schedule[0] as ScheduleModel;
   const sessions = parseSessions(schedule);
   const speakers = responseData.speakers as Speaker[];
+  const notification = responseData.notification as any[];
   const locations = (await response[1].json()) as Location[];
   const allTracks = sessions
     .reduce((all, session) => all.concat(session.tracks), [] as string[])
@@ -29,6 +30,7 @@ export const getConfData = async () => {
     locations,
     speakers,
     allTracks,
+    notification,
     filteredTracks: [...allTracks],
   };
   return data;

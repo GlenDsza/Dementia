@@ -21,6 +21,12 @@ export const setData = (data: Partial<ConfState>) =>
     data,
   } as const);
 
+export const setNotificationData = (data: any) =>
+  ({
+    type: 'set-notification-data',
+    data,
+  } as const);
+
 export const addFavorite = (sessionId: number) =>
   ({
     type: 'add-favorite',
@@ -58,4 +64,5 @@ export type SessionsActions =
   | ActionType<typeof removeFavorite>
   | ActionType<typeof updateFilteredTracks>
   | ActionType<typeof setSearchText>
-  | ActionType<typeof setMenuEnabled>;
+  | ActionType<typeof setMenuEnabled>
+  | ActionType<typeof setNotificationData>;
