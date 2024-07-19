@@ -99,7 +99,6 @@ const IonicApp: React.FC<IonicAppProps> = ({
 }) => {
   const getRandomId = () => {
     const randomId = Math.floor(Math.random() * 10000) + 1;
-    console.log(randomId);
     return randomId;
   };
 
