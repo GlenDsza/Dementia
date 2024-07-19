@@ -196,14 +196,7 @@ const SpeakerDetail: React.FC<SpeakerDetailProps> = ({ speaker }) => {
             <p>
               {speaker.type != 'person' ? (
                 <div className="ion-padding speaker-map">
-                  {determineBrowser() === false ? (
-                    <SpeakerMap />
-                  ) : (
-                    <img
-                      src="/assets/img/map/member.png"
-                      onClick={() => openGoogleMaps()}
-                    />
-                  )}
+                  <SpeakerMap />
                 </div>
               ) : null}
             </p>

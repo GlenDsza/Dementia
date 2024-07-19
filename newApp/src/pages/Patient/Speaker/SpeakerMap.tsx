@@ -27,8 +27,8 @@ const SpeakerMap: FC = () => {
   const [selectedMarker, setSelectedMarker] = useState<any>(null);
   const mapRef = useRef<HTMLElement>();
   const locationRef = useRef<InterfaceCoordinates>({
-    lat: 19.075983,
-    lng: 72.877655,
+    lat: 51.507268,
+    lng: -0.16573,
   });
   let newMap: GoogleMap;
 
@@ -86,11 +86,11 @@ const SpeakerMap: FC = () => {
   const addPatientMarker = async (): Promise<void> => {
     await newMap.addMarker({
       coordinate: {
-        lat: 18.701212,
-        lng: 73.644495,
+        lat: 51.507268,
+        lng: -0.16573,
       },
       title: 'Patient',
-      iconUrl: '/assets/svgs/patient.svg',
+      // iconUrl: '/assets/svgs/patient.png',
       iconSize: {
         width: 30,
         height: 30,
@@ -114,8 +114,8 @@ const SpeakerMap: FC = () => {
           destination: {
             location: {
               latLng: {
-                latitude: 18.701212,
-                longitude: 73.644495,
+                latitude: 51.509268,
+                longitude: -0.19573,
               },
             },
           },
@@ -162,10 +162,10 @@ const SpeakerMap: FC = () => {
       apiKey: import.meta.env.VITE_GMAPS_KEY,
       config: {
         center: {
-          lat: locationRef.current.lat,
-          lng: locationRef.current.lng,
+          lat: 51.509268,
+          lng: -0.19573,
         },
-        zoom: 10,
+        zoom: 12,
       },
     });
 
@@ -187,7 +187,6 @@ const SpeakerMap: FC = () => {
       },
     ];
     await newMap.addPolylines(lines);
-    await newMap.enableCurrentLocation(true);
 
     setLoading(false);
   };
