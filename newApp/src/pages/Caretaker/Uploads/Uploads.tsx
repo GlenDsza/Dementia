@@ -20,6 +20,7 @@ import {
   IonInput,
   getConfig,
   IonTextarea,
+  IonBackButton,
 } from '@ionic/react';
 import { options, search, arrowUpOutline } from 'ionicons/icons';
 import { UploadsDescription } from '../../../constants';
@@ -64,8 +65,8 @@ const Uploads: React.FC<UploadsProps> = ({
   const [formState, setFormState] = useState<UploadsDescription>({
     description: '',
   });
-  const { description, } = formState;
-  
+  const { description } = formState;
+
   const [showCompleteToast, setShowCompleteToast] = useState(false);
 
   const pageRef = useRef<HTMLElement>(null);
@@ -87,11 +88,10 @@ const Uploads: React.FC<UploadsProps> = ({
 
   return (
     <IonPage ref={pageRef} id="schedule-page">
-
       <IonHeader translucent={true}>
         <IonToolbar>
           <IonButtons slot="start">
-            <IonMenuButton />
+            <IonBackButton defaultHref="/ctabs/schedule"></IonBackButton>
           </IonButtons>
           <IonTitle>Anything for REVA?</IonTitle>
         </IonToolbar>
@@ -113,7 +113,7 @@ const Uploads: React.FC<UploadsProps> = ({
             className="rounded-xl"
             value={description}
             onIonChange={(e) =>
-            setFormState({ ...formState, description: e.detail.value! })
+              setFormState({ ...formState, description: e.detail.value! })
             }
           />
         </IonItem>
@@ -124,7 +124,7 @@ const Uploads: React.FC<UploadsProps> = ({
           </IonText>
         </div>
 
-        <div className='flex justify-center'>
+        <div className="flex justify-center">
           <IonItem className="mt-8">
             <IonInput
               id="pdfInput"
@@ -145,20 +145,16 @@ const Uploads: React.FC<UploadsProps> = ({
             />
           </IonItem>
 
-          <div className='mt-8'>
+          <div className="mt-8">
             <IonButton>
               <IonIcon icon={arrowUpOutline} />
             </IonButton>
           </div>
         </div>
-        
       </IonContent>
-
-      <IonFooter>
-            <div className='flex justify-center gap-4 mb-4'>
-              <IonButton>Save</IonButton>
-            </div> 
-      </IonFooter>
+      <div className="flex justify-center gap-4 mb-4">
+        <IonButton>Save</IonButton>
+      </div>
 
       <IonModal
         isOpen={showFilterModal}
