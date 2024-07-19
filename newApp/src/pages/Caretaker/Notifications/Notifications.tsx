@@ -8,63 +8,6 @@ import { IoAlertCircle } from 'react-icons/io5';
 import { connect } from '../../../data/connect';
 import { setNotificationData } from '../../../data/sessions/sessions.actions';
 
-const initialNotificationsData = [
-  {
-    type: 'reminder',
-    icon: 'BsFillInfoCircleFill',
-    header: 'Reminder',
-    message: 'Mary has to step out for her morning walk',
-    completed: false,
-    for: 'caretaker',
-    time: '07:00 am',
-  },
-  {
-    type: 'success',
-    icon: 'BsFillInfoCircleFill',
-    header: 'Reminder',
-    message: 'Mary has to help Ben ready for school',
-    completed: false,
-    time: '09:00 am',
-    for: 'both',
-  },
-  {
-    type: 'success',
-    icon: 'BsFillInfoCircleFill',
-    header: 'Reminder',
-    message: "Mary's medication needs to be taken at 10 AM.",
-    completed: false,
-    time: '10:30 am',
-    for: 'both',
-  },
-  {
-    type: 'warning',
-    icon: 'BsFillInfoCircleFill',
-    header: 'Warning',
-    message: 'Mary has been stationary for over an hour.',
-    completed: false,
-    time: '01:20 pm',
-    for: 'caretaker',
-  },
-  {
-    type: 'reminder',
-    icon: 'BsFillInfoCircleFill',
-    header: 'Reminder',
-    message: 'Mary has to attend cognitive sessions',
-    completed: false,
-    for: 'caretaker',
-    time: '01:30 pm',
-  },
-  {
-    type: 'alert',
-    icon: 'BsFillInfoCircleFill',
-    header: 'Reminder',
-    message: 'Reva needs more context!',
-    completed: false,
-    time: '04:00 pm',
-    for: 'caretaker',
-  },
-];
-
 const Notification = (props: any) => {
   const cardRef = useRef<HTMLIonCardElement>(null);
   const [notifications, setNotifications] = useState(props.notification);
